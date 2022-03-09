@@ -1,0 +1,23 @@
+<template>
+    <div class="labs-grid-container">
+        <div class="lab-items">
+            <p>item one</p>
+        </div>
+        <div class="lab-items">
+            <p>item two</p>
+        </div>
+        <div class="lab-items">
+            <p>item three</p>
+        </div>
+        <div class="lab-items">
+            <p>item four</p>
+        </div>
+    </div>
+</template>
+
+<script>
+
+export default({
+    name: 'Exam'
+})
+</script>
