@@ -1,17 +1,18 @@
 <template>
 <div class="main">
-  <!-- div l;ayout
-  div ;left -- navbar
-  div top div 
+  <!-- div layout
   div content
-
-  use vue-router
-
-  fix the css div 
-
+  use vue-router 
   -->
     <div class="section">
         <div class="top_navbar">
+            <div class="hamburger">
+                    <!-- <a href="#">
+                        <i class="fas fa-bars"></i>
+                    </a> -->
+                    <!-- <h1>testing</h1> -->
+                    <p>variable</p>
+                </div>
         </div>
 
         <!-- <Exam/> -->
@@ -79,7 +80,7 @@ export default {
   data(){
     return {
       user: {
-        name: 'Issebella ava',
+        name: 'Isabella Ava',
         subtitle: 'S7 - 57',
         profilepic: 'https://1.bp.blogspot.com/-vhmWFWO2r8U/YLjr2A57toI/AAAAAAAACO4/0GBonlEZPmAiQW4uvkCTm5LvlJVd_-l_wCNcBGAsYHQ/s16000/team-1-2.jpg'
       }
@@ -88,3 +89,8 @@ export default {
 }
 </script>
 
+<style>
+    #app{
+        height: 100%;
+    }
+</style>
