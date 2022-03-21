@@ -1,4 +1,12 @@
 <template>
+    <div class="top_navbar">
+        <div class="hamburger">
+            <!-- <a href="#">
+                <i class="fas fa-bars"></i>
+            </a> -->
+            <p>{{ title }}</p>
+        </div>
+    </div>
     <div class="labs-grid-container">
         <div class="lab-items">
             <p>item one</p>
@@ -18,6 +26,11 @@
 <script>
 
 export default({
-    name: 'Exam'
+    name: 'Exam',
+    data(){
+        return{
+            title: "Your Exams"
+        }
+    }
 })
 </script>

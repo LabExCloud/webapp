@@ -1,4 +1,12 @@
 <template>
+    <div class="top_navbar">
+        <div class="hamburger">
+            <!-- <a href="#">
+                <i class="fas fa-bars"></i>
+            </a> -->
+            <p>{{ title }}</p>
+        </div>
+    </div>
     <div class="resources-container">
         <p>class 1</p>
         <div class="resource-items">
@@ -159,6 +167,11 @@
 <script>
 
 export default({
-    name: 'Resources'
+    name: 'Resources',
+    data(){
+        return{
+            title: "Your Resources"
+        }
+    }
 })
 </script>

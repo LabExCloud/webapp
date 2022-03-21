@@ -1,4 +1,12 @@
 <template>
+    <div class="top_navbar">
+        <div class="hamburger">
+            <!-- <a href="#">
+                <i class="fas fa-bars"></i>
+            </a> -->
+            <p>{{ title }}</p>
+        </div>
+    </div>
     <div class="container">
         <div class="profile">
             <img src="https://1.bp.blogspot.com/-vhmWFWO2r8U/YLjr2A57toI/AAAAAAAACO4/0GBonlEZPmAiQW4uvkCTm5LvlJVd_-l_wCNcBGAsYHQ/s16000/team-1-2.jpg" alt="student picture">
@@ -63,6 +71,11 @@
 <script>
 
 export default({
-    name: 'Profile'
+    name: 'Profile',
+    data(){
+        return{
+            title: "Your Profile"
+        }
+    }
 })
 </script>
