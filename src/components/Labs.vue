@@ -7,6 +7,9 @@
             <p>{{ title }}</p>
         </div>
     </div>
+    <div class="search-box">
+        <input type="search" id="search" placeholder="Search Labs" />
+    </div>
     <div class="labs-grid-container">
         <div class="lab-items">
             <p>item one</p>

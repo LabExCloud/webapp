@@ -32,9 +32,9 @@ html,body { height:100%; }
     text-align: center;
 }
 
-#login-form{
-    /* font-family: 'Sniglet', cursive; */
-}
+/* #login-form{
+    font-family: 'Sniglet', cursive;
+} */
 
 input[type=text], input[type=password]{
     /* font-family: 'Sniglet', cursive; */
@@ -209,6 +209,22 @@ input[type=text], input[type=password]{
     width: 100%;
 }
 
+.search-box{
+    width: 100%;
+    text-align: center;
+    padding-top: 35px;
+}
+
+.search-box input[type=search]{
+    width: 30%;
+    height: 45px;
+    text-align: center;
+    border: 2px solid black;
+    border-radius: 13px;
+    color: #A1A3B5;
+    background-color: #1F3649;
+    font-size: 18px;
+}
 
     
 body.active .main .menu-sidebar{
