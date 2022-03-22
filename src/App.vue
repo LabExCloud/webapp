@@ -23,25 +23,25 @@
         </div>
         <ul>
             <li>
-                <a href="#/labs" class="active">
+                <a href="#/labs" @click="activate(1)" :class="{ active : activeElement == 1 }">
                     <span class="icon"><i class="fas fa-desktop"></i></span>
                     <span class="item">Lab</span>
                 </a>
             </li>
             <li>
-                <a href="#/exam">
+                <a href="#/exam" @click="activate(2)" :class="{ active : activeElement == 2 }">
                     <span class="icon"><i class="far fa-keyboard"></i></span>
                     <span class="item">Exam</span>
                 </a>
             </li>
             <li>
-                <a href="#/resources">
+                <a href="#/resources" @click="activate(3)" :class="{ active : activeElement == 3 }">
                     <span class="icon"><i class="fas fa-book"></i></span>
                     <span class="item">Resources</span>
                 </a>
             </li>
             <li>
-                <a href="#/profile">
+                <a href="#/profile" @click="activate(4)" :class="{ active : activeElement == 4 }">
                     <span class="icon"><i class="fas fa-cog"></i></span>
                     <span class="item">Profile Settings</span>
                 </a>
@@ -82,11 +82,17 @@ export default {
   data(){
     return {
       currentPath: window.location.hash,
+      activeElement:1,
       user: {
         name: 'Isabella Ava',
         class: 'S7 - 57',
         profilepic: 'https://1.bp.blogspot.com/-vhmWFWO2r8U/YLjr2A57toI/AAAAAAAACO4/0GBonlEZPmAiQW4uvkCTm5LvlJVd_-l_wCNcBGAsYHQ/s16000/team-1-2.jpg'
       }
+    }
+  },
+  methods:{
+    activate(el){
+      this.activeElement = el
     }
   },
   computed: {
