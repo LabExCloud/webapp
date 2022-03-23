@@ -9,6 +9,15 @@
     </div>
     <div class="search-box">
         <input type="search" id="search" placeholder="Search Labs" />
+        <div class="sort-box">
+            <label for="sort">sort:</label>&nbsp;
+            <select id="sort" name="sort">
+                <option value="recent">Recent</option>
+                <option value="star">Starred</option>
+                <option value="date">Date</option>
+                <option value="alph">Alphabet</option>
+            </select>
+        </div>
     </div>
     <div class="labs-grid-container">
         <div class="lab-items">

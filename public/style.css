@@ -226,6 +226,24 @@ input[type=text], input[type=password]{
     font-size: 18px;
 }
 
+.search-box .sort-box{
+    /* position: relative; */
+    /* bottom: 49%; */
+    padding-left: 625px;
+    margin-top: -32px;
+    color: #A1A3B5;
+    font-size: 17px;
+}
+.sort-box select{
+    width: 20%;
+    height: 30px;
+    text-align: center;
+    border: 1px solid black;
+    border-radius: 10px;
+    color: #A1A3B5;
+    background-color: #1F3649;
+    font-size: 15px;
+}
     
 body.active .main .menu-sidebar{
     left: -225px;
