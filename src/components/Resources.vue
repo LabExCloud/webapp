@@ -20,158 +20,24 @@
         </div>
     </div>
     <div class="resources-container">
-        <p>class 1</p>
-        <div class="resource-items">
-            <table class="resource-table">
-                    <tr>
-                        <td>
-                            <p>item one</p>
-                        </td>
-                        <td>
-                            <p>date 1</p>
-                        </td>
-                        <td>
-                            <p>tag 1</p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <p>item two</p>
-                        </td>
-                        <td>
-                            <p>date 2</p>
-                        </td>
-                        <td>
-                            <p>tag 2</p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <p>item three</p>
-                        </td>
-                        <td>
-                            <p>date 3</p>
-                        </td>
-                        <td>
-                            <p>tag 3</p>
-                        </td>
-                    </tr>
-            </table>
-        </div><br>
-        <p>class 2</p>
-        <div class="resource-items">
-            <table class="resource-table">
-                    <tr>
-                        <td>
-                            <p>item one</p>
-                        </td>
-                        <td>
-                            <p>date 1</p>
-                        </td>
-                        <td>
-                            <p>tag 1</p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <p>item two</p>
-                        </td>
-                        <td>
-                            <p>date 2</p>
-                        </td>
-                        <td>
-                            <p>tag 2</p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <p>item three</p>
-                        </td>
-                        <td>
-                            <p>date 3</p>
-                        </td>
-                        <td>
-                            <p>tag 3</p>
-                        </td>
-                    </tr>
-            </table>
-        </div><br>
-        <p>class 3</p>
-        <div class="resource-items">
-            <table class="resource-table">
-                    <tr>
-                        <td>
-                            <p>item one</p>
-                        </td>
-                        <td>
-                            <p>date 1</p>
-                        </td>
-                        <td>
-                            <p>tag 1</p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <p>item two</p>
-                        </td>
-                        <td>
-                            <p>date 2</p>
-                        </td>
-                        <td>
-                            <p>tag 2</p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <p>item three</p>
-                        </td>
-                        <td>
-                            <p>date 3</p>
-                        </td>
-                        <td>
-                            <p>tag 3</p>
-                        </td>
-                    </tr>
-            </table>
-        </div><br>
-        <p>class 4</p>
-        <div class="resource-items">
-            <table class="resource-table">
-                    <tr>
-                        <td>
-                            <p>item one</p>
-                        </td>
-                        <td>
-                            <p>date 1</p>
-                        </td>
-                        <td>
-                            <p>tag 1</p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <p>item two</p>
-                        </td>
-                        <td>
-                            <p>date 2</p>
-                        </td>
-                        <td>
-                            <p>tag 2</p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <p>item three</p>
-                        </td>
-                        <td>
-                            <p>date 3</p>
-                        </td>
-                        <td>
-                            <p>tag 3</p>
-                        </td>
-                    </tr>
-            </table>
-        </div><br>
+        <div class="each-resource-box" v-for="item in resourceItems" :key="item">
+            <p>{{ item.name }}</p>
+            <div class="resource-items">
+                <table class="resource-table">
+                        <tr v-for="content in item.contents" :key="content">
+                            <td>
+                                <p>{{ content.title }}</p>
+                            </td>
+                            <td>
+                                <p>{{ content.date }}</p>
+                            </td>
+                            <td>
+                                <p>{{ content.tag }}</p>
+                            </td>
+                        </tr>
+                </table>
+            </div><br>
+        </div>
     </div>
 </template>
 
@@ -182,7 +48,109 @@ export default({
     name: 'Resources',
     data(){
         return{
-            title: "Your Resources"
+            title: "Your Resources",
+            resourceItems: [
+                {
+                    name: 'Python',
+                    contents:[
+                        {
+                        title: 'item 1',
+                        date: 'date 1',
+                        tag: 'tag 1'
+                        },
+                        {
+                        title: 'item 2',
+                        date: 'date 2',
+                        tag: 'tag 2'
+                        },
+                        {
+                        title: 'item 3',
+                        date: 'date 3',
+                        tag: 'tag 3'
+                        },
+                        {
+                        title: 'item 4',
+                        date: 'date 4',
+                        tag: 'tag 4'
+                        }
+                    ]
+                },
+                {
+                    name: 'C++',
+                    contents:[
+                        {
+                        title: 'item 1',
+                        date: 'date 1',
+                        tag: 'tag 1'
+                        },
+                        {
+                        title: 'item 2',
+                        date: 'date 2',
+                        tag: 'tag 2'
+                        },
+                        {
+                        title: 'item 3',
+                        date: 'date 3',
+                        tag: 'tag 3'
+                        },
+                        {
+                        title: 'item 4',
+                        date: 'date 4',
+                        tag: 'tag 4'
+                        }
+                    ]
+                },
+                {
+                    name: 'SQL',
+                    contents:[
+                        {
+                        title: 'item 1',
+                        date: 'date 1',
+                        tag: 'tag 1'
+                        },
+                        {
+                        title: 'item 2',
+                        date: 'date 2',
+                        tag: 'tag 2'
+                        },
+                        {
+                        title: 'item 3',
+                        date: 'date 3',
+                        tag: 'tag 3'
+                        },
+                        {
+                        title: 'item 4',
+                        date: 'date 4',
+                        tag: 'tag 4'
+                        }
+                    ]
+                },
+                {
+                    name: 'Java',
+                    contents:[
+                        {
+                        title: 'item 1',
+                        date: 'date 1',
+                        tag: 'tag 1'
+                        },
+                        {
+                        title: 'item 2',
+                        date: 'date 2',
+                        tag: 'tag 2'
+                        },
+                        {
+                        title: 'item 3',
+                        date: 'date 3',
+                        tag: 'tag 3'
+                        },
+                        {
+                        title: 'item 4',
+                        date: 'date 4',
+                        tag: 'tag 4'
+                        }
+                    ]
+                }
+            ]
         }
     }
 })

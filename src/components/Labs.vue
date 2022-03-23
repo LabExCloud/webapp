@@ -20,17 +20,8 @@
         </div>
     </div>
     <div class="labs-grid-container">
-        <div class="lab-items">
-            <p>item one</p>
-        </div>
-        <div class="lab-items">
-            <p>item two</p>
-        </div>
-        <div class="lab-items">
-            <p>item three</p>
-        </div>
-        <div class="lab-items">
-            <p>item four</p>
+        <div class="lab-items" v-for="item in objectItems" :key="item">
+            <p>{{ item }}</p>
         </div>
     </div>
 </template>
@@ -41,7 +32,13 @@ export default({
     name: 'Labs',
     data(){
         return{
-            title: "Your Lab works"
+            title: "Your Lab works",
+            objectItems: {
+                key1: 'item one',
+                key2: 'item two',
+                key3: 'item three',
+                key4: 'item four'
+            }
         }
     }
 })
