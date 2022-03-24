@@ -215,6 +215,14 @@ input[type=text], input[type=password]{
     padding-top: 35px;
 }
 
+.search-box .icon{
+    position:absolute;
+    padding:12px;
+    min-width:90px;
+    color:#7E7979;
+    font-size:17px;
+}
+
 .search-box input[type=search]{
     width: 30%;
     height: 45px;

@@ -30,25 +30,25 @@
             </li>
             <li>
                 <a href="#/exam" @click="activate(2)" :class="{ active : activeElement == 2 }">
-                    <span class="icon"><i class="far fa-keyboard"></i></span>
+                    <span class="icon"><font-awesome-icon :icon="['fas', 'keyboard']"></font-awesome-icon></span>
                     <span class="item">Exam</span>
                 </a>
             </li>
             <li>
                 <a href="#/resources" @click="activate(3)" :class="{ active : activeElement == 3 }">
-                    <span class="icon"><i class="fas fa-book"></i></span>
+                    <span class="icon"><font-awesome-icon :icon="['fas', 'book']"></font-awesome-icon></span>
                     <span class="item">Resources</span>
                 </a>
             </li>
             <li>
                 <a href="#/profile" @click="activate(4)" :class="{ active : activeElement == 4 }">
-                    <span class="icon"><i class="fas fa-cog"></i></span>
+                    <span class="icon"><font-awesome-icon :icon="['fas', 'cog']"></font-awesome-icon></span>
                     <span class="item">Profile Settings</span>
                 </a>
             </li>
             <li>
                 <a href="/login.html">
-                    <span class="icon"><i class="fas fa-sign-out-alt"></i></span>
+                    <span class="icon"><font-awesome-icon :icon="['fas', 'sign-out-alt']"></font-awesome-icon></span>
                     <span class="item">Logout</span>
                 </a>
             </li>
@@ -64,9 +64,9 @@ import Profile from './components/Profile.vue'
 import Resources from './components/Resources.vue'
 
 const routes = {
-  '/': Exam,
-  '/exam': Exam,
+  '/': Labs,
   '/labs': Labs,
+  '/exam': Exam,
   '/resources': Resources,
   '/profile': Profile
 }

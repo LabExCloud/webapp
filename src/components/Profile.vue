@@ -40,7 +40,7 @@
                             <option value="s6">S6</option>
                             <option value="s7">S7</option>
                             <option value="s8">S8</option>
-                            </select>
+                        </select>
                     </td>
                 </tr>
 
