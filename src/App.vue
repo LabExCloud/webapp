@@ -24,7 +24,7 @@
         <ul>
             <li>
                 <a href="#/labs" @click="activate(1)" :class="{ active : activeElement == 1 }">
-                    <span class="icon"><i class="fas fa-desktop"></i></span>
+                    <span class="icon"><font-awesome-icon :icon="['fas', 'desktop']"></font-awesome-icon></span>
                     <span class="item">Lab</span>
                 </a>
             </li>
