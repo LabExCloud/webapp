@@ -1,9 +1,5 @@
 <template>
 <div class="main">
-  <!-- div layout
-  div content
-  use vue-router 
-  -->
     <div class="section">
 
         <!-- <Exam/> -->
@@ -11,7 +7,7 @@
         <!-- <Profile/> -->
         <!-- <Labs/> -->
 
-        <component :is="currentView" />
+        <component :is="currentView" :user="user"/>
 
     </div>
 
@@ -103,7 +99,6 @@ export default {
   mounted() {
     window.addEventListener('hashchange', () => {
 		  this.currentPath = window.location.hash
-        //   console.log("path changed")
 	})
   }
 }

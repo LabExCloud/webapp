@@ -1,19 +1,16 @@
 <template>
     <div class="top_navbar">
         <div class="hamburger">
-            <!-- <a href="#">
-                <i class="fas fa-bars"></i>
-            </a> -->
             <p>{{ title }}</p>
         </div>
     </div>
     <div class="container">
         <div class="profile">
-            <img src="https://1.bp.blogspot.com/-vhmWFWO2r8U/YLjr2A57toI/AAAAAAAACO4/0GBonlEZPmAiQW4uvkCTm5LvlJVd_-l_wCNcBGAsYHQ/s16000/team-1-2.jpg" alt="student picture">
-            <h3> Isabella Ava </h3>
-            <p> S7 - 51 </p>
+            <img :src="this.user.profilepic" alt="student picture">
+            <h3> {{ this.user.name }}</h3>
+            <p> {{ this.user.class }} </p>
         </div>
-        <table class="form-div" style="color:white;">
+        <table class="form-div">
             
             <form class="settings-form">
                 <tr>
@@ -30,7 +27,6 @@
                         <label for="sem">Semester:</label>
                     </td>
                     <td>
-                        <!-- <input type="text" id="sem" name="sem"> -->
                         <select id="sem-select" name="sem">
                             <option value="s1">S1</option>
                             <option value="s2">S2</option>
@@ -75,6 +71,11 @@ export default({
     data(){
         return{
             title: "Your Profile"
+        }
+    },
+    props: {
+        user: {
+            type: Object
         }
     }
 })
