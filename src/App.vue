@@ -2,12 +2,7 @@
 <div class="main">
     <div class="section">
 
-        <!-- <Exam/> -->
-        <!-- <Resources/> -->
-        <!-- <Profile/> -->
-        <!-- <Labs/> -->
-
-        <component :is="currentView" :user="user"/>
+      <router-view :user="user"/>
 
     </div>
 
@@ -19,28 +14,28 @@
         </div>
         <ul>
             <li>
-                <a href="#/labs" @click="activate(1)" :class="{ active : activeElement == 1 }">
-                    <span class="icon"><font-awesome-icon :icon="['fas', 'desktop']"></font-awesome-icon></span>
-                    <span class="item">Lab</span>
-                </a>
+              <router-link to="/labs">
+                <span class="icon"><font-awesome-icon :icon="['fas', 'desktop']"></font-awesome-icon></span>
+                <span class="item">Lab</span>
+              </router-link>
             </li>
             <li>
-                <a href="#/exam" @click="activate(2)" :class="{ active : activeElement == 2 }">
-                    <span class="icon"><font-awesome-icon :icon="['fas', 'keyboard']"></font-awesome-icon></span>
-                    <span class="item">Exam</span>
-                </a>
+              <router-link to="/exam">
+                <span class="icon"><font-awesome-icon :icon="['fas', 'keyboard']"></font-awesome-icon></span>
+                <span class="item">Exam</span>
+              </router-link>
             </li>
             <li>
-                <a href="#/resources" @click="activate(3)" :class="{ active : activeElement == 3 }">
-                    <span class="icon"><font-awesome-icon :icon="['fas', 'book']"></font-awesome-icon></span>
-                    <span class="item">Resources</span>
-                </a>
+              <router-link to="/resources">
+                <span class="icon"><font-awesome-icon :icon="['fas', 'book']"></font-awesome-icon></span>
+                <span class="item">Resources</span>
+              </router-link>
             </li>
             <li>
-                <a href="#/profile" @click="activate(4)" :class="{ active : activeElement == 4 }">
-                    <span class="icon"><font-awesome-icon :icon="['fas', 'cog']"></font-awesome-icon></span>
-                    <span class="item">Profile Settings</span>
-                </a>
+              <router-link to="/profile">
+                <span class="icon"><font-awesome-icon :icon="['fas', 'cog']"></font-awesome-icon></span>
+                <span class="item">Profile Settings</span>
+              </router-link>
             </li>
             <li>
                 <a href="/login.html">
@@ -54,31 +49,25 @@
 </template>
 
 <script>
-import Exam from './components/Exam.vue'
-import Labs from './components/Labs.vue'
-import Profile from './components/Profile.vue'
-import Resources from './components/Resources.vue'
+// import Exam from './views/Exam.vue'
+// import Labs from './views/Labs.vue'
+// import Profile from './views/Profile.vue'
+// import Resources from './views/Resources.vue'
 
-const routes = {
-  '/': Labs,
-  '/labs': Labs,
-  '/exam': Exam,
-  '/resources': Resources,
-  '/profile': Profile
-}
+// const routes = {
+//   '/': Labs,
+//   '/labs': Labs,
+//   '/exam': Exam,
+//   '/resources': Resources,
+//   '/profile': Profile
+// }
 
 export default {
   name: 'App',
-  components: {
-    Exam,
-    Labs,
-    Profile,
-    Resources
-  },
   data(){
     return {
-      currentPath: window.location.hash,
-      activeElement:1,
+      // currentPath: window.location.hash,
+      // activeElement:1,
       user: {
         name: 'Isabella Ava',
         class: 'S7 - 57',
@@ -86,26 +75,26 @@ export default {
       }
     }
   },
-  methods:{
-    activate(el){
-      this.activeElement = el
-    }
-  },
-  computed: {
-    currentView() {
-      return routes[this.currentPath.slice(1) || '/']
-    }
-  },
-  mounted() {
-    window.addEventListener('hashchange', () => {
-		  this.currentPath = window.location.hash
-	})
-  }
+  // methods:{
+  //   activate(el){
+  //     this.activeElement = el
+  //   }
+  // },
+  // computed: {
+  //   currentView() {
+  //     return routes[this.currentPath.slice(1) || '/']
+  //   }
+  // },
+  // mounted() {
+  //   window.addEventListener('hashchange', () => {
+	// 	  this.currentPath = window.location.hash
+	// })
+  // }
 }
 </script>
 
-<style>
-    #app{
-        height: 100%;
-    }
+<style lang="scss">
+#app{
+    height: 100%;
+}
 </style>
