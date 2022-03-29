@@ -28,6 +28,9 @@
 
 export default({
     name: 'Exam',
+    mounted(){
+        document.title = 'Exam'
+    },
     data(){
         return{
             title: "Your Exams",

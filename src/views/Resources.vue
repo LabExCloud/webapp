@@ -44,6 +44,9 @@
 
 export default({
     name: 'Resources',
+    mounted(){
+        document.title = 'Resources'
+    },
     data(){
         return{
             title: "Your Resources",

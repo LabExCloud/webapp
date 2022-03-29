@@ -28,6 +28,9 @@
 
 export default({
     name: 'Labs',
+    mounted(){
+        document.title = 'Labs'
+    },
     data(){
         return{
             title: "Your Lab works",

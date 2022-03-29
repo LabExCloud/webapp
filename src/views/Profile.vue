@@ -68,6 +68,9 @@
 
 export default({
     name: 'Profile',
+    mounted(){
+        document.title = 'Profile'
+    },
     data(){
         return{
             title: "Your Profile"
