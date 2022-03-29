@@ -49,25 +49,11 @@
 </template>
 
 <script>
-// import Exam from './views/Exam.vue'
-// import Labs from './views/Labs.vue'
-// import Profile from './views/Profile.vue'
-// import Resources from './views/Resources.vue'
-
-// const routes = {
-//   '/': Labs,
-//   '/labs': Labs,
-//   '/exam': Exam,
-//   '/resources': Resources,
-//   '/profile': Profile
-// }
 
 export default {
   name: 'App',
   data(){
     return {
-      // currentPath: window.location.hash,
-      // activeElement:1,
       user: {
         name: 'Isabella Ava',
         class: 'S7 - 57',
@@ -75,21 +61,6 @@ export default {
       }
     }
   },
-  // methods:{
-  //   activate(el){
-  //     this.activeElement = el
-  //   }
-  // },
-  // computed: {
-  //   currentView() {
-  //     return routes[this.currentPath.slice(1) || '/']
-  //   }
-  // },
-  // mounted() {
-  //   window.addEventListener('hashchange', () => {
-	// 	  this.currentPath = window.location.hash
-	// })
-  // }
 }
 </script>
 
