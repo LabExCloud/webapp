@@ -7,6 +7,7 @@
 </template>
 
 <script>
+import axios from 'axios'
 import Navigation from '@/components/Navigation.vue'
 
 export default {
@@ -24,7 +25,23 @@ export default {
     }
   },
   mounted(){
-    this.$router.push("/login");
+    if (this.$store.state.isAuthenticated){
+      this.$router.push("/labs");
+    }else{
+      this.$router.push("/login");
+    }
+    
+  },
+  beforeCreate() {
+    this.$store.commit('initializeStore')
+    
+    const token = this.$store.state.token
+    
+    if (token) {
+      axios.defaults.headers.common['Authorization'] = 'Token ' + token
+    } else {
+      axios.defaults.headers.common['Authorization'] = ''
+    }
   }
 }
 </script>
