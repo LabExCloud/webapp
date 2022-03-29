@@ -19,17 +19,19 @@
         </div>
     </div>
     <div class="labs-grid-container">
-        <div class="lab-items" v-for="item in objectItems" :key="item">
-            <p>{{ item }}</p>
-        </div>
+        <LabItem/>
     </div>
 </div>
 </template>
 
 <script>
+import LabItem from '@/components/LabItem.vue'
 
 export default({
     name: 'Labs',
+    components: {
+        LabItem
+    },
     mounted(){
         document.title = 'Labs'
     },
