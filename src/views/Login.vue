@@ -20,7 +20,7 @@ export default({
         return {
             username: '',
             password: '',
-            errors: []
+            errors: [] // TODO: display this somewhere
         }
     },
     methods: {
