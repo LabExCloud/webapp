@@ -7,34 +7,34 @@
         </div>
         <ul>
             <li>
-              <router-link to="/labs">
-                <span class="icon"><font-awesome-icon :icon="['fas', 'desktop']"></font-awesome-icon></span>
-                <span class="item">Lab</span>
-              </router-link>
+                <router-link to="/labs">
+                    <span class="icon"><font-awesome-icon :icon="['fas', 'desktop']"></font-awesome-icon></span>
+                    <span class="item">Lab</span>
+                </router-link>
             </li>
             <li>
-              <router-link to="/exam">
-                <span class="icon"><font-awesome-icon :icon="['fas', 'keyboard']"></font-awesome-icon></span>
-                <span class="item">Exam</span>
-              </router-link>
+                <router-link to="/exam">
+                    <span class="icon"><font-awesome-icon :icon="['fas', 'keyboard']"></font-awesome-icon></span>
+                    <span class="item">Exam</span>
+                </router-link>
             </li>
             <li>
-              <router-link to="/resources">
-                <span class="icon"><font-awesome-icon :icon="['fas', 'book']"></font-awesome-icon></span>
-                <span class="item">Resources</span>
-              </router-link>
+                <router-link to="/resources">
+                    <span class="icon"><font-awesome-icon :icon="['fas', 'book']"></font-awesome-icon></span>
+                    <span class="item">Resources</span>
+                </router-link>
             </li>
             <li>
-              <router-link to="/profile">
-                <span class="icon"><font-awesome-icon :icon="['fas', 'cog']"></font-awesome-icon></span>
-                <span class="item">Profile Settings</span>
-              </router-link>
+                <router-link to="/profile">
+                    <span class="icon"><font-awesome-icon :icon="['fas', 'cog']"></font-awesome-icon></span>
+                    <span class="item">Profile Settings</span>
+                </router-link>
             </li>
             <li>
-                <a href="/login.html">
+                <router-link to="/login">
                     <span class="icon"><font-awesome-icon :icon="['fas', 'sign-out-alt']"></font-awesome-icon></span>
                     <span class="item">Logout</span>
-                </a>
+                </router-link>
             </li>
         </ul>
     </div>

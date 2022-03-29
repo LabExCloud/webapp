@@ -1,12 +1,8 @@
 <template>
 <div class="main">
-    <div class="section">
-
-      <router-view :user="user"/>
-
-    </div>
-
-    <Navigation :user="user"/>
+    <router-view :user="user"/>
+    
+    <Navigation v-if="!(['login'].indexOf($route.name) > -1)" :user="user"/>
 </div>
 </template>
 
@@ -28,7 +24,7 @@ export default {
     }
   },
   mounted(){
-    this.$router.push("/labs");
+    this.$router.push("/login");
   }
 }
 </script>

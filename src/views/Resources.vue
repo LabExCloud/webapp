@@ -1,4 +1,5 @@
 <template>
+<div class="section">
     <div class="top_navbar">
         <div class="hamburger">
             <p>{{ title }}</p>
@@ -37,6 +38,7 @@
             </div><br>
         </div>
     </div>
+</div>
 </template>
 
 
