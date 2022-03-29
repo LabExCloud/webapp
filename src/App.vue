@@ -27,6 +27,9 @@ export default {
       }
     }
   },
+  mounted(){
+    this.$router.push("/labs");
+  }
 }
 </script>
 
