@@ -121,17 +121,17 @@ input[type=text], input[type=password]{
     display: inline-block;
 }
 .main .menu-sidebar ul li a:hover,
-.main .menu-sidebar ul li a.active{
+.main .menu-sidebar ul li a.router-link-active{
     color: #d20707;
     background:rgba(3, 0, 29, 0.384);
     border-right: 2px solid rgb(5, 68, 104);
 }
 .main .menu-sidebar ul li a:hover .icon,
-.main .menu-sidebar ul li a.active .icon{
+.main .menu-sidebar ul li a.router-link-active .icon{
     color: #0c7db1;
 }
 .main .menu-sidebar ul li a:hover:before,
-.main .menu-sidebar ul li a.active:before{
+.main .menu-sidebar ul li a.router-link-active:before{
     display: block;
 }
 .main .section{
