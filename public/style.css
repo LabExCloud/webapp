@@ -216,7 +216,7 @@ input[type=text], input[type=password]{
 }
 
 .search-box .icon{
-    position:absolute;
+    /* position:absolute; */
     padding:12px;
     min-width:90px;
     color:#7E7979;
@@ -224,7 +224,7 @@ input[type=text], input[type=password]{
 }
 
 .search-box input[type=search]{
-    width: 30%;
+    width: 338px;
     height: 45px;
     text-align: center;
     border: 2px solid black;
@@ -243,7 +243,7 @@ input[type=text], input[type=password]{
     font-size: 17px;
 }
 .sort-box select{
-    width: 20%;
+    width: 120px;
     height: 30px;
     text-align: center;
     border: 1px solid black;

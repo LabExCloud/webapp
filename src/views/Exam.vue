@@ -5,7 +5,7 @@
         </div>
     </div>
         <div class="search-box">
-        <span class="icon"><font-awesome-icon :icon="['fas', 'search']"></font-awesome-icon></span>
+        <!-- <span class="icon"><font-awesome-icon :icon="['fas', 'search']"></font-awesome-icon></span> -->
         <input type="search" id="search" placeholder="Search Exams" />
         <div class="sort-box">
             <label for="sort">sort:</label>&nbsp;

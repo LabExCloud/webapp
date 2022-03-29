@@ -6,6 +6,11 @@ import Profile from '../views/Profile.vue'
 
 const routes = [
   {
+    path: '/',
+    name: '',
+    component: Labs
+  },
+  {
     path: '/labs',
     name: 'labs',
     component: Labs
