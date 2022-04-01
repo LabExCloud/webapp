@@ -7,9 +7,9 @@
     </div>
     <div class="container">
         <div class="profile">
-            <img :src="this.user.profilepic" alt="student picture">
-            <h3> {{ this.user.name }}</h3>
-            <p> {{ this.user.class }} </p>
+            <img :src="user.profile.get_image" alt="student picture">
+            <h3>{{ user.first_name }} {{ user.last_name }}</h3>
+            <p>S{{ user.profile.semester }} - {{ user.profile.rollno }}</p>
         </div>
         <table class="form-div">
             
@@ -67,21 +67,29 @@
 
 
 <script>
+import axios from 'axios'
 
 export default({
     name: 'Profile',
     mounted(){
         document.title = 'Profile'
+        this.getProfile()
     },
     data(){
         return{
-            title: "Your Profile"
+            title: "Your Profile",
+            user: {
+                profile: {}
+            },
         }
     },
-    props: {
-        user: {
-            type: Object
-        }
-    }
+    methods: {
+        getProfile(){
+            axios({
+                method: 'get',
+                url: '/api/v1/profile/isebella',
+            }).then(response => this.user = response.data)
+        },
+    },
 })
 </script>
