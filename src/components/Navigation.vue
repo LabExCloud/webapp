@@ -56,7 +56,7 @@ export default({
         getProfile(){
             axios({
                 method: 'get',
-                url: '/api/v1/profile/isebella',
+                url: '/api/v1/profile',
             }).then(response => this.user = response.data)
         },
     },
