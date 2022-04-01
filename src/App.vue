@@ -2,7 +2,7 @@
 <div class="main">
     <router-view :user="user"/>
     
-    <Navigation v-if="!(['login'].indexOf($route.name) > -1)" :user="user"/>
+    <Navigation v-if="!(['login'].indexOf($route.name) > -1)"/>
 </div>
 </template>
 

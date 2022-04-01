@@ -1,9 +1,9 @@
 <template>
     <div class="menu-sidebar">
         <div class="profile">
-            <img :src="user.profilepic" alt="student picture">
-            <h3>{{ user.name }}</h3>
-            <p>{{ user.class }}</p>
+            <img :src="user.profile.image" alt="student picture">
+            <h3>{{ user.first_name }} {{ user.last_name }}</h3>
+            <p>S{{ user.profile.semester }} - {{ user.profile.rollno }}</p>
         </div>
         <ul>
             <li>
@@ -41,11 +41,27 @@
 </template>
 
 <script>
+import axios from 'axios'
 
 export default({
     name: 'Navigation',
-    props: {
-        user: {}
-    }
+    data(){
+        return {
+            user: {
+                profile: {}
+            },
+        }
+    },
+    methods: {
+        getProfile(){
+            axios({
+                method: 'get',
+                url: 'http://127.0.0.1:8000/api/v1/profile/issebella',
+            }).then(response => this.user = response.data)
+        },
+    },
+    mounted(){
+        this.getProfile()
+    },
 })
 </script>
