@@ -1,7 +1,7 @@
 <template>
     <div class="menu-sidebar">
         <div class="profile">
-            <img :src="user.profile.image" alt="student picture">
+            <img :src="user.profile.get_image" alt="student picture">
             <h3>{{ user.first_name }} {{ user.last_name }}</h3>
             <p>S{{ user.profile.semester }} - {{ user.profile.rollno }}</p>
         </div>
@@ -56,7 +56,7 @@ export default({
         getProfile(){
             axios({
                 method: 'get',
-                url: 'http://127.0.0.1:8000/api/v1/profile/issebella',
+                url: '/api/v1/profile/isebella',
             }).then(response => this.user = response.data)
         },
     },
