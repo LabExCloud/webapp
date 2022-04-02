@@ -9,7 +9,7 @@
         </div> -->
         <div class="profile py-16 px-9 text-white">
             <div class="profile">
-                <img :src="user.profile.get_image" alt="student picture">
+                <img class="w-40" :src="user.profile.get_image" alt="student picture">
                 <h2>{{ user.first_name }} {{ user.last_name }}</h2>
                 <p>S{{ user.profile.semester }} - {{ user.profile.rollno }}</p>
             </div>
@@ -18,35 +18,35 @@
                 <div>
                     Full Name 
                 </div>
-                <div>
+                <div class="bg-gray-800 rounded px-3 text-gray-300">
                     {{ user.first_name }} {{ user.last_name }}
                 </div>
                 
                 <div>
                     Semester 
                 </div>
-                <div>
+                <div class="bg-gray-800 rounded px-3 text-gray-300">
                     S{{ user.profile.semester }}
                 </div>
             
                 <div>
                     Roll No
                 </div>
-                <div>
+                <div class="bg-gray-800 rounded px-3 text-gray-300">
                     {{ user.profile.rollno }}
                 </div>
             
                 <div>
                     Username
                 </div>
-                <div>
+                <div class="bg-gray-800 rounded px-3 text-gray-300">
                     {{ user.username }}
                 </div>
             
                 <div>
                     Password
                 </div>
-                <div>
+                <div class="bg-gray-800 rounded px-3 text-gray-300">
                     *******
                 </div>   
             </div>

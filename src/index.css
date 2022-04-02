@@ -22,7 +22,7 @@
 }
 
 .profile img{
-    @apply rounded-full w-28 border-2 border-white;
+    @apply rounded-full border-2 border-white;
 }
 
 .profile h2{
@@ -35,10 +35,10 @@
 
 
 /* write css style for search and sort here */
-.search-box{
-
+.search-sort-box{
+    @apply flex justify-center py-5 w-full relative items-center;
 }
 
 .sort-box{
-
+    @apply absolute right-28 w-32 flex;
 }
