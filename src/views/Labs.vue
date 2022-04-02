@@ -1,12 +1,28 @@
 <template>
-<div class="section">
+    <div class="content">
+        <div class="header">
+            <p> Your Lab works </p>
+        </div>
+        <!-- <div class="flex items-center justify-center p-40 border-4 border-dotted">
+            Content...
+        </div> -->
+        <div class="grid grid-cols-2 gap-10 py-14 px-8 text-white">
+            <!-- <LabItem/> -->
+            <div class="h-36 border border-borderclr rounded-2xl bg-cardclr">item 1</div>
+            <div class="h-36 border border-borderclr rounded-2xl bg-cardclr">item 2</div>
+            <div class="h-36 border border-borderclr rounded-2xl bg-cardclr">item 3</div>
+            <div class="h-36 border border-borderclr rounded-2xl bg-cardclr">item 4</div>
+        </div>
+    </div>
+
+
+<!-- <div class="section">
     <div class="top_navbar">
         <div class="hamburger">
             <p>{{ title }}</p>
         </div>
     </div>
     <div class="search-box">
-        <!-- <span class="icon"><font-awesome-icon :icon="['fas', 'search']"></font-awesome-icon></span> -->
         <input type="search" id="search" placeholder="Search Labs" />
         <div class="sort-box">
             <label for="sort">sort:</label>&nbsp;
@@ -21,7 +37,7 @@
     <div class="labs-grid-container">
         <LabItem/>
     </div>
-</div>
+</div> -->
 </template>
 
 <script>
@@ -37,7 +53,6 @@ export default({
     },
     data(){
         return{
-            title: "Your Lab works",
             objectItems: {
                 key1: 'item one',
                 key2: 'item two',

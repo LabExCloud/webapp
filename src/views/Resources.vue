@@ -1,12 +1,55 @@
 <template>
-<div class="section">
+
+    <div class="content">
+        <div class="header">
+            <p> Your Resources </p>
+        </div>
+        
+        <div class="grid grid-cols-1 gap-10 py-14 px-8 text-white">
+            
+            <div class="grid grid-cols-3 py-8 h-36 border border-borderclr rounded-2xl bg-cardclr text-center">
+                <div> item 1 </div>
+                <div> date 1 </div>
+                <div> tag 1 </div>
+                <div> item 2 </div>
+                <div> date 2 </div>
+                <div> tag 2 </div>
+            </div>
+            <div class="grid grid-cols-3 py-8 h-36 border border-borderclr rounded-2xl bg-cardclr text-center">
+                <div> item 1 </div>
+                <div> date 1 </div>
+                <div> tag 1 </div>
+                <div> item 2 </div>
+                <div> date 2 </div>
+                <div> tag 2 </div>
+            </div>
+            <div class="grid grid-cols-3 py-8 h-36 border border-borderclr rounded-2xl bg-cardclr text-center">
+                <div> item 1 </div>
+                <div> date 1 </div>
+                <div> tag 1 </div>
+                <div> item 2 </div>
+                <div> date 2 </div>
+                <div> tag 2 </div>
+            </div>
+            <div class="grid grid-cols-3 py-8 h-36 border border-borderclr rounded-2xl bg-cardclr text-center">
+                <div> item 1 </div>
+                <div> date 1 </div>
+                <div> tag 1 </div>
+                <div> item 2 </div>
+                <div> date 2 </div>
+                <div> tag 2 </div>
+            </div>
+        </div>
+    </div>
+
+<!-- <div class="section">
     <div class="top_navbar">
         <div class="hamburger">
             <p>{{ title }}</p>
         </div>
     </div>
     <div class="search-box">
-        <!-- <span class="icon"><font-awesome-icon :icon="['fas', 'search']"></font-awesome-icon></span> -->
+        
         <input type="search" id="search" placeholder="Search Resources" />
         <div class="sort-box">
             <label for="sort">sort:</label>&nbsp;
@@ -38,7 +81,7 @@
             </div><br>
         </div>
     </div>
-</div>
+</div> -->
 </template>
 
 
@@ -51,7 +94,6 @@ export default({
     },
     data(){
         return{
-            title: "Your Resources",
             resourceItems: [
                 {
                     name: 'Python',

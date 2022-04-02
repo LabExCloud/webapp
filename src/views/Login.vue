@@ -4,12 +4,33 @@
             <input type="text" name="uname" placeholder="Username" required="" v-model="username">
             <input type="password" name="pass" placeholder="Password" required="" v-model="password">
 
-            <input id="login-submit" type="submit" value="Login">
+            <div class="flex flex-col justify-center items-center py-10">
 
-            <!-- <a id="login-signup-link" href="./pages/signup.html">SignUp</a> -->
+                <button type="submit"> Login </button>
+                <!-- <a class="text-blue-500" href="./labs.html"> SignUp </a> -->
+
+            </div>
         </form>
     </div>
 </template>
+
+<style>
+.auth{
+    @apply flex bg-cardclr mt-20 mb-32 border border-borderclr rounded-xl;
+}
+
+.auth form{
+    @apply py-8 px-11;
+}
+
+.auth input{
+    @apply block w-52 my-10 px-16 py-2 border border-black rounded-lg;
+}
+
+.auth button{
+    @apply w-24 py-1 bg-gray-600 text-white mb-10 border border-black rounded-lg;
+}
+</style>
 
 <script>
 import axios from 'axios'

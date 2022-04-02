@@ -1,5 +1,5 @@
 <template>
-    <div class="lab-items">
+    <div class="lab-item">
         <div>
             <img src="https://www.freepngimg.com/download/android/72537-icons-python-programming-computer-social-tutorial.png" alt="python">
             <div>
@@ -20,22 +20,29 @@
 
 <script>
 export default({
-    name: 'LabItem'
+    name: 'LabItem',
+    props: {
+        item: {}
+    }
 })
 </script>
 
 <style>
-.lab-items img{
+.lab-item {
+    @apply h-36 border border-borderclr rounded-2xl bg-cardclr;
+}
+
+.lab-item img{
     width: 50px;
     height: 50px;
     float: left;
 }
 
-.lab-items .progress .percent{
+.lab-item .progress .percent{
     float: left;
 }
 
-.lab-items .progress .number{
+.lab-item .progress .number{
     float: right;
 }
 </style>

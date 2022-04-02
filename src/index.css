@@ -1,0 +1,34 @@
+@import url('https://fonts.googleapis.com/css2?family=Sniglet&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Revalia&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.mainpage{
+    @apply from-mainclr-100 via-mainclr-200 to-mainclr-300 bg-gradient-to-br;
+}
+
+.content{
+    @apply w-full h-screen overflow-y-auto;
+}
+
+.content .header{
+    @apply flex justify-center text-xl text-white py-7 border-b border-borderclr;
+}
+
+.profile{
+    @apply flex flex-col justify-center items-center;
+}
+
+.profile img{
+    @apply rounded-full w-28 border-2 border-white;
+}
+
+.profile h2{
+    @apply text-xl font-rev text-center text-borderclr py-2;
+}
+
+.profile p{
+    @apply text-gray-300;
+}
