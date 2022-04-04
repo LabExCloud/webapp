@@ -18,7 +18,7 @@
         </div>
 
         <div class="grid grid-cols-2 gap-10 py-14 px-8 text-white">
-            <!-- <LabItem/> -->
+            <LabItem/>
             <div class="h-36 border border-borderclr rounded-2xl bg-cardclr">item 1</div>
             <div class="h-36 border border-borderclr rounded-2xl bg-cardclr">item 2</div>
             <div class="h-36 border border-borderclr rounded-2xl bg-cardclr">item 3</div>
