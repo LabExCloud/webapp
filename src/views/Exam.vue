@@ -25,31 +25,6 @@
             <div class="h-36 border border-borderclr rounded-2xl bg-cardclr">item 4</div>
         </div>
     </div>
-
-<!-- <div class="section">
-    <div class="top_navbar">
-        <div class="hamburger">
-            <p>{{ title }}</p>
-        </div>
-    </div>
-        <div class="search-box">
-        <input type="search" id="search" placeholder="Search Exams" />
-        <div class="sort-box">
-            <label for="sort">sort:</label>&nbsp;
-            <select id="sort" name="sort">
-                <option value="recent">Recent</option>
-                <option value="star">Starred</option>
-                <option value="date">Date</option>
-                <option value="alph">Alphabet</option>
-            </select>
-        </div>
-    </div>
-    <div class="labs-grid-container">
-        <div class="lab-items" v-for="item in objectItems" :key="item">
-            <p>{{ item }}</p>
-        </div>
-    </div>
-</div> -->
 </template>
 
 <script>

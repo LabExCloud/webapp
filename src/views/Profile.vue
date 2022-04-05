@@ -4,9 +4,6 @@
         <div class="header">
             <p> Your Profile </p>
         </div>
-        <!-- <div class="flex items-center justify-center p-40 border-4 border-dotted">
-          Content...
-        </div> -->
         <div class="profile py-16 px-9 text-white">
             <div class="profile">
                 <img class="w-40" :src="user.profile.get_image" alt="student picture">

@@ -8,14 +8,6 @@
             </div>
         </div>
 
-        <!-- <div class="progress">
-            <span class="percent">68%</span>
-            <div class="w3-light-grey w3-round-xlarge">
-                <div class="w3-container w3-blue w3-round-xlarge" style="height:10px;width:68%"></div>
-            </div>
-            <span class="number">17/25</span>
-        </div> -->
-
         <div class="w-full px-4">
             <div class="bg-gray-200 h-1.5 rounded">
                 <div class="bg-blue-600 h-1.5 rounded" style="width: 45%"></div>
