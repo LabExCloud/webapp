@@ -1,8 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import Labs from '@/views/Labs.vue'
-import Exam from '@/views/Exam.vue'
-import Resources from '@/views/Resources.vue'
-import Profile from '@/views/Profile.vue'
+import Labs from '@/views/student/Labs.vue'
+import Exam from '@/views/student/Exam.vue'
+import Resources from '@/views/student/Resources.vue'
+import Profile from '@/views/student/Profile.vue'
 import Login from '@/views/Login.vue'
 
 const routes = [
