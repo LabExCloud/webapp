@@ -3,7 +3,7 @@
         <div class="profile">
             <img class="w-28" :src="user.get_image" alt="student picture">
             <h2>{{ user.first_name }} {{ user.last_name }}</h2>
-            <p>S{{ user.profile.semester }} - {{ user.profile.rollno }}</p>
+            <p>S{{ user.profile.semester.semester }} - {{ user.profile.semester.department.department_code }} - {{ user.profile.rollno }}</p>
         </div>
         <div class="navigation">
             <aside>
@@ -75,7 +75,7 @@ export default({
     data(){
         return {
             user: {
-                profile: {}
+                profile: {semester:{department:{}}}
             },
         }
     },
