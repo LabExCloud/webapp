@@ -7,7 +7,7 @@
         <div class="profile py-16 px-9 text-white">
             <div class="profile">
                 <img class="w-40" :src="user.get_image" alt="student picture">
-                <h2>{{ user.first_name }} {{ user.last_name }}</h2>
+                <h2>{{ user.first_name }} {{ user.middle_name }} {{ user.last_name }}</h2>
                 <p>S{{ user.profile.semester.semester }} - {{ user.profile.semester.department.department }} - {{ user.profile.rollno }}</p>
             </div>
 
@@ -16,7 +16,7 @@
                     Full Name 
                 </div>
                 <div class="bg-gray-800 rounded px-3 text-gray-300">
-                    {{ user.first_name }} {{ user.last_name }}
+                    {{ user.first_name }} {{ user.middle_name }} {{ user.last_name }}
                 </div>
                 
                 <div>
