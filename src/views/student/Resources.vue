@@ -18,7 +18,22 @@
                 </div>   
         </div>
 
+
         <div class="grid grid-cols-1 gap-10 py-14 px-8 text-white">
+
+            <div v-for="subject in subjects" :key="subject.id" class="py-8 h-36 border border-borderclr rounded-2xl bg-cardclr text-center">
+                {{ subject.subject }}
+                <div v-for="resource in subject.resources" :key="resource.id">
+                    <div>
+                        {{ resource.res_name }}
+                        <div v-for="file in resource.resource_files" :key="file.id">
+                            <a :href="file.url" target="_blank">{{ file.filename }}</a>
+                            
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
             
             <div class="grid grid-cols-3 py-8 h-36 border border-borderclr rounded-2xl bg-cardclr text-center">
                 <div> item 1 </div>
@@ -55,161 +70,96 @@
         </div>
     </div>
 
-<!-- <div class="section">
-    <div class="top_navbar">
-        <div class="hamburger">
-            <p>{{ title }}</p>
-        </div>
-    </div>
-    <div class="search-box">
-        
-        <input type="search" id="search" placeholder="Search Resources" />
-        <div class="sort-box">
-            <label for="sort">sort:</label>&nbsp;
-            <select id="sort" name="sort">
-                <option value="recent">Recent</option>
-                <option value="star">Starred</option>
-                <option value="date">Date</option>
-                <option value="alph">Alphabet</option>
-            </select>
-        </div>
-    </div>
-    <div class="resources-container">
-        <div class="each-resource-box" v-for="item in resourceItems" :key="item">
-            <p>{{ item.name }}</p>
-            <div class="resource-items">
-                <table class="resource-table">
-                        <tr v-for="content in item.contents" :key="content">
-                            <td>
-                                <p>{{ content.title }}</p>
-                            </td>
-                            <td>
-                                <p>{{ content.date }}</p>
-                            </td>
-                            <td>
-                                <p>{{ content.tag }}</p>
-                            </td>
-                        </tr>
-                </table>
-            </div><br>
-        </div>
-    </div>
-</div> -->
+<!-- 
+API Response for reference
+[
+    {
+        "id": 1,
+        "subject": "Data Analytics",
+        "resources": [
+            {
+                "id": 1,
+                "res_name": "Syllabus",
+                "created": "2022-04-15T10:15:08.092971Z",
+                "modified": "2022-04-15T10:15:08.093044Z",
+                "resource_files": [
+                    {
+                        "id": 1,
+                        "url": "http://127.0.0.1:8000/media/uploads/resources/IT404_Data_Analytics.pdf",
+                        "filename": "IT404_Data_Analytics.pdf"
+                    }
+                ]
+            },
+            {
+                "id": 3,
+                "res_name": "Notes",
+                "created": "2022-04-15T13:17:38.267098Z",
+                "modified": "2022-04-15T13:17:59.075689Z",
+                "resource_files": [
+                    {
+                        "id": 3,
+                        "url": "http://127.0.0.1:8000/media/uploads/resources/Module_1.pdf",
+                        "filename": "Module_1.pdf"
+                    },
+                    {
+                        "id": 4,
+                        "url": "http://127.0.0.1:8000/media/uploads/resources/Module_2.pdf",
+                        "filename": "Module_2.pdf"
+                    },
+                    {
+                        "id": 5,
+                        "url": "http://127.0.0.1:8000/media/uploads/resources/Module_4.pdf",
+                        "filename": "Module_4.pdf"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "subject": "Cloud Computing",
+        "resources": [
+            {
+                "id": 2,
+                "res_name": "Syllabus",
+                "created": "2022-04-15T12:52:32.009397Z",
+                "modified": "2022-04-15T12:52:32.009478Z",
+                "resource_files": [
+                    {
+                        "id": 2,
+                        "url": "http://127.0.0.1:8000/media/uploads/resources/CS468_Cloud_Computing.pdf",
+                        "filename": "CS468_Cloud_Computing.pdf"
+                    }
+                ]
+            }
+        ]
+    }
+]
+ -->
 </template>
 
 
 <script>
+import axios from 'axios'
 
 export default({
     name: 'Resources',
     mounted(){
-        document.title = 'Resources'
+        document.title = 'Resources',
+        this.getResources()
     },
     data(){
         return{
-            resourceItems: [
-                {
-                    name: 'Python',
-                    contents:[
-                        {
-                        title: 'item 1',
-                        date: 'date 1',
-                        tag: 'tag 1'
-                        },
-                        {
-                        title: 'item 2',
-                        date: 'date 2',
-                        tag: 'tag 2'
-                        },
-                        {
-                        title: 'item 3',
-                        date: 'date 3',
-                        tag: 'tag 3'
-                        },
-                        {
-                        title: 'item 4',
-                        date: 'date 4',
-                        tag: 'tag 4'
-                        }
-                    ]
-                },
-                {
-                    name: 'C++',
-                    contents:[
-                        {
-                        title: 'item 1',
-                        date: 'date 1',
-                        tag: 'tag 1'
-                        },
-                        {
-                        title: 'item 2',
-                        date: 'date 2',
-                        tag: 'tag 2'
-                        },
-                        {
-                        title: 'item 3',
-                        date: 'date 3',
-                        tag: 'tag 3'
-                        },
-                        {
-                        title: 'item 4',
-                        date: 'date 4',
-                        tag: 'tag 4'
-                        }
-                    ]
-                },
-                {
-                    name: 'SQL',
-                    contents:[
-                        {
-                        title: 'item 1',
-                        date: 'date 1',
-                        tag: 'tag 1'
-                        },
-                        {
-                        title: 'item 2',
-                        date: 'date 2',
-                        tag: 'tag 2'
-                        },
-                        {
-                        title: 'item 3',
-                        date: 'date 3',
-                        tag: 'tag 3'
-                        },
-                        {
-                        title: 'item 4',
-                        date: 'date 4',
-                        tag: 'tag 4'
-                        }
-                    ]
-                },
-                {
-                    name: 'Java',
-                    contents:[
-                        {
-                        title: 'item 1',
-                        date: 'date 1',
-                        tag: 'tag 1'
-                        },
-                        {
-                        title: 'item 2',
-                        date: 'date 2',
-                        tag: 'tag 2'
-                        },
-                        {
-                        title: 'item 3',
-                        date: 'date 3',
-                        tag: 'tag 3'
-                        },
-                        {
-                        title: 'item 4',
-                        date: 'date 4',
-                        tag: 'tag 4'
-                        }
-                    ]
-                }
-            ]
+            subjects: {}
         }
-    }
+    },
+    methods: {
+        getResources(){
+            axios({
+                method: 'get',
+                url: '/api/v1/resources',
+            }).then(response => this.subjects = response.data)
+        },
+    },
 })
 </script>
