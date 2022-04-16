@@ -16,10 +16,8 @@ export default {
         Navigation
     },
     mounted(){
-        if (this.$store.state.isAuthenticated){
-        this.$router.push("/labs");
-        }else{
-        this.$router.push("/login");
+        if (!this.$store.state.isAuthenticated){
+            this.$router.push("/login");
         }
         
     },

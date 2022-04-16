@@ -7,6 +7,10 @@ import Login from '@/views/Login.vue'
 
 const routes = [
   {
+    path: '/',
+    redirect: '/labs'
+  },
+  {
     path: '/labs',
     name: 'labs',
     component: Labs
