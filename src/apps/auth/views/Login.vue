@@ -64,7 +64,12 @@ export default({
                     axios.defaults.headers.common['Authorization'] = 'Token ' + token
                     localStorage.setItem('token', token)
                     
-                    this.$router.push('/')
+                    // this.$router.push('/')
+                    if(this.getProfile().isStaff){
+                        window.location.href = '/teacher'
+                    }else{
+                        window.location.href = '/student'
+                    }
                 })
                 .catch(error => {
                     if (error.response) {
@@ -77,6 +82,16 @@ export default({
                         console.log(JSON.stringify(error))
                     }
                 })
+            
+
+        },
+        async getProfile(){
+            var user
+            await axios({
+                method: 'get',
+                url: '/api/v1/profile',
+            }).then(response => user = response.data)
+            return user
         }
     },
     mounted(){

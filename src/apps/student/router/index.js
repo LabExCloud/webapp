@@ -1,9 +1,9 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import Labs from '@/views/Labs.vue'
-import Exam from '@/views/Exam.vue'
-import Resources from '@/views/Resources.vue'
-import Profile from '@/views/Profile.vue'
-import Login from '@/views/Login.vue'
+import Labs from '../views/Labs.vue'
+import Exam from '../views/Exam.vue'
+import Resources from '../views/Resources.vue'
+import Profile from '../views/Profile.vue'
+// import Login from '@/views/Login.vue'
 
 const routes = [
   {
@@ -29,16 +29,11 @@ const routes = [
     path: '/profile',
     name: 'profile',
     component: Profile
-  },
-  {
-    path: '/login',
-    name: 'login',
-    component: Login
   }
 ]
 
 const router = createRouter({
-  history: createWebHistory(process.env.BASE_URL),
+  history: createWebHistory(process.env.BASE_URL + 'student'),
   routes
 })
 

@@ -17,7 +17,8 @@ export default {
     },
     mounted(){
         if (!this.$store.state.isAuthenticated){
-            this.$router.push("/login");
+            window.location.href = '/'
+            // this.$router.push("/login");
         }
         
     },
