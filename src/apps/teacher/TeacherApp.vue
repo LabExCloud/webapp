@@ -1,37 +1,31 @@
 <template>
 <div class="h-screen mainpage flex justify-center items-center font-snig text-base">
-    <Navigation v-if="!(['login'].indexOf($route.name) > -1)"/>
+    <Navigation/>
     
     <router-view/>
 </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 import axios from 'axios'
-import Navigation from '@/components/Navigation.vue'
+import Navigation from './components/Navigation.vue'
 
 export default {
-    name: 'App',
+    name: 'TeacherApp',
     components: {
         Navigation
     },
-    mounted(){
-        if (!this.$store.state.isAuthenticated){
-            window.location.href = '/'
-            // this.$router.push("/login");
-        }
-        
+    computed: {
+        ...mapGetters([
+            'isAuthenticated',
+            'token',
+            'user'
+        ])
     },
-    beforeCreate() {
-        this.$store.commit('initializeStore')
-        
-        const token = this.$store.state.token
-        
-        if (token) {
-        axios.defaults.headers.common['Authorization'] = 'Token ' + token
-        } else {
-        axios.defaults.headers.common['Authorization'] = ''
-        }
+    created() {
+        this.$store.commit('INIT')
+        axios.defaults.headers.common['Authorization'] = 'Token ' + this.token
     }
 }
 </script>

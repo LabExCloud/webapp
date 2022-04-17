@@ -34,6 +34,7 @@
 
 <script>
 import axios from 'axios'
+import { mapGetters } from 'vuex'
 
 export default({
     name: 'Login',
@@ -44,60 +45,46 @@ export default({
             errors: [] // TODO: display this somewhere
         }
     },
+    computed: {
+        ...mapGetters([
+            'isAuthenticated',
+            'token',
+            'user',
+        ])
+    },
     methods: {
         async submitForm(){
             axios.defaults.headers.common['Authorization'] = ''
-            localStorage.removeItem('token')
-
-            const formData = {
+            
+            await this.$store.dispatch('login', {
                 username: this.username,
                 password: this.password
+            })
+            axios.defaults.headers.common['Authorization'] = 'Token ' + this.token
+
+            await this.$store.dispatch('getUser')
+
+            if(this.isAuthenticated){
+                if(this.user.is_staff){
+                    window.location.href = '/teacher'
+                }else{
+                    window.location.href = '/student'
+                }
             }
-
-            await axios
-                .post("/api/v1/token/login/", formData)
-                .then(response => {
-                    const token = response.data.auth_token
-
-                    this.$store.commit('setToken', token)
-                    
-                    axios.defaults.headers.common['Authorization'] = 'Token ' + token
-                    localStorage.setItem('token', token)
-                    
-                    // this.$router.push('/')
-                    if(this.getProfile().isStaff){
-                        window.location.href = '/teacher'
-                    }else{
-                        window.location.href = '/student'
-                    }
-                })
-                .catch(error => {
-                    if (error.response) {
-                        for (const property in error.response.data) {
-                            this.errors.push(`${property}: ${error.response.data[property]}`)
-                        }
-                    } else {
-                        this.errors.push('Something went wrong. Please try again')
-                        
-                        console.log(JSON.stringify(error))
-                    }
-                })
-            
-
         },
-        async getProfile(){
-            var user
-            await axios({
-                method: 'get',
-                url: '/api/v1/profile',
-            }).then(response => user = response.data)
-            return user
-        }
     },
     mounted(){
         document.title = 'Login'
 
-        this.$store.commit('removeToken')
+        this.$store.commit('INIT')
+
+        if(this.isAuthenticated){
+            if(this.user.is_staff){
+                window.location.href = '/teacher'
+            }else{
+                window.location.href = '/student'
+            }
+        }
     },
 })
 </script>

@@ -50,7 +50,7 @@
                 </li>
 
                 <li>
-                    <a href="/login">
+                    <a href="/logout">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
                         </svg>
@@ -92,27 +92,3 @@ export default({
     },
 })
 </script>
-
-<style>
-
-.sidepage{
-    @apply from-mainclr-150 via-mainclr-200 to-mainclr-200 bg-gradient-to-br;
-    @apply flex flex-col w-72 h-screen px-4 py-5 overflow-y-auto border-r border-borderclr;
-}
-
-.navigation{
-    @apply flex flex-col justify-between mt-6 text-gray-300;
-}
-
-.navigation a{
-    @apply flex items-center px-4 py-2 mt-5 rounded-md hover:bg-mainclr-200 hover:text-red-600;
-}
-
-.navigation a.router-link-active{
-    @apply flex items-center px-4 py-2 bg-mainclr-200 hover:text-red-600 rounded-md;
-}
-
-.navigation a svg {
-    @apply h-5 w-5;
-}
-</style>

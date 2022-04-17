@@ -17,6 +17,8 @@
     @apply flex justify-center text-xl text-white py-7 border-b border-borderclr;
 }
 
+
+/* Profile */
 .profile{
     @apply flex flex-col justify-center items-center;
 }
@@ -34,11 +36,34 @@
 }
 
 
-/* write css style for search and sort here */
+/* Search and Sort Box */
 .search-sort-box{
     @apply flex justify-center py-5 w-full relative items-center;
 }
 
 .sort-box{
     @apply absolute right-28 w-32 flex;
+}
+
+
+/* Navigation */
+.sidepage{
+    @apply from-mainclr-150 via-mainclr-200 to-mainclr-200 bg-gradient-to-br;
+    @apply flex flex-col w-72 h-screen px-4 py-5 overflow-y-auto border-r border-borderclr;
+}
+
+.navigation{
+    @apply flex flex-col justify-between mt-6 text-gray-300;
+}
+
+.navigation a{
+    @apply flex items-center px-4 py-2 mt-5 rounded-md hover:bg-mainclr-200 hover:text-red-600;
+}
+
+.navigation a.router-link-active{
+    @apply flex items-center px-4 py-2 bg-mainclr-200 hover:text-red-600 rounded-md;
+}
+
+.navigation a svg {
+    @apply h-5 w-5;
 }
