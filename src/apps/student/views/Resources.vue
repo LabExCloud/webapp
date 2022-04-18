@@ -21,7 +21,7 @@
 
         <div class="grid grid-cols-1 gap-10 py-14 px-8 text-white">
 
-            <div v-for="subject in subjects" :key="subject.id" class="py-8 h-36 border border-borderclr rounded-2xl bg-cardclr text-center">
+            <!-- <div v-for="subject in subjects" :key="subject.id" class="py-8 h-36 border border-borderclr rounded-2xl bg-cardclr text-center">
                 {{ subject.subject }}
                 <div v-for="resource in subject.resources" :key="resource.id">
                     <div>
@@ -33,40 +33,27 @@
                         
                     </div>
                 </div>
-            </div>
+            </div> -->
             
-            <div class="grid grid-cols-3 py-8 h-36 border border-borderclr rounded-2xl bg-cardclr text-center">
-                <div> item 1 </div>
-                <div> date 1 </div>
-                <div> tag 1 </div>
-                <div> item 2 </div>
-                <div> date 2 </div>
-                <div> tag 2 </div>
-            </div>
-            <div class="grid grid-cols-3 py-8 h-36 border border-borderclr rounded-2xl bg-cardclr text-center">
-                <div> item 1 </div>
-                <div> date 1 </div>
-                <div> tag 1 </div>
-                <div> item 2 </div>
-                <div> date 2 </div>
-                <div> tag 2 </div>
-            </div>
-            <div class="grid grid-cols-3 py-8 h-36 border border-borderclr rounded-2xl bg-cardclr text-center">
-                <div> item 1 </div>
-                <div> date 1 </div>
-                <div> tag 1 </div>
-                <div> item 2 </div>
-                <div> date 2 </div>
-                <div> tag 2 </div>
-            </div>
-            <div class="grid grid-cols-3 py-8 h-36 border border-borderclr rounded-2xl bg-cardclr text-center">
-                <div> item 1 </div>
-                <div> date 1 </div>
-                <div> tag 1 </div>
-                <div> item 2 </div>
-                <div> date 2 </div>
-                <div> tag 2 </div>
-            </div>
+            <!-- <div> -->
+                <div v-for="subject in subjects" :key="subject.id" class="py-8 h-36 border border-borderclr rounded-2xl bg-cardclr text-center ">
+                    {{ subject.subject }} <br><br>
+                    <table class="w-full">
+                            <tr v-for="resource in subject.resources" :key="resource.id">
+                                <td>
+                                    <p> {{ resource.res_name }} </p>
+                                </td>
+                                <td>
+                                    <p> {{ resource.created }} </p>
+                                </td>
+                                <td>
+                                    <p>tag</p>
+                                </td>
+                            </tr>
+                    </table>
+                </div><br>
+            <!-- </div> -->
+            
         </div>
     </div>
 
