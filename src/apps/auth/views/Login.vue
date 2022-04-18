@@ -3,6 +3,11 @@
         <form id="login-form" @submit.prevent="submitForm">
             <input type="text" name="uname" placeholder="Username" required="" v-model="username">
             <input type="password" name="pass" placeholder="Password" required="" v-model="password">
+            <div v-if="true">
+                <div v-for="error in errors" :key="error" class="flex flex-col justify-center items-center text-red-700">
+                    {{ error }}
+                </div>
+            </div>
 
             <div class="flex flex-col justify-center items-center py-10">
 
@@ -50,15 +55,26 @@ export default({
             'isAuthenticated',
             'token',
             'user',
-        ])
+        ]),
+        isError(){
+            return this.errors.length > 0
+        }
     },
     methods: {
         async submitForm(){
+            this.errors = []
             axios.defaults.headers.common['Authorization'] = ''
             
             await this.$store.dispatch('login', {
                 username: this.username,
                 password: this.password
+            })
+            .catch(e => {
+                if(e.message === 'Network Error'){
+                    this.errors.push(e.message)
+                }else if(e.response.status == 400){
+                    this.errors.push('Invalid Username or Password')
+                }
             })
             axios.defaults.headers.common['Authorization'] = 'Token ' + this.token
 
