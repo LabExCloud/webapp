@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
+
 import Labs from '../views/Labs.vue'
 import Exam from '../views/Exam.vue'
 import Resources from '../views/Resources.vue'
