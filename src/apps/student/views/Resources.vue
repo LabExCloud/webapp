@@ -34,10 +34,9 @@
                     </div>
                 </div>
             </div> -->
-            
             <!-- <div> -->
                 <div v-for="subject in subjects" :key="subject.id" class="py-8 h-36 border border-borderclr rounded-2xl bg-cardclr text-center ">
-                    {{ subject.subject }} <br><br>
+                    {{ subject.sub_name }} <br><br>
                     <table class="w-full">
                             <tr v-for="resource in subject.resources" :key="resource.id">
                                 <td>
@@ -56,73 +55,6 @@
             
         </div>
     </div>
-
-<!-- 
-API Response for reference
-[
-    {
-        "id": 1,
-        "subject": "Data Analytics",
-        "resources": [
-            {
-                "id": 1,
-                "res_name": "Syllabus",
-                "created": "2022-04-15T10:15:08.092971Z",
-                "modified": "2022-04-15T10:15:08.093044Z",
-                "resource_files": [
-                    {
-                        "id": 1,
-                        "url": "http://127.0.0.1:8000/media/uploads/resources/IT404_Data_Analytics.pdf",
-                        "filename": "IT404_Data_Analytics.pdf"
-                    }
-                ]
-            },
-            {
-                "id": 3,
-                "res_name": "Notes",
-                "created": "2022-04-15T13:17:38.267098Z",
-                "modified": "2022-04-15T13:17:59.075689Z",
-                "resource_files": [
-                    {
-                        "id": 3,
-                        "url": "http://127.0.0.1:8000/media/uploads/resources/Module_1.pdf",
-                        "filename": "Module_1.pdf"
-                    },
-                    {
-                        "id": 4,
-                        "url": "http://127.0.0.1:8000/media/uploads/resources/Module_2.pdf",
-                        "filename": "Module_2.pdf"
-                    },
-                    {
-                        "id": 5,
-                        "url": "http://127.0.0.1:8000/media/uploads/resources/Module_4.pdf",
-                        "filename": "Module_4.pdf"
-                    }
-                ]
-            }
-        ]
-    },
-    {
-        "id": 2,
-        "subject": "Cloud Computing",
-        "resources": [
-            {
-                "id": 2,
-                "res_name": "Syllabus",
-                "created": "2022-04-15T12:52:32.009397Z",
-                "modified": "2022-04-15T12:52:32.009478Z",
-                "resource_files": [
-                    {
-                        "id": 2,
-                        "url": "http://127.0.0.1:8000/media/uploads/resources/CS468_Cloud_Computing.pdf",
-                        "filename": "CS468_Cloud_Computing.pdf"
-                    }
-                ]
-            }
-        ]
-    }
-]
- -->
 </template>
 
 
@@ -130,6 +62,11 @@ API Response for reference
 import axios from 'axios'
 
 export default({
+    /*
+        /api/v1/resources               current semester
+        /api/v1/resources/<int:sem>     sem semester
+        eg:- /api/v1/resources/7        7th semester
+    */
     name: 'Resources',
     mounted(){
         document.title = 'Resources',
