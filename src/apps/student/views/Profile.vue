@@ -8,7 +8,7 @@
             <div class="profile">
                 <img class="w-40" :src="user.get_image" alt="student picture">
                 <h2>{{ user.first_name }} {{ user.middle_name }} {{ user.last_name }}</h2>
-                <p>S{{ user.profile.semester }} - {{ user.profile.department }} - {{ user.profile.rollno }}</p>
+                <p>S{{ user.profile.semester }} - {{ user.profile.dept_code }} - {{ user.profile.rollno }}</p>
             </div>
 
             <div class="grid grid-cols-2 gap-y-4 gap-x-12 py-8">
@@ -23,7 +23,7 @@
                     Semester 
                 </div>
                 <div class="bg-gray-800 rounded px-3 text-gray-300">
-                    S{{ user.profile.semester.semester }}
+                    S{{ user.profile.semester }}
                 </div>
             
                 <div>
@@ -67,7 +67,7 @@ export default({
         return{
             title: "Your Profile",
             user: {
-                profile: {semester:{department:{}}}
+                profile: {}
             },
         }
     },
