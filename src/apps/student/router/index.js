@@ -4,6 +4,7 @@ import Labs from '../views/Labs.vue'
 import Exam from '../views/Exam.vue'
 import Resources from '../views/Resources.vue'
 import Profile from '../views/Profile.vue'
+import EditorDemo from '../views/EditorDemo.vue'
 
 import store from '@/store'
 
@@ -32,6 +33,11 @@ const routes = [
     path: '/profile',
     name: 'profile',
     component: Profile
+  },
+  {
+    path: '/editor',
+    name: 'editor',
+    component: EditorDemo
   }
 ]
 
