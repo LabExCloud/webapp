@@ -63,9 +63,14 @@ import axios from 'axios'
 
 export default({
     /*
-        /api/v1/resources               current semester
-        /api/v1/resources/<int:sem>     sem semester
-        eg:- /api/v1/resources/7        7th semester
+        /api/v1/resources                   current semester
+
+        /api/v1/resources/sem/<int:sem>     sem semester
+        eg:- /api/v1/resources/sem/7        7th semester
+        get the semester list from user.profile.semesters
+
+        /api/v1/resources/res/<int:r_id>    resource with id r_id
+        eg:- /api/v1/resources/res/3        resurce with id 3
     */
     name: 'Resources',
     mounted(){
