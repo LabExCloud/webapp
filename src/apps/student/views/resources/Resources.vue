@@ -39,6 +39,7 @@
                     {{ subject.sub_name }} <br><br>
                     <table class="w-full">
                             <tr v-for="resource in subject.resources" :key="resource.id">
+                                <router-link :to="'/resources/res/' + resource.id">
                                 <td>
                                     <p> {{ resource.res_name }} </p>
                                 </td>
@@ -48,6 +49,7 @@
                                 <td>
                                     <p>tag</p>
                                 </td>
+                                </router-link>
                             </tr>
                     </table>
                 </div><br>
@@ -84,9 +86,13 @@ export default({
     },
     methods: {
         getResources(){
+            var url = '/api/v1/resources'
+            if(this.$route.params.sem){
+                url += `/sem/${this.$route.params.sem}`
+            }
             axios({
                 method: 'get',
-                url: '/api/v1/resources',
+                url,
             }).then(response => this.subjects = response.data)
         },
     },
