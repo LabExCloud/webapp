@@ -15,7 +15,11 @@
                         <option value="date">Date</option>
                         <option value="alph">Alphabet</option>
                     </select>
-                </div>   
+                </div> 
+                <!-- 
+                    semester select dropdown 
+                    default current semester
+                -->
         </div>
 
 
@@ -70,6 +74,7 @@ export default({
         /api/v1/resources/sem/<int:sem>     sem semester
         eg:- /api/v1/resources/sem/7        7th semester
         get the semester list from user.profile.semesters
+        get the current semester from user.profile.semester
 
         /api/v1/resources/res/<int:r_id>    resource with id r_id
         eg:- /api/v1/resources/res/3        resurce with id 3
