@@ -40,8 +40,8 @@ export default({
     */
     name: 'ResourceDetail',
     mounted(){
-        document.title = 'Resource: ' + this.resource.res_name
         this.getResource()
+        document.title = 'Resource'
     },
     data(){
         return{
@@ -56,5 +56,12 @@ export default({
             }).then(response => this.resource = response.data)
         },
     },
+    watch: {
+        resource: {
+            handler(){
+                document.title = 'Resource: ' + this.resource.res_name
+            }
+        }
+    }
 })
 </script>
