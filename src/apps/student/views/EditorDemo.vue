@@ -40,22 +40,20 @@ export default({
     data() {
         return {
         ansi: undefined,
-        output: {run: {}},
-        demo: '',
+        output: {},
         code: '',
+        editorLang: '',
         language: '',
         languages: [
             {
-            'language': 'bash',
-            'demo': 'echo "Hello, World! bash"'
+                language: 'c++',
+                editorLang: 'cpp',
+                demo: '#include <iostream>\nusing namespace std;\nint main(){\n\tcout<<"Hello, World! C++";\n\treturn 0;\n}'
             },
             {
-            'language': 'c++',
-            'demo': '#include <iostream>\nusing namespace std;\nint main(){\n\tcout<<"Hello, World! C++";\n\treturn 0;\n}'
-            },
-            {
-            'language': 'python',
-            'demo': 'print("Hello, World! Python")'
+                language: 'python',
+                editorLang: 'python',
+                demo: 'print("Hello, World! Python")'
             },
             
         ],
@@ -88,18 +86,18 @@ export default({
             }
         },
         selectLang(){
-            this.demo = this.languages[this.selectKey].demo
             this.code = this.languages[this.selectKey].demo
             this.language = this.languages[this.selectKey].language
+            this.editorLang = this.languages[this.selectKey].editorLang
         },
-
-        textChange(value){
-            this.code = value
-        }
     },
     computed: {
         htmlOutput(){
-            return this.ansi.ansi_to_html(this.output.run.output).replace(/\n/gm, '<br>')
+            if(this.output.run){
+                return this.ansi.ansi_to_html(this.output.run.output).replace(/\n/gm, '<br>')
+            }else{
+                return ''
+            }
         }
     },
     beforeMount () {
