@@ -93,9 +93,10 @@ export default({
         eg:- /api/v1/resources/res/3        resurce with id 3
     */
     name: 'Resources',
-    mounted(){
+    async mounted(){
         document.title = 'Resources',
-        this.getResources()
+        await this.getResources()
+        this.formatDate()
     },
     data(){
         return{
@@ -103,16 +104,21 @@ export default({
         }
     },
     methods: {
-        getResources(){
+        async getResources(){
             var url = '/api/v1/resources'
             if(this.$route.params.sem){
                 url += `/sem/${this.$route.params.sem}`
             }
-            axios({
-                method: 'get',
-                url,
-            }).then(response => this.subjects = response.data)
+            const response = await axios.get(url);
+            this.subjects = response.data;
         },
+        formatDate(){
+            const fullDate = '2017-07-30T15:01:13Z';
+            const monthNames = ["January", "February", "March", "April", "May", "June","July", "August", "September", "October", "November", "December"];
+            const date = new Date(fullDate);
+            console.log(`${monthNames[date.getMonth()]} ${date.getDate()}`) //test formated date
+            console.log(JSON.stringify(this.subjects[0].resources[0].modified)); //api time
+        }
     },
 })
 </script>
