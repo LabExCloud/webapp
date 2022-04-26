@@ -10,12 +10,25 @@
                 <div class="sort-box">
                     <label class="text-white" for="sort">sort: </label>
                     <select class="text-center text-sm text-gray-400 bg-gray-700 border border-black rounded" id="sort" name="sort">
-                        <option value="recent">Recent</option>
+                        <option value="recent" selected>Recent</option>
                         <option value="star">Starred</option>
                         <option value="date">Date</option>
                         <option value="alph">Alphabet</option>
                     </select>
                 </div>   
+        </div>
+        <div class="w-full pl-7">
+            <label class="text-white text-lg" for="sem">Exams: </label>
+            <select class="text-center text-sm text-gray-400 bg-gray-700 border border-black rounded" id="sem" name="sem">
+                <option value="S8" selected>S8</option>
+                <option value="S7">S7</option>
+                <option value="S6">S6</option>
+                <option value="S5">S5</option>
+                <option value="S4">S4</option>
+                <option value="S3">S3</option>
+                <option value="S2">S2</option>
+                <option value="S1">S1</option>
+            </select>
         </div>
 
         <div class="grid grid-cols-2 gap-10 py-14 px-8 text-white">
