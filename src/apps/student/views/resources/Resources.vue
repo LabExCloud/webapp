@@ -56,9 +56,10 @@
                     {{ subject.sub_name }} <br><br>
                     <table class="w-full">
                             <tr v-for="resource in subject.resources" :key="resource.id">
-                                <router-link :to="'/resources/res/' + resource.id">
                                 <td>
+                                    <router-link :to="'/resources/res/' + resource.id">
                                     <p> {{ resource.res_name }} </p>
+                                    </router-link>
                                 </td>
                                 <td>
                                     <p> {{ resource.created }} </p>
@@ -66,7 +67,6 @@
                                 <td>
                                     <p>tag</p>
                                 </td>
-                                </router-link>
                             </tr>
                     </table>
                 </div><br>
