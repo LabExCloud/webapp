@@ -6,20 +6,16 @@
         </div>
         
         <div class="search-sort-box">
-                <input class="text-center py-2 w-72 bg-gray-700 border border-black rounded-xl" type="search" id="search" placeholder="Search Resources"/>
-                <div class="sort-box">
-                    <label class="text-white" for="sort">sort: </label>
-                    <select class="text-center text-sm text-gray-400 bg-gray-700 border border-black rounded" id="sort" name="sort">
-                        <option value="recent" selected>Recent</option>
-                        <option value="star">Starred</option>
-                        <option value="date">Date</option>
-                        <option value="alph">Alphabet</option>
-                    </select>
-                </div> 
-                <!-- 
-                    semester select dropdown 
-                    default current semester
-                -->
+            <input class="text-center py-2 w-72 bg-gray-700 border border-black rounded-xl" type="search" id="search" placeholder="Search Resources"/>
+            <div class="sort-box">
+                <label class="text-white" for="sort">sort: </label>
+                <select class="text-center text-sm text-gray-400 bg-gray-700 border border-black rounded" id="sort" name="sort">
+                    <option value="recent" selected>Recent</option>
+                    <option value="star">Starred</option>
+                    <option value="date">Date</option>
+                    <option value="alph">Alphabet</option>
+                </select>
+            </div> 
         </div>
         <div class="w-full pl-7">
             <label class="text-white text-lg" for="sem">Resources: </label>
@@ -30,41 +26,24 @@
 
 
         <div class="grid grid-cols-1 gap-10 py-14 px-8 text-white">
-
-            <!-- <div v-for="subject in subjects" :key="subject.id" class="py-8 h-36 border border-borderclr rounded-2xl bg-cardclr text-center">
-                {{ subject.subject }}
-                <div v-for="resource in subject.resources" :key="resource.id">
-                    <div>
-                        {{ resource.res_name }}
-                        <div v-for="file in resource.resource_files" :key="file.id">
-                            <a :href="file.url" target="_blank">{{ file.filename }}</a>
-                            
-                        </div>
-                        
-                    </div>
-                </div>
-            </div> -->
-            <!-- <div> -->
-                <div v-for="subject in subjects" :key="subject.id" class="py-8 h-36 border border-borderclr rounded-2xl bg-cardclr text-center ">
-                    {{ subject.sub_name }} <br><br>
-                    <table class="w-full">
-                            <tr v-for="resource in subject.resources" :key="resource.id">
-                                <td>
-                                    <router-link :to="'/resources/res/' + resource.id">
-                                    <p> {{ resource.res_name }} </p>
-                                    </router-link>
-                                </td>
-                                <td>
-                                    <p> {{ resource.createdFmt }} </p>
-                                </td>
-                                <td>
-                                    <p>tag</p>
-                                </td>
-                            </tr>
-                    </table>
-                </div><br>
-            <!-- </div> -->
-            
+            <div v-for="subject in subjects" :key="subject.id" class="py-8 h-36 border border-borderclr rounded-2xl bg-cardclr text-center ">
+                {{ subject.sub_name }} <br><br>
+                <table class="w-full">
+                        <tr v-for="resource in subject.resources" :key="resource.id">
+                            <td>
+                                <router-link :to="'/resources/res/' + resource.id">
+                                <p> {{ resource.res_name }} </p>
+                                </router-link>
+                            </td>
+                            <td>
+                                <p> {{ resource.createdFmt }} </p>
+                            </td>
+                            <td>
+                                <p>tag</p>
+                            </td>
+                        </tr>
+                </table>
+            </div><br>
         </div>
     </div>
 </template>
