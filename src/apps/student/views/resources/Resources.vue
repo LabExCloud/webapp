@@ -23,15 +23,8 @@
         </div>
         <div class="w-full pl-7">
             <label class="text-white text-lg" for="sem">Resources: </label>
-            <select class="text-center text-sm text-gray-400 bg-gray-700 border border-black rounded" id="sem" name="sem">
-                <option value="S8" selected>S8</option>
-                <option value="S7">S7</option>
-                <option value="S6">S6</option>
-                <option value="S5">S5</option>
-                <option value="S4">S4</option>
-                <option value="S3">S3</option>
-                <option value="S2">S2</option>
-                <option value="S1">S1</option>
+            <select class="text-center text-sm text-gray-400 bg-gray-700 border border-black rounded" id="sem" name="sem" @change="selectSem">
+                <option v-for="sem in user.profile.semesters" :key="sem" :value="sem">S{{ sem }}</option>
             </select>
         </div>
 
@@ -79,6 +72,7 @@
 
 <script>
 import axios from 'axios'
+import { mapGetters } from 'vuex'
 
 export default({
     /*
@@ -94,8 +88,12 @@ export default({
     */
     name: 'Resources',
     async mounted(){
-        document.title = 'Resources',
-        await this.getResources()
+        document.title = `Resources: S${this.user.profile.semester}`
+        if(this.$route.params.sem){
+            await this.getResources(this.$route.params.sem)
+        }else{
+            await this.getResources()
+        }
         this.formatDate()
     },
     data(){
@@ -104,13 +102,17 @@ export default({
         }
     },
     methods: {
-        async getResources(){
+        async getResources(sem){
             var url = '/api/v1/resources'
-            if(this.$route.params.sem){
-                url += `/sem/${this.$route.params.sem}`
+            if(sem){
+                url += `/sem/${sem}`
             }
             const response = await axios.get(url);
             this.subjects = response.data;
+        },
+        async selectSem(event){
+            await this.getResources(event.target.value)
+            document.title = `Resources: S${event.target.value}`
         },
         formatDate(){
             const fullDate = '2017-07-30T15:01:13Z';
@@ -120,5 +122,10 @@ export default({
             console.log(JSON.stringify(this.subjects[0].resources[0].modified)); //api time
         }
     },
+    computed: {
+        ...mapGetters([
+            'user',
+        ]),
+    }
 })
 </script>

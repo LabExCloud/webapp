@@ -31,7 +31,7 @@ const routes = [
   },
 
   {
-    path: '/resources/:sem?',
+    path: '/resources',
     name: 'resources',
     component: Resources
   },
