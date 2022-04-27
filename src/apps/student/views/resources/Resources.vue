@@ -55,7 +55,7 @@
                                     </router-link>
                                 </td>
                                 <td>
-                                    <p> {{ resource.created }} </p>
+                                    <p> {{ resource.createdFmt }} </p>
                                 </td>
                                 <td>
                                     <p>tag</p>
@@ -113,13 +113,16 @@ export default({
         async selectSem(event){
             await this.getResources(event.target.value)
             document.title = `Resources: S${event.target.value}`
+            this.formatDate()
         },
         formatDate(){
-            const fullDate = '2017-07-30T15:01:13Z';
             const monthNames = ["January", "February", "March", "April", "May", "June","July", "August", "September", "October", "November", "December"];
-            const date = new Date(fullDate);
-            console.log(`${monthNames[date.getMonth()]} ${date.getDate()}`) //test formated date
-            console.log(JSON.stringify(this.subjects[0].resources[0].modified)); //api time
+            for(let sub in this.subjects){
+                for(let res in this.subjects[sub].resources){
+                    const date = new Date(this.subjects[sub].resources[res].created)
+                    this.subjects[sub].resources[res].createdFmt = `${monthNames[date.getMonth()]} ${date.getDate()}`
+                }
+            }
         }
     },
     computed: {
