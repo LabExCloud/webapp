@@ -8,10 +8,10 @@
         <div class="row">
             <div class="col" style="width:500px">
                 <button @click="getResult"  style="float:right;">Run</button>
-                <select @change="selectLang" v-model="selectKey" style="float:right;">
-                <option v-for="lang in languageSelect" :key="languageSelect.indexOf(lang)" :value="languageSelect.indexOf(lang)">{{ lang.language }} - {{ lang.version }}</option>
+                <select @change="selectLang" style="float:right;">
+                <option v-for="lang in languages" :key="lang.id" :value="lang.id">{{ lang.language }} - {{ lang.version }}</option>
                 </select>
-                <Editor style="margin-top: 30px; width: 500px; height: 600px" :language="language" v-model="code" theme="vs-dark"/>
+                <Editor style="margin-top: 30px; width: 500px; height: 600px" :language="language.editor_lang" v-model="code" theme="vs-dark"/>
             </div>
             <div class="col" style="vertical-align:top;">
                 <div class="output" style="vertical-align:top; margin-top:30px;" >
@@ -24,15 +24,17 @@
 
 <script>
 import piston from 'piston-client'
+import axios from 'axios'
 import AnsiUp from 'ansi_up'
 
 import Editor from '@/components/Editor.vue'
+import { languages } from 'monaco-editor/esm/metadata'
 
 export default({
     name: 'EditorDemo',
-    mounted(){
+    async mounted(){
         document.title = 'Editor Demo'
-        this.getLanguages()
+        await this.getLanguages()
     },
     components: {
         Editor
@@ -42,30 +44,15 @@ export default({
         ansi: undefined,
         output: {},
         code: '',
-        editorLang: '',
         language: '',
-        languages: [
-            {
-                language: 'c++',
-                editorLang: 'cpp',
-                demo: '#include <iostream>\nusing namespace std;\nint main(){\n\tcout<<"Hello, World! C++";\n\treturn 0;\n}'
-            },
-            {
-                language: 'python',
-                editorLang: 'python',
-                demo: 'print("Hello, World! Python")'
-            },
-            
-        ],
-        selectKey: '',
-        languageSelect: [],
+        languages: [],
         isOutputExist: false,
         }
     },
     methods: {
         async getResult(){
             const client = piston({ server: "https://emkc.org" });
-            this.output = await client.execute(this.language, this.code);
+            this.output = await client.execute(this.language.piston_lang, this.code);
             if(this.output){
                 this.isOutputExist = true
             }
@@ -73,22 +60,35 @@ export default({
         },
 
         async getLanguages(){
+            const response = await axios.get('/api/v1/editor/languages')
             const client = piston({ server: "https://emkc.org" });
             const runtimes = await client.runtimes();
 
-            for (const lang in runtimes) {
-                if (Object.hasOwnProperty.call(runtimes, lang)) {
-                    const element = runtimes[lang];
-                    if(this.languages.find(el => {return el.language === element.language}) ){
-                        this.languageSelect.push(element)
-                    }
-                }
+            for(let lang in response.data){
+                var d = response.data[lang]
+                const p = runtimes.find(obj => {
+                    return obj.language == d.piston_lang
+                })
+                d.version = p.version
+                this.languages.push(d)
+            }
+
+            this.language = this.languages[0]
+            this.code = await this.getDemoCode(this.language.id)
+        },
+
+        async getDemoCode(id){
+            if(id){
+                const response = await axios.get(`/api/v1/editor/democode/${id}`)
+                return response.data.demo_code
+            }else{
+                return ''
             }
         },
-        selectLang(){
-            this.code = this.languages[this.selectKey].demo
-            this.language = this.languages[this.selectKey].language
-            this.editorLang = this.languages[this.selectKey].editorLang
+
+        async selectLang(event){
+            this.language = this.languages.find(obj => obj.id == parseInt(event.target.value))
+            this.code = await this.getDemoCode(this.language.id)
         },
     },
     computed: {
