@@ -62,8 +62,8 @@ router.beforeEach((to, from) => {
   if(!store.getters.isAuthenticated){
     location.href = '/login'
   }
-  if(store.getters.user.is_staff){
-    location.href = '/teacher'
+  if(store.getters.user.user_type !== 'student'){
+    location.href = '/login'
   }
 })
 

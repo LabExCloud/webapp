@@ -81,9 +81,9 @@ export default({
             await this.$store.dispatch('getUser')
 
             if(this.isAuthenticated){
-                if(this.user.is_staff){
+                if(this.user.user_type === 'teacher'){
                     window.location.href = '/teacher'
-                }else{
+                }else if(this.user.user_type === 'student'){
                     window.location.href = '/student'
                 }
             }
@@ -95,9 +95,9 @@ export default({
         this.$store.commit('INIT')
 
         if(this.isAuthenticated){
-            if(this.user.is_staff){
+            if(this.user.user_type === 'teacher'){
                 window.location.href = '/teacher'
-            }else{
+            }else if(this.user.user_type === 'student'){
                 window.location.href = '/student'
             }
         }
