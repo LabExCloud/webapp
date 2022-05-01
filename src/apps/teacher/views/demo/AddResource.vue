@@ -4,13 +4,13 @@
             <p>{{ header }}</p>
         </div>
 
-        <div class="form">
+        <div class="form flex flex-col justify-center mx-12">
             Class : 
-            <select name="class" v-model="class_opt">
+            <select name="class" v-model="class_opt" class="mt-1 rounded-md">
                 <option v-for="(c, index) in classes" :key="index" :value="index">{{ c.batch.year }} - {{ c.department.dept_code }} - S{{ c.semester.sem }} - {{ c.subject.sub_name }}</option>
             </select><br>
-            Resource Name: <input type="text" name="name" v-model="res_name"><br>
-            Resource Description: <textarea name="desc" cols="30" rows="10" v-model="res_desc"></textarea><br>
+            Resource Name: <input type="text" name="name" v-model="res_name" class="rounded-md"><br>
+            Resource Description: <textarea name="desc" cols="30" rows="10" v-model="res_desc" class="rounded-md"></textarea><br>
             <div id="resources">
                 <div v-for="(file, index) in files" :key="index">
                     {{ file.name }}
@@ -18,8 +18,9 @@
                     <button style="color: red; font-face:bold;" @click="removeResourceFile(index)">X</button>
                 </div>
             </div>
-            <button @click="addResourceFile">+ Add Resource File</button><br>
-            <button @click="submitForm">Add</button>
+
+            <button @click="addResourceFile" class="bg-gray-500 text-black w-44 rounded">+ Add Resource File</button>
+            <button @click="submitForm" class="bg-gray-600 text-black w-full mt-10 rounded-lg">Add</button>
         </div>
     </div>
 </template>

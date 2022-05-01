@@ -67,3 +67,13 @@
 .navigation a svg {
     @apply h-5 w-5;
 }
+
+
+
+/* Teachers side*/
+
+/* Resource page - search and add box*/
+
+.add-box{
+    @apply absolute right-28 w-48 h-12 flex;
+}
