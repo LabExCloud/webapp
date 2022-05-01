@@ -7,6 +7,10 @@ import Exam from '../views/Exam.vue'
 import Resources from '../views/Resources.vue'
 import Profile from '../views/Profile.vue'
 
+
+import Demo from '../views/demo/Demo.vue'
+import AddResource from '../views/demo/AddResource.vue'
+
 import store from '@/store'
 
 
@@ -35,6 +39,17 @@ const routes = [
     path: '/profile',
     name: 'profile',
     component: Profile
+  },
+
+  {
+    path: '/demo',
+    name: 'demo',
+    component: Demo
+  },
+  {
+    path: '/demo/addresource',
+    name: 'addresourcedemo',
+    component: AddResource
   }
 ]
 
