@@ -49,19 +49,15 @@ export default({
         }
     },
     methods: {
-        getResource(){
-            axios({
-                method: 'get',
-                url: '/api/v1/resources/res/' + this.$route.params.res,
-            }).then(response => this.resource = response.data)
+        async getResource(){
+            const response = await axios.get('/api/v1/resources/res/' + this.$route.params.res)
+            this.resource = response.data
+            document.title = 'Resource: ' + this.resource.res_name
+            
+            this.resource.res_files.forEach(file => {
+                file.url = axios.defaults.baseURL + file.file
+            });
         },
     },
-    watch: {
-        resource: {
-            handler(){
-                document.title = 'Resource: ' + this.resource.res_name
-            }
-        }
-    }
 })
 </script>
