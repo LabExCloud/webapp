@@ -3,7 +3,7 @@
     <div class="content">
         <div class="flex justify-center items-center bg-cardclr border border-borderclr text-white h-32 mx-96 mt-10 rounded-md">
             <div class="flex  w-full mx-4 my-5">
-                <img class="w-20 rounded-full" src="https://tghost.cf/17241/image_2022-05-02_10-13-00.png?hash=AgADDQ" alt="student picture">
+                <img class="w-20 rounded-full" src="https://tghost.cf/17241/image_2022-05-02_10-13-00.png?hash=AgADDQ" alt="class picture">
                 <div class="grid grid-cols-2 gap-y-1 gap-x-1 w-full ml-12">
                     <div>
                         Name:
@@ -32,7 +32,8 @@
         <div class="w-full pl-7">
             <label class="text-white text-lg" for="year">Classes: </label>
             <select class="text-center text-sm text-gray-400 bg-gray-700 border border-black rounded" id="year" name="year">
-                <option value="2122" selected>2021-22</option>
+                <option value="all" selected>All</option>
+                <option value="2122">2021-22</option>
                 <option value="2021">2020-21</option>
                 <option value="1920">2019-20</option>
                 <option value="1819">2018-19</option>
@@ -43,7 +44,18 @@
         <!-- {{classes}} -->
 
         <div class="grid grid-cols-3 gap-10 py-14 px-4 text-white">
-            <div class="h-36 border border-borderclr rounded-2xl bg-cardclr">item 1</div>
+
+            <div v-for="classs in classes" :key="classs.id" class="flex items-center h-36 border border-borderclr rounded-2xl bg-cardclr">
+                
+                <img class="h-24 rounded-2xl px-3 py-1" src="https://tghost.cf/17241/image_2022-05-02_10-13-00.png?hash=AgADDQ" alt="student picture">
+                <div class="w-full ml-8">
+                    <span> {{ classs.subject.sub_code }} - {{ classs.subject.sub_name }} </span><br>
+                    <p class="text-sm text-gray-300"> {{ classs.department.dept_name }} </p>
+                    <p class="text-sm text-gray-300"> S{{ classs.semester.sem }} - {{ classs.department.dept_code }} </p>
+                </div>
+              
+            </div>
+
             <div class="h-36 border border-borderclr rounded-2xl bg-cardclr">item 2</div>
             <div class="h-36 border border-borderclr rounded-2xl bg-cardclr">item 3</div>
             <div class="h-36 border border-borderclr rounded-2xl bg-cardclr">item 4</div>
