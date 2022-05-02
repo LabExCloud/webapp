@@ -60,7 +60,7 @@ export default({
                 console.log(class_id);
 
                 const response = await axios.post(
-                    `/api/v1/resource/${class_id}`,
+                    `/api/v1/resources/res/${class_id}`,
                     {
                         res_name: this.res_name,
                         description: this.res_desc
@@ -74,7 +74,7 @@ export default({
                         data.append('file', file)
 
                         const response = await axios.post(
-                            `/api/v1/resourcefile/${res_id}`,
+                            `/api/v1/resources/file/${res_id}`,
                             data, {
                                 headers: {"Content-Type": "multipart/form-data",},
                             }
