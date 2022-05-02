@@ -47,7 +47,7 @@
 
             <div v-for="classs in classes" :key="classs.id" class="flex items-center h-36 border border-borderclr rounded-2xl bg-cardclr">
                 
-                <img class="h-24 rounded-2xl px-3 py-1" src="https://tghost.cf/17241/image_2022-05-02_10-13-00.png?hash=AgADDQ" alt="student picture">
+                <img class="h-24 rounded-2xl px-3 py-1" :src="classs.subject.image" alt="student picture">
                 <div class="w-full ml-8">
                     <span> {{ classs.subject.sub_code }} - {{ classs.subject.sub_name }} </span><br>
                     <p class="text-sm text-gray-300"> {{ classs.department.dept_name }} </p>
@@ -88,6 +88,19 @@ export default({
 
             const response = await axios.get(url);
             this.classes = response.data;
+            this.updateImages()
+        },
+        updateImages(){
+            for(let eachClass in this.classes){
+
+                if(!this.classes[eachClass].subject.image){
+                    this.classes[eachClass].subject.image = "https://tghost.cf/17281/image_2022-05-02_18-59-12.png?hash=AgADNQ";
+                }
+                else{
+                    this.classes[eachClass].subject.image = axios.defaults.baseURL + this.classes[eachClass].subject.image;
+                }
+            }
+
         }
     },
 })
