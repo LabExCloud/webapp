@@ -1,10 +1,10 @@
 <template>
     <div class="lab-item">
         <div>
-            <img src="https://www.freepngimg.com/download/android/72537-icons-python-programming-computer-social-tutorial.png" alt="python">
+            <img :src="lab.subject.image" alt="subject image">
             <div>
-                <p class="title">Python</p>
-                <p class="name">name</p>
+                <p class="title">{{ lab.subject.sub_code }} - {{ lab.subject.sub_name }}</p>
+                <p class="name">{{ lab.owner.first_name + " " + lab.owner.last_name }}</p>
             </div>
         </div>
 
@@ -24,7 +24,7 @@
 export default({
     name: 'LabItem',
     props: {
-        item: {}
+        lab: {}
     }
 })
 </script>

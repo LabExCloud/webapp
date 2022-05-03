@@ -30,9 +30,9 @@
                 <option value="S1">S1</option>
             </select>
         </div>
-
+        <!-- {{ labs }} -->
         <div class="grid grid-cols-2 gap-10 py-14 px-8 text-white">
-            <LabItem/>
+            <LabItem v-for="lab in labs" :lab="lab" :key="lab.id" />
             <div class="h-36 border border-borderclr rounded-2xl bg-cardclr">item 1</div>
             <div class="h-36 border border-borderclr rounded-2xl bg-cardclr">item 2</div>
             <div class="h-36 border border-borderclr rounded-2xl bg-cardclr">item 3</div>
@@ -43,6 +43,7 @@
 </template>
 
 <script>
+import axios from 'axios'
 import LabItem from '../components/LabItem.vue'
 
 export default({
@@ -52,16 +53,33 @@ export default({
     },
     mounted(){
         document.title = 'Labs'
+        this.getLabs()
     },
     data(){
         return{
-            objectItems: {
-                key1: 'item one',
-                key2: 'item two',
-                key3: 'item three',
-                key4: 'item four'
-            }
+            labs: {}
         }
-    }
+    },
+    methods: {
+        async getLabs(){
+            var url = '/api/v1/labs';
+
+            const response = await axios.get(url);
+            this.labs = response.data;
+            this.updateImages()
+        },
+        updateImages(){
+            for(let eachLab in this.labs){
+
+                if(!this.labs[eachLab].subject.image){
+                    this.labs[eachLab].subject.image = "https://tghost.cf/17281/image_2022-05-02_18-59-12.png?hash=AgADNQ";
+                }
+                else{
+                    this.labs[eachLab].subject.image = axios.defaults.baseURL + this.labs[eachLab].subject.image;
+                }
+            }
+
+        }
+    },
 })
 </script>
