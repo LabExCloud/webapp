@@ -14,33 +14,46 @@
                 </button>
             </div>
         </div>
+        <!-- {{ exps }} -->
+        <div class="grid grid-cols-1 gap-10 py-14 px-8 text-white">
+            <div v-for="exp in exps" :key="exp.id" class="h-36 border border-borderclr rounded-2xl bg-cardclr">
+                <p class="mx-4 mt-5"> {{exp.exp_name}} - {{ exp.questions.length}} Questions. </p>
+                <ul class="px-6 py-4">
+                    <li v-for="question in exp.questions" :key="question.id">
+                        {{question.id}} ) {{ question.question }} - {{ question.mark}} marks
+                    </li>
+                </ul>
+            </div>
 
-        <!-- <div class="grid grid-cols-2 gap-10 py-14 px-8 text-white">
-            <LabItem/>
-            <div class="h-36 border border-borderclr rounded-2xl bg-cardclr">item 1</div>
             <div class="h-36 border border-borderclr rounded-2xl bg-cardclr">item 2</div>
             <div class="h-36 border border-borderclr rounded-2xl bg-cardclr">item 3</div>
             <div class="h-36 border border-borderclr rounded-2xl bg-cardclr">item 4</div>
-        </div> -->
+        </div>
     </div>
 
 </template>
 
 <script>
+import axios from 'axios'
+
 export default({
     name: 'Labs',
     mounted(){
         document.title = 'Lab'
+        this.getExps()
     },
-    // data(){
-    //     return{
-    //         objectItems: {
-    //             key1: 'item one',
-    //             key2: 'item two',
-    //             key3: 'item three',
-    //             key4: 'item four'
-    //         }
-    //     }
-    // }
+    data(){
+        return{
+            exps: {}
+        }
+    },
+    methods: {
+        async getExps(){
+            var url = '/api/v1/labs/4';
+
+            const response = await axios.get(url);
+            this.exps = response.data;
+        },
+    },
 })
 </script>
