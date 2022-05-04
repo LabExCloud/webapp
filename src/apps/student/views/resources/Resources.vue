@@ -29,11 +29,11 @@
             <div v-for="subject in subjects" :key="subject.id" class="py-8 h-36 border border-borderclr rounded-2xl bg-cardclr text-center ">
                 {{ subject.sub_name }} <br><br>
                 <table class="w-full">
-                        <tr v-for="resource in subject.resources" :key="resource.id">
+                        <tr class="cursor-pointer" v-for="resource in subject.resources" :key="resource.id" @click="cardClick(resource.id)">
                             <td>
-                                <router-link :to="'/resources/res/' + resource.id">
+                                <!-- <router-link :to="'/resources/res/' + resource.id"> -->
                                 <p> {{ resource.res_name }} </p>
-                                </router-link>
+                                <!-- </router-link> -->
                             </td>
                             <td>
                                 <p> {{ resource.createdFmt }} </p>
@@ -102,6 +102,9 @@ export default({
                     this.subjects[sub].resources[res].createdFmt = `${monthNames[date.getMonth()]} ${date.getDate()}`
                 }
             }
+        },
+        cardClick(id){
+            this.$router.push(`/resources/res/${id}`)
         }
     },
     computed: {

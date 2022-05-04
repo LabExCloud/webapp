@@ -1,5 +1,5 @@
 <template>
-    <div class="lab-item">
+    <div class="lab-item" @click="cardClick">
         <div>
             <img :src="lab.subject.image" alt="subject image">
             <div>
@@ -25,6 +25,11 @@ export default({
     name: 'LabItem',
     props: {
         lab: {}
+    },
+    methods: {
+        cardClick(){
+            // this.$router.push()
+        }
     }
 })
 </script>

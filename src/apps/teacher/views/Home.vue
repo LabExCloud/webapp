@@ -45,16 +45,16 @@
 
         <div class="grid grid-cols-3 gap-10 py-14 px-4 text-white">
 
-            <div v-for="classs in classes" :key="classs.id" class="flex items-center h-36 border border-borderclr rounded-2xl bg-cardclr">
+            <div v-for="classs in classes" :key="classs.id" class="flex items-center h-36 border border-borderclr rounded-2xl bg-cardclr cursor-pointer" @click="clickCard">
                 
 
                 <img class="h-24 rounded-2xl px-3 py-1" :src="classs.subject.image" alt="student picture">
                 <div class="w-full ml-8">
-                    <router-link :to="'/labs/'">
+                    <!-- <router-link :to="'/labs/'"> -->
                     <span> {{ classs.subject.sub_code }} - {{ classs.subject.sub_name }} </span><br>
                     <p class="text-sm text-gray-300"> {{ classs.department.dept_name }} </p>
                     <p class="text-sm text-gray-300"> S{{ classs.semester.sem }} - {{ classs.department.dept_code }} </p>
-                    </router-link>
+                    <!-- </router-link> -->
                 </div>
               
             </div>
@@ -104,6 +104,9 @@ export default({
                 }
             }
 
+        },
+        clickCard(){
+            this.$router.push('/labs')
         }
     },
 })
