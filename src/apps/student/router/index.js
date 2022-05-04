@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
-import Labs from '../views/Labs.vue'
+import Labs from '../views/labs/Labs.vue'
 
 import Exam from '../views/Exam.vue'
 

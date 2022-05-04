@@ -44,7 +44,7 @@
 
 <script>
 import axios from 'axios'
-import LabItem from '../components/LabItem.vue'
+import LabItem from '../../components/LabItem.vue'
 
 export default({
     name: 'Labs',
