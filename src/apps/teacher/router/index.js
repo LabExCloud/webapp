@@ -2,9 +2,9 @@ import { createRouter, createWebHistory } from 'vue-router'
 
 
 import Home from '../views/Home.vue'
-import Labs from '../views/Labs.vue'
-import Exam from '../views/Exam.vue'
-import Resources from '../views/Resources.vue'
+import Labs from '../views/labs/Labs.vue'
+import Exam from '../views/exams/Exam.vue'
+import Resources from '../views/resources/Resources.vue'
 import Profile from '../views/Profile.vue'
 
 
