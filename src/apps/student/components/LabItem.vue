@@ -31,7 +31,7 @@ export default({
     },
     methods: {
         clickCard(id){
-            this.$router.push(`/labs/${id}`)
+            this.$router.push(`/labs/lab/${id}`)
         }
     }
 })

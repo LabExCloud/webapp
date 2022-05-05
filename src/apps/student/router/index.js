@@ -1,8 +1,10 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
 import Labs from '../views/labs/Labs.vue'
+import LabExps from '../views/labs/LabExps.vue'
 
-import Exam from '../views/Exam.vue'
+import Exams from '../views/exams/Exams.vue'
+import ExamInfo from '../views/exams/ExamInfo.vue'
 
 import Resources from '../views/resources/Resources.vue'
 import ResourceDetail from '../views/resources/ResourceDetail.vue'
@@ -25,9 +27,19 @@ const routes = [
     component: Labs
   },
   {
-    path: '/exam',
+    path: '/labs/lab/:labid',
+    name: 'lab',
+    component: LabExps
+  },
+  {
+    path: '/exams',
+    name: 'exams',
+    component: Exams
+  },
+  {
+    path: '/exams/exam/info/:examid',
     name: 'exam',
-    component: Exam
+    component: ExamInfo
   },
 
   {

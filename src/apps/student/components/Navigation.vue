@@ -14,17 +14,17 @@
                             <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                         </svg>
 
-                        <span class="mx-4"> Lab </span>
+                        <span class="mx-4"> Labs </span>
                     </router-link>
                 </li>
 
                 <li>
-                    <router-link to="/exam">
+                    <router-link to="/exams">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
                         </svg>
 
-                        <span class="mx-4"> Exam </span>
+                        <span class="mx-4"> Exams </span>
                     </router-link>
                 </li>
 

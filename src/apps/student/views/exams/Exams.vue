@@ -31,8 +31,28 @@
             </select>
         </div>
 
+        <!-- {{ exams }} -->
         <div class="grid grid-cols-2 gap-10 py-14 px-8 text-white">
-            <div class="h-36 border border-borderclr rounded-2xl bg-cardclr">item 1</div>
+
+            <div v-for="exam in exams" :key="exam.id" class="lab-item cursor-pointer"  @click="clickCard(exam.id)">
+                <div class="flex  ml-4 mt-4">
+                    <img :src="exam.subject.image" alt="subject image" class="h-24 w-24 rounded-2xl">
+                    <div class="w-full flex flex-col px-6">
+                        <p class="title">{{ exam.subject.sub_code }} - {{ exam.subject.sub_name }}</p>
+                        <p class="name text-gray-400"> - {{ exam.owner.first_name + " " + exam.owner.last_name }}</p>
+                    </div>
+                </div>
+                <ul class="ml-12 mt-2 list-disc text-sm">
+                    <li>
+                        Duration: 60 min
+                    </li>
+                    <li>
+                        Questions: 4
+                    </li>
+                </ul>
+
+            </div>
+
             <div class="h-36 border border-borderclr rounded-2xl bg-cardclr">item 2</div>
             <div class="h-36 border border-borderclr rounded-2xl bg-cardclr">item 3</div>
             <div class="h-36 border border-borderclr rounded-2xl bg-cardclr">item 4</div>
@@ -41,21 +61,42 @@
 </template>
 
 <script>
+import axios from 'axios'
 
 export default({
-    name: 'Exam',
+    name: 'Exams',
     mounted(){
-        document.title = 'Exam'
+        document.title = 'Exams'
+        this.getExams()
     },
     data(){
         return{
-            objectItems: {
-                key1: 'item one',
-                key2: 'item two',
-                key3: 'item three',
-                key4: 'item four'
-            }
+            exams: {}
         }
-    }
+    },
+    methods: {
+        async getExams(){
+            var url = '/api/v1/labs';
+
+            const response = await axios.get(url);
+            this.exams = response.data;
+            this.updateImages()
+        },
+        updateImages(){
+            for(let eachExam in this.exams){
+
+                if(!this.exams[eachExam].subject.image){
+                    this.exams[eachExam].subject.image = "https://tghost.cf/17281/image_2022-05-02_18-59-12.png?hash=AgADNQ";
+                }
+                else{
+                    this.exams[eachExam].subject.image = axios.defaults.baseURL + this.exams[eachExam].subject.image;
+                }
+            }
+
+        },
+        clickCard(id){
+            this.$router.push(`/exams/exam/info/${id}`)
+        }
+    },
 })
 </script>

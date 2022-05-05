@@ -1,7 +1,7 @@
 <template>
     <div class="content">
         <div class="header">
-            <p> Your Lab works </p>
+            <p> Your Labs </p>
         </div>
 
         <div class="search-sort-box">
