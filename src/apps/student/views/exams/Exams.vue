@@ -19,7 +19,7 @@
         </div>
         <div class="w-full pl-7">
             <label class="text-white text-lg" for="sem">Exams: </label>
-            <select class="text-center text-sm text-gray-400 bg-gray-700 border border-black rounded" id="sem" name="sem">
+            <!-- <select class="text-center text-sm text-gray-400 bg-gray-700 border border-black rounded" id="sem" name="sem">
                 <option value="S8" selected>S8</option>
                 <option value="S7">S7</option>
                 <option value="S6">S6</option>
@@ -28,7 +28,8 @@
                 <option value="S3">S3</option>
                 <option value="S2">S2</option>
                 <option value="S1">S1</option>
-            </select>
+            </select> -->
+            <semester-select-box :sems="user.profile.semesters" @selectSem="selectSem"/>
         </div>
 
         <!-- {{ exams }} -->
@@ -62,9 +63,14 @@
 
 <script>
 import axios from 'axios'
+import { mapGetters } from 'vuex'
+import SemesterSelectBox from '../../components/SemesterSelectBox.vue'
 
 export default({
     name: 'Exams',
+    components: {
+        SemesterSelectBox,
+    },
     mounted(){
         document.title = 'Exams'
         this.getExams()
@@ -75,8 +81,15 @@ export default({
         }
     },
     methods: {
-        async getExams(){
+        async getExams(sem){
             var url = '/api/v1/labs';
+            if(sem != undefined){
+                if(sem != 0){
+                    url += `/sem/${sem}`
+                }
+            }else{
+                url += '/sem'
+            }
 
             const response = await axios.get(url);
             this.exams = response.data;
@@ -86,7 +99,7 @@ export default({
             for(let eachExam in this.exams){
 
                 if(!this.exams[eachExam].subject.image){
-                    this.exams[eachExam].subject.image = "https://tghost.cf/17281/image_2022-05-02_18-59-12.png?hash=AgADNQ";
+                    this.exams[eachExam].subject.image = "https://telegra.ph/file/9326a1797d1e96975cde9.png";
                 }
                 else{
                     this.exams[eachExam].subject.image = axios.defaults.baseURL + this.exams[eachExam].subject.image;
@@ -96,7 +109,16 @@ export default({
         },
         clickCard(id){
             this.$router.push(`/exams/exam/info/${id}`)
-        }
+        },
+        async selectSem(sobj){
+            await this.getExams(sobj.sem)
+            document.title = `Exams: ${sobj.text}`
+        },
     },
+    computed: {
+        ...mapGetters([
+            'user',
+        ]),
+    }
 })
 </script>

@@ -7,7 +7,7 @@
                 <button class="bg-red-800 text-sm float-right mr-4 px-2 rounded"> Logout </button>
             </a><br>
             <div class="flex  w-full mx-4 my-5">
-                <img class="w-20 rounded-full" src="https://tghost.cf/17241/image_2022-05-02_10-13-00.png?hash=AgADDQ" alt="class picture">
+                <img class="w-20 rounded-full" src="https://telegra.ph/file/bfdfc00be4a24941d9d57.png" alt="class picture">
 
                 <div class="grid grid-cols-2 gap-y-1 gap-x-[1px] ml-10">
                     <div>
@@ -103,7 +103,7 @@ export default({
             for(let eachClass in this.classes){
 
                 if(!this.classes[eachClass].subject.image){
-                    this.classes[eachClass].subject.image = "https://tghost.cf/17281/image_2022-05-02_18-59-12.png?hash=AgADNQ";
+                    this.classes[eachClass].subject.image = "https://telegra.ph/file/9326a1797d1e96975cde9.png";
                 }
                 else{
                     this.classes[eachClass].subject.image = axios.defaults.baseURL + this.classes[eachClass].subject.image;

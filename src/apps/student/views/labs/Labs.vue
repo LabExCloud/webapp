@@ -68,12 +68,13 @@ export default({
             const response = await axios.get(url);
             this.labs = response.data;
             this.updateImages()
+            //console.log(url)
         },
         updateImages(){
             for(let eachLab in this.labs){
 
                 if(!this.labs[eachLab].subject.image){
-                    this.labs[eachLab].subject.image = "https://tghost.cf/17281/image_2022-05-02_18-59-12.png?hash=AgADNQ";
+                    this.labs[eachLab].subject.image = "https://telegra.ph/file/9326a1797d1e96975cde9.png";
                 }
                 else{
                     this.labs[eachLab].subject.image = axios.defaults.baseURL + this.labs[eachLab].subject.image;
