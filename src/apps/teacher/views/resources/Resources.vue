@@ -19,7 +19,7 @@
         
 
         <div class="grid grid-cols-1 gap-10 py-14 px-8 text-white">
-            <div class="py-8 h-36 border border-borderclr rounded-2xl bg-cardclr text-center ">
+            <div class="py-8 h-36 border border-borderclr rounded-2xl shadow-md bg-cardclr hover:border-gray-300 hover:shadow-2xl text-center ">
                 ExpNo - Demo <br><br>
                 <table class="w-full">
                         <tr>

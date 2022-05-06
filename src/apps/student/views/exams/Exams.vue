@@ -53,9 +53,9 @@
 
             </div>
 
-            <div class="h-36 border border-borderclr rounded-2xl bg-cardclr">item 2</div>
-            <div class="h-36 border border-borderclr rounded-2xl bg-cardclr">item 3</div>
-            <div class="h-36 border border-borderclr rounded-2xl bg-cardclr">item 4</div>
+            <div class="h-36 border border-borderclr rounded-2xl shadow-md bg-cardclr hover:border-gray-300 hover:shadow-2xl">item 2</div>
+            <div class="h-36 border border-borderclr rounded-2xl shadow-md bg-cardclr hover:border-gray-300 hover:shadow-2xl">item 3</div>
+            <div class="h-36 border border-borderclr rounded-2xl shadow-md bg-cardclr hover:border-gray-300 hover:shadow-2xl">item 4</div>
         </div>
     </div>
 </template>

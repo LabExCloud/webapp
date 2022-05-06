@@ -39,7 +39,7 @@ export default({
 
 <style>
 .lab-item {
-    @apply h-36 border border-borderclr rounded-2xl bg-cardclr;
+    @apply h-36 border border-borderclr rounded-2xl shadow-md bg-cardclr hover:border-gray-300 hover:shadow-2xl;
 }
 
 .lab-item img{
