@@ -19,9 +19,7 @@
         </div>
         <div class="w-full pl-7">
             <label class="text-white text-lg" for="sem">Resources: </label>
-            <select class="text-center text-sm text-gray-400 bg-gray-700 border border-black rounded" id="sem" name="sem" @change="selectSem">
-                <option v-for="sem in user.profile.semesters" :key="sem" :value="sem">S{{ sem }}</option>
-            </select>
+            <semester-select-box :sems="user.profile.semesters" @selectSem="selectSem"/>
         </div>
 
 
@@ -52,47 +50,35 @@
 <script>
 import axios from 'axios'
 import { mapGetters } from 'vuex'
+import SemesterSelectBox from '../../components/SemesterSelectBox.vue'
 
 export default({
-    /*
-        /api/v1/resources                   current semester
-
-        /api/v1/resources/sem/<int:sem>     sem semester
-        eg:- /api/v1/resources/sem/7        7th semester
-        get the semester list from user.profile.semesters
-        get the current semester from user.profile.semester
-
-        /api/v1/resources/res/<int:r_id>    resource with id r_id
-        eg:- /api/v1/resources/res/3        resurce with id 3
-    */
     name: 'Resources',
+    components:{
+        SemesterSelectBox,
+    },
     async mounted(){
         document.title = `Resources: S${this.user.profile.semester}`
-        if(this.$route.params.sem){
-            await this.getResources(this.$route.params.sem)
-        }else{
-            await this.getResources()
-        }
+        await this.getResources()
         this.formatDate()
     },
     data(){
         return{
-            subjects: {}
+            subjects: {},
         }
     },
     methods: {
         async getResources(sem){
             var url = '/api/v1/resources'
-            if(sem){
-                url += `/sem/${sem}`
+            if(sem != undefined){
+                if(sem != 0){
+                    url += `/sem/${sem}`
+                }
+            }else{
+                url += '/sem'
             }
             const response = await axios.get(url);
             this.subjects = response.data;
-        },
-        async selectSem(event){
-            await this.getResources(event.target.value)
-            document.title = `Resources: S${event.target.value}`
-            this.formatDate()
         },
         formatDate(){
             const monthNames = ["January", "February", "March", "April", "May", "June","July", "August", "September", "October", "November", "December"];
@@ -105,7 +91,12 @@ export default({
         },
         cardClick(id){
             this.$router.push(`/resources/res/${id}`)
-        }
+        },
+        async selectSem(sobj){
+            await this.getResources(sobj.sem)
+            document.title = `Resources: ${sobj.text}`
+            this.formatDate()
+        },
     },
     computed: {
         ...mapGetters([

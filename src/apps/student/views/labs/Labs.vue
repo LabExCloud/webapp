@@ -19,16 +19,7 @@
 
         <div class="w-full pl-7">
             <label class="text-white text-lg" for="sem">Labs: </label>
-            <select class="text-center text-sm text-gray-400 bg-gray-700 border border-black rounded" id="sem" name="sem">
-                <option value="S8" selected>S8</option>
-                <option value="S7">S7</option>
-                <option value="S6">S6</option>
-                <option value="S5">S5</option>
-                <option value="S4">S4</option>
-                <option value="S3">S3</option>
-                <option value="S2">S2</option>
-                <option value="S1">S1</option>
-            </select>
+            <semester-select-box :sems="user.profile.semesters" @selectSem="selectSem"/>
         </div>
         <!-- {{ labs }} -->
         <div class="grid grid-cols-2 gap-10 py-14 px-8 text-white">
@@ -44,12 +35,15 @@
 
 <script>
 import axios from 'axios'
+import { mapGetters } from 'vuex'
 import LabItem from '../../components/LabItem.vue'
+import SemesterSelectBox from '../../components/SemesterSelectBox.vue'
 
 export default({
     name: 'Labs',
     components: {
-        LabItem
+        LabItem,
+        SemesterSelectBox,
     },
     mounted(){
         document.title = 'Labs'
@@ -61,8 +55,15 @@ export default({
         }
     },
     methods: {
-        async getLabs(){
+        async getLabs(sem){
             var url = '/api/v1/labs';
+            if(sem != undefined){
+                if(sem != 0){
+                    url += `/sem/${sem}`
+                }
+            }else{
+                url += '/sem'
+            }
 
             const response = await axios.get(url);
             this.labs = response.data;
@@ -79,7 +80,16 @@ export default({
                 }
             }
 
-        }
+        },
+        async selectSem(sobj){
+            await this.getLabs(sobj.sem)
+            document.title = `Labs: ${sobj.text}`
+        },
     },
+    computed: {
+        ...mapGetters([
+            'user',
+        ]),
+    }
 })
 </script>
