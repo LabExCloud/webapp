@@ -32,6 +32,11 @@ const routes = [
     component: LabExps
   },
   {
+    path: '/labs/exp/:expid',
+    name: 'exp',
+    component: EditorDemo
+  },
+  {
     path: '/exams',
     name: 'exams',
     component: Exams
