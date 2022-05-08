@@ -7,14 +7,14 @@
                 <button class="bg-red-800 text-sm float-right mr-4 px-2 rounded"> Logout </button>
             </a><br>
             <div class="flex  w-full mx-4 my-5">
-                <img class="w-20 rounded-full" src="https://telegra.ph/file/bfdfc00be4a24941d9d57.png" alt="class picture">
+                <img class="w-20 rounded-full" :src="user.get_image" alt="class picture">
 
                 <div class="grid grid-cols-2 gap-y-1 gap-x-[1px] ml-10">
                     <div>
                         Name:
                     </div>
                     <div class="bg-gray-800 rounded px-3 text-gray-300">
-                        Steve Harry
+                        {{ `${user.first_name}${user.middle_name ? ` ${user.middle_name} ` : ' '}${user.last_name}` }}
                     </div>
                     
                     <div>
@@ -28,7 +28,7 @@
                         Active Classes:
                     </div>
                     <div class="bg-gray-800 rounded px-3 text-gray-300">
-                        8
+                        {{ user.profile.classes.length}}
                     </div>   
                 </div>
             </div>
@@ -47,7 +47,7 @@
             </select>
         </div>
 
-        <!-- {{classes}} -->
+        <!-- {{user}} -->
 
         <div class="grid grid-cols-3 gap-10 py-14 px-4 text-white">
 
@@ -79,6 +79,7 @@
 
 <script>
 import axios from 'axios'
+import { mapGetters } from 'vuex'
 
 export default({
     name: 'Home',
@@ -115,5 +116,10 @@ export default({
             this.$router.push('/labs')
         }
     },
+    computed: {
+        ...mapGetters([
+            'user',
+        ]),
+    }
 })
 </script>
