@@ -49,7 +49,8 @@ export default({
     },
     methods: {
         async getExps(){
-            var url = '/api/v1/labs/4';
+            var cid = this.$route.params.cid;
+            var url = `/api/v1/labs/${cid}`;
 
             const response = await axios.get(url);
             this.exps = response.data;

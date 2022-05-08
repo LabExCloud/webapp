@@ -51,7 +51,7 @@
 
         <div class="grid grid-cols-3 gap-10 py-14 px-4 text-white">
 
-            <div v-for="classs in classes" :key="classs.id" class="flex items-center h-36 border border-borderclr rounded-2xl shadow-md bg-cardclr hover:border-gray-300 hover:shadow-2xl cursor-pointer" @click="clickCard">
+            <div v-for="classs in classes" :key="classs.id" class="flex items-center h-36 border border-borderclr rounded-2xl shadow-md bg-cardclr hover:border-gray-300 hover:shadow-2xl cursor-pointer" @click="clickCard(classs.id)">
                 
 
                 <img class="h-24 rounded-2xl px-3 py-1" :src="classs.subject.image" alt="student picture">
@@ -112,8 +112,8 @@ export default({
             }
 
         },
-        clickCard(){
-            this.$router.push('/labs')
+        clickCard(id){
+            this.$router.push(`/labs/lab/${id}`)
         }
     },
     computed: {
