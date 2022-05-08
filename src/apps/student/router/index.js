@@ -11,7 +11,9 @@ import ResourceDetail from '../views/resources/ResourceDetail.vue'
 
 import Profile from '../views/Profile.vue'
 
+
 import EditorDemo from '../views/EditorDemo.vue'
+import NotFound from '../views/NotFound.vue'
 
 import store from '@/store'
 
@@ -67,6 +69,13 @@ const routes = [
     path: '/editor',
     name: 'editor',
     component: EditorDemo
+  },
+  
+  //not found pages
+  {
+    path: '/:catchAll(.*)',
+    name: 'NotFound',
+    component: NotFound
   }
 ]
 
