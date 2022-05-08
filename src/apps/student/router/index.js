@@ -13,7 +13,7 @@ import Profile from '../views/Profile.vue'
 
 
 import EditorDemo from '../views/EditorDemo.vue'
-import NotFound from '../views/NotFound.vue'
+import NotFound from '@/views/NotFound.vue'
 
 import store from '@/store'
 
@@ -70,7 +70,7 @@ const routes = [
     name: 'editor',
     component: EditorDemo
   },
-  
+
   //not found pages
   {
     path: '/:catchAll(.*)',

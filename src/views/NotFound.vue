@@ -1,7 +1,7 @@
 <template>
     <div class="content py-4">
         <div class="px-8 mx-auto h-full">
-            <div class="grid grid-cols-2 gap-12">
+            <div class="grid grid-cols-2">
             <!-- image - start -->
                 <div class="flex justify-center items-center h-56 w-56 ml-28 my-52 bg-gray-100 overflow-hidden shadow-lg rounded-xl">
                     <img src="https://telegra.ph/file/e73deaad7af53481fde15.png" loading="lazy" alt="404 image" class="w-full h-full object-cover object-center rounded-xl border border-gray-500" />
@@ -9,7 +9,7 @@
             <!-- image - end -->
 
             <!-- content - start -->
-                <div class="flex flex-col justify-center items-center sm:items-start md:py-24 lg:py-32 xl:py-52">
+                <div class="flex flex-col justify-center items-center sm:items-start py-24">
                     <p class="text-indigo-500 text-sm md:text-base font-semibold uppercase mb-4">That’s a 404</p>
                     <h1 class="text-gray-300 text-2xl md:text-3xl font-bold text-center sm:text-left mb-2">Page not found</h1>
 

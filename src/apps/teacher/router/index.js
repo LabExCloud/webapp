@@ -10,6 +10,7 @@ import Profile from '../views/Profile.vue'
 
 import Demo from '../views/demo/Demo.vue'
 import AddResource from '../views/demo/AddResource.vue'
+import NotFound from '@/views/NotFound.vue'
 
 import store from '@/store'
 
@@ -50,6 +51,12 @@ const routes = [
     path: '/demo/addresource',
     name: 'addresourcedemo',
     component: AddResource
+  },
+  //not found pages
+  {
+    path: '/:catchAll(.*)',
+    name: 'NotFound',
+    component: NotFound
   }
 ]
 

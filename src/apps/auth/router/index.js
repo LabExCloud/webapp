@@ -1,6 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Login from '../views/Login.vue'
 import Logout from '../views/Logout.vue'
+import NotFound from '@/views/NotFound.vue'
+
 
 const routes = [
   {
@@ -17,6 +19,12 @@ const routes = [
     name: 'logout',
     component: Logout
   },
+  //not found pages
+  {
+    path: '/:catchAll(.*)',
+    name: 'NotFound',
+    component: NotFound
+  }
 ]
 
 const router = createRouter({
