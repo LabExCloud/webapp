@@ -42,7 +42,6 @@ export default({
     async mounted(){
         document.title = this.$options.name + ' demo'
         await this.fetchClass()
-        console.log(this.classes);
     },
     computed: {
         header(){ 
@@ -51,8 +50,8 @@ export default({
     },
     methods: {
         async fetchClass(){
-            const response = await axios.get('/api/v1/profile')
-            this.classes = response.data.profile.classes
+            const response = await axios.get('/api/v1/classes')
+            this.classes = response.data
         },
         async submitForm(){
             if(this.class_opt !== undefined){
@@ -84,10 +83,8 @@ export default({
             }
         },
         addResourceFile(){
-            var el = document.createElement('div')
             this.files.push({
-                file: {
-                }
+                file: {}
             })
         },
         removeResourceFile(index){
