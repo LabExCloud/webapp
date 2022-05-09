@@ -34,7 +34,7 @@
                                 <!-- </router-link> -->
                             </td>
                             <td>
-                                <p> {{ resource.createdFmt }} </p>
+                                <date-view v-model="resource.created"/>
                             </td>
                             <td>
                                 <p>tag</p>
@@ -51,16 +51,17 @@
 import axios from 'axios'
 import { mapGetters } from 'vuex'
 import SemesterSelectBox from '../../components/SemesterSelectBox.vue'
+import DateView from '@/components/DateView.vue'
 
 export default({
     name: 'Resources',
     components:{
         SemesterSelectBox,
+        DateView,
     },
     async mounted(){
         document.title = `Resources: S${this.user.profile.semester}`
         await this.getResources()
-        this.formatDate()
     },
     data(){
         return{
@@ -80,22 +81,12 @@ export default({
             const response = await axios.get(url);
             this.subjects = response.data;
         },
-        formatDate(){
-            const monthNames = ["January", "February", "March", "April", "May", "June","July", "August", "September", "October", "November", "December"];
-            for(let sub in this.subjects){
-                for(let res in this.subjects[sub].resources){
-                    const date = new Date(this.subjects[sub].resources[res].created)
-                    this.subjects[sub].resources[res].createdFmt = `${monthNames[date.getMonth()]} ${date.getDate()}`
-                }
-            }
-        },
         cardClick(id){
             this.$router.push(`/resources/res/${id}`)
         },
         async selectSem(sobj){
             await this.getResources(sobj.sem)
             document.title = `Resources: ${sobj.text}`
-            this.formatDate()
         },
     },
     computed: {
