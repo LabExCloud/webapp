@@ -80,9 +80,6 @@ export default({
 
             await this.$store.dispatch('auth/getUser')
 
-        console.log(this.user);
-        console.log(this.token);
-
             if(this.isAuthenticated){
                 if(this.user.user_type === 'teacher'){
                     window.location.href = '/teacher'
@@ -96,9 +93,6 @@ export default({
         document.title = 'Login'
 
         this.$store.commit('auth/INIT')
-
-        console.log(this.user);
-        console.log(this.token);
 
         if(this.isAuthenticated){
             if(this.user.user_type === 'teacher'){
