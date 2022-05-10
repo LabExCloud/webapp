@@ -47,7 +47,7 @@ export default({
         return {
             username: '',
             password: '',
-            errors: [] // TODO: display this somewhere
+            errors: []
         }
     },
     computed: {
