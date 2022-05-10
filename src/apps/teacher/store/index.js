@@ -1,4 +1,3 @@
-import axios from 'axios'
 import { createStore } from 'vuex'
 
 import auth from '@/apps/auth/store/auth.js'
