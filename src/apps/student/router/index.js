@@ -15,7 +15,7 @@ import Profile from '../views/Profile.vue'
 import EditorDemo from '../views/EditorDemo.vue'
 import NotFound from '@/views/NotFound.vue'
 
-import store from '@/store'
+import store from '../store'
 
 
 const routes = [
@@ -85,10 +85,10 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from) => {
-  if(!store.getters.isAuthenticated){
+  if(!store.getters['auth/isAuthenticated']){
     location.href = '/login'
   }
-  if(store.getters.user.user_type !== 'student'){
+  if(store.getters['auth/user'].user_type !== 'student'){
     location.href = '/login'
   }
 })
