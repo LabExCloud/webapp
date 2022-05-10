@@ -51,7 +51,7 @@ export default({
         }
     },
     computed: {
-        ...mapGetters([
+        ...mapGetters('auth', [
             'isAuthenticated',
             'token',
             'user',
@@ -65,7 +65,7 @@ export default({
             this.errors = []
             axios.defaults.headers.common['Authorization'] = ''
             
-            await this.$store.dispatch('login', {
+            await this.$store.dispatch('auth/login', {
                 username: this.username,
                 password: this.password
             })
@@ -78,7 +78,10 @@ export default({
             })
             axios.defaults.headers.common['Authorization'] = 'Token ' + this.token
 
-            await this.$store.dispatch('getUser')
+            await this.$store.dispatch('auth/getUser')
+
+        console.log(this.user);
+        console.log(this.token);
 
             if(this.isAuthenticated){
                 if(this.user.user_type === 'teacher'){
@@ -92,7 +95,10 @@ export default({
     mounted(){
         document.title = 'Login'
 
-        this.$store.commit('INIT')
+        this.$store.commit('auth/INIT')
+
+        console.log(this.user);
+        console.log(this.token);
 
         if(this.isAuthenticated){
             if(this.user.user_type === 'teacher'){

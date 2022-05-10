@@ -17,15 +17,15 @@ export default {
         Navigation
     },
     computed: {
-        ...mapGetters([
+        ...mapGetters('auth', [
             'isAuthenticated',
             'token',
             'user'
         ])
     },
     created() {
-        this.$store.commit('INIT')
+        this.$store.commit('auth/INIT')
         axios.defaults.headers.common['Authorization'] = 'Token ' + this.token
-    }
+    },
 }
 </script>

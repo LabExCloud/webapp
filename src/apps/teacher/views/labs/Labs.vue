@@ -34,6 +34,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 import axios from 'axios'
 
 export default({
@@ -41,6 +42,7 @@ export default({
     mounted(){
         document.title = 'Lab'
         this.getExps()
+        console.log(this.class_id);
     },
     data(){
         return{
@@ -49,12 +51,16 @@ export default({
     },
     methods: {
         async getExps(){
-            var cid = this.$route.params.cid;
-            var url = `/api/v1/labs/${cid}`;
+            var url = `/api/v1/labs/${this.class_id}`;
 
             const response = await axios.get(url);
             this.exps = response.data;
         },
     },
+    computed: {
+        ...mapGetters([
+            'class_id',
+        ]),
+    }
 })
 </script>

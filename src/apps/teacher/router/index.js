@@ -12,7 +12,7 @@ import Demo from '../views/demo/Demo.vue'
 import AddResource from '../views/demo/AddResource.vue'
 import NotFound from '@/views/NotFound.vue'
 
-import store from '@/store'
+import store from '../store'
 
 
 const routes = [
@@ -22,7 +22,7 @@ const routes = [
     component: Home
   },
   {
-    path: '/labs/lab/:cid',
+    path: '/labs',
     name: 'labs',
     component: Labs
   },
@@ -66,10 +66,10 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from) => {
-  if(!store.getters.isAuthenticated){
+  if(!store.getters['auth/isAuthenticated']){
     location.href = '/login'
   }
-  if(store.getters.user.user_type !== 'teacher'){
+  if(store.getters['auth/user'].user_type !== 'teacher'){
     location.href = '/login'
   }
 })

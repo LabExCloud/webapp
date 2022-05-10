@@ -113,11 +113,12 @@ export default({
 
         },
         clickCard(id){
-            this.$router.push(`/labs/lab/${id}`)
+            this.$store.commit('SET_CLASS_ID', id)
+            this.$router.push('/labs')
         }
     },
     computed: {
-        ...mapGetters([
+        ...mapGetters('auth', [
             'user',
         ]),
     }
