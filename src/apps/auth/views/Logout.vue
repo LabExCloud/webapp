@@ -10,8 +10,8 @@ export default({
     mounted(){
         document.title = 'Login'
 
-        this.$store.dispatch('logout')
-        this.$store.commit('INIT')
+        this.$store.dispatch('auth/logout')
+        this.$store.commit('auth/INIT')
         
         this.$router.push('/login')
     },
