@@ -1,7 +1,7 @@
 <template>
     <div class="sidepage">
         <div class="profile">
-            <img class="w-28" :src="user.get_image" alt="student picture">
+            <profile-image class="w-28" :src="user.image" alt="student picture"/>
             <h2>{{ user.first_name }} {{ user.last_name }}</h2>
             <p>S{{ user.profile.semester }} - {{ user.profile.dept_code }} - {{ user.profile.rollno }}</p>
         </div>
@@ -79,14 +79,23 @@
 
 <script>
 import axios from 'axios'
+import ProfileImage from '@/components/ProfileImage.vue'
 
 export default({
     name: 'Navigation',
+    components: {
+        ProfileImage,
+    },
     data(){
         return {
             user: {
                 profile: {}
             },
+        }
+    },
+    computed: {
+        profileImage() {
+            return process.env.VUE_APP_ROOT_MEDIA + this.user.image
         }
     },
     methods: {

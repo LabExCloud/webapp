@@ -7,7 +7,7 @@
                 <button class="bg-red-800 text-sm float-right mr-4 px-2 rounded"> Logout </button>
             </a><br>
             <div class="flex  w-full mx-4 my-5">
-                <img class="w-20 rounded-full" :src="user.get_image" alt="class picture">
+                <profile-image class="w-40 rounded-full border-2 border-white" :src="user.image" alt="teacher picture"/>
 
                 <div class="grid grid-cols-2 gap-y-1 gap-x-[1px] ml-10">
                     <div>
@@ -81,8 +81,13 @@
 import axios from 'axios'
 import { mapGetters } from 'vuex'
 
+import ProfileImage from '@/components/ProfileImage.vue'
+
 export default({
     name: 'Home',
+    components: {
+        ProfileImage,
+    },
     async mounted(){
         document.title = 'Home'
         await this.getClasses();

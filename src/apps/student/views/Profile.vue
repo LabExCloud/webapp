@@ -6,7 +6,7 @@
         </div>
         <div class="profile py-16 px-9 text-white">
             <div class="profile">
-                <img class="w-40" :src="user.get_image" alt="student picture">
+                <profile-image class="w-40" :src="user.image" alt="student picture"/>
                 <h2>{{ user.first_name }} {{ user.middle_name }} {{ user.last_name }}</h2>
                 <p>S{{ user.profile.semester }} - {{ user.profile.dept_code }} - {{ user.profile.rollno }}</p>
             </div>
@@ -56,9 +56,13 @@
 
 <script>
 import axios from 'axios'
+import ProfileImage from '@/components/ProfileImage.vue'
 
 export default({
     name: 'Profile',
+    components: {
+        ProfileImage,
+    },
     mounted(){
         document.title = 'Profile'
         this.getProfile()
