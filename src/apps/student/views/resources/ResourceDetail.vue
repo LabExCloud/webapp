@@ -55,7 +55,7 @@ export default({
             document.title = 'Resource: ' + this.resource.res_name
             
             this.resource.res_files.forEach(file => {
-                file.url = axios.defaults.baseURL + file.file
+                file.url = process.env.VUE_APP_ROOT_MEDIA + file.file
             });
         },
     },

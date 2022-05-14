@@ -7,7 +7,7 @@ import axios from 'axios'
 import '@/index.css'
 
 
-axios.defaults.baseURL = 'http://localhost:8000'
+axios.defaults.baseURL = process.env.VUE_APP_ROOT_API
 
 
 createApp(App)
