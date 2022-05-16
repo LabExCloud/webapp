@@ -7,7 +7,7 @@
                 <button class="bg-red-800 text-sm float-right mr-4 px-2 rounded"> Logout </button>
             </a><br>
             <div class="flex  w-full mx-4 my-5">
-                <profile-image class="w-40 rounded-full border-2 border-white" :src="user.image" alt="teacher picture"/>
+                <profile-image class="w-24 rounded-full border-2 border-white" :src="user.image" alt="teacher picture"/>
 
                 <div class="grid grid-cols-2 gap-y-1 gap-x-[1px] ml-10">
                     <div>
