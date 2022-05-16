@@ -11,7 +11,7 @@ import ResourceDetail from '../views/resources/ResourceDetail.vue'
 
 import Profile from '../views/Profile.vue'
 
-
+import IDE from '../views/IDE.vue'
 import EditorDemo from '../views/EditorDemo.vue'
 import NotFound from '@/views/NotFound.vue'
 
@@ -36,7 +36,7 @@ const routes = [
   {
     path: '/labs/exp/:expid',
     name: 'exp',
-    component: EditorDemo
+    component: IDE
   },
   {
     path: '/exams',
@@ -69,6 +69,11 @@ const routes = [
     path: '/editor',
     name: 'editor',
     component: EditorDemo
+  },
+  {
+    path: '/ide',
+    name: 'ide',
+    component: IDE
   },
 
   //not found pages

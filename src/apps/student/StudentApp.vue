@@ -1,6 +1,6 @@
 <template>
 <div class="h-screen mainpage flex justify-center items-center font-snig text-base">
-    <Navigation/>
+    <Navigation v-if="$route.name !== 'exp'"/>
     
     <router-view/>
 </div>
