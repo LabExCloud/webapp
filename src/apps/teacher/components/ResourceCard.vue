@@ -4,7 +4,7 @@
         <table class="w-full">
                 <tr class="cursor-pointer" v-for="file in resourceFiles" :key="file.id">
                     <td>
-                        <p> {{ resource.res_name }} </p>
+                        <p> {{ file.filename }} </p>
                     </td>
                 </tr>
         </table>
