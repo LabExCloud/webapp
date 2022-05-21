@@ -16,55 +16,46 @@
             </div>
         </div>
 
-        
-
         <div class="grid grid-cols-1 gap-10 py-14 px-8 text-white">
-            <div class="py-8 h-36 border border-borderclr rounded-2xl shadow-md bg-cardclr hover:border-gray-300 hover:shadow-2xl text-center ">
-                ExpNo - Demo <br><br>
-                <table class="w-full">
-                        <tr>
-                            <td>
-                                <router-link :to="'/resources/res/'">
-                                <p> Note - Demo </p>
-                                </router-link>
-                            </td>
-                            <td>
-                                <p> Date - Demo </p>
-                            </td>
-                            <td>
-                                <p>Tag - Demo</p>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td>
-                                <router-link :to="'/resources/res/'">
-                                <p> Note - Demo </p>
-                                </router-link>
-                            </td>
-                            <td>
-                                <p> Date - Demo </p>
-                            </td>
-                            <td>
-                                <p>Tag - Demo</p>
-                            </td>
-                        </tr>
-                </table>
-            </div><br>
+            <resource-card v-for="resource in resources" :key="resource.id" :resource="resource"/>
         </div>
-
 
     </div>
 </template>
 
 
 <script>
+import { mapGetters } from 'vuex'
 import axios from 'axios'
+
+import ResourceCard from '../../components/ResourceCard.vue'
 
 export default({
     name: 'Resources',
-    mounted(){
-        document.title = `Resources`
+    data(){
+        return {
+            resources: [],
+        }
     },
+    components: {
+        ResourceCard
+    },
+    async mounted(){
+        document.title = `Resources`
+        await this.getResources()
+        console.log(this.resources);
+    },
+    methods: {
+        async getResources(){
+            var url = `/api/v1/resources/class/${this.class_id}`
+            const response = await axios.get(url);
+            this.resources = response.data.resources;
+        },
+    },
+    computed: {
+        ...mapGetters([
+            'class_id',
+        ]),
+    }
 })
 </script>
