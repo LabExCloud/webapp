@@ -8,10 +8,8 @@
         <div class="search-sort-box">
             <input class="text-center py-2 w-72 bg-gray-700 border border-black rounded-xl" type="search" id="search" placeholder="Search Resources"/>
             <div class="add-box">
-                <button class="text-center text-base w-40 text-white bg-gray-700 border border-black rounded-md">
-                    <router-link to="/demo/addresource">
-                        <span class="mx-4">+ New Resource</span>
-                    </router-link>
+                <button class="text-center text-base w-40 text-white bg-gray-700 border border-black rounded-md" @click="resourceAddModal.show = true">
+                    <span class="mx-4">+ New Resource</span>
                 </button>
             </div>
         </div>
@@ -34,6 +32,18 @@
             Delete
         </template>
     </modal>
+    <modal :show="resourceAddModal.show" @cancel="resourceAddModal.show = false" @confirm="addResource">
+        <template #content>
+            <label for="name">Resource Name: </label><input name="name" type="text" v-model="resourceAddModal.name"><br>
+            <label for="desc">Resource Description: </label><input name="desc" type="text" v-model="resourceAddModal.desc">
+        </template>
+        <template #cancel>
+            Cancel
+        </template>
+        <template #confirm>
+            Save
+        </template>
+    </modal>
 </template>
 
 
@@ -52,6 +62,10 @@ export default({
             resourceDeleteModal:{
                 index: undefined,
                 show: false,
+            },
+            resourceAddModal: {
+                name: '',
+                desc: '',
             }
         }
     },
@@ -76,6 +90,18 @@ export default({
         showResourceDeleteModal(index){
             this.resourceDeleteModal.index = index
             this.resourceDeleteModal.show = true
+        },
+        async addResource(){
+            const response = await axios.post(`/api/v1/resources/res/${this.class_id}`, {
+                res_name: this.resourceAddModal.name,
+                description: this.resourceAddModal.desc
+            })
+            this.resourceAddModal.name = ''
+            this.resourceAddModal.desc = ''
+
+            this.resourceAddModal.show = false
+
+            this.resources.push(response.data)
         }
     },
     computed: {
