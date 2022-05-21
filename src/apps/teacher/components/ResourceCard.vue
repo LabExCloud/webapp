@@ -6,21 +6,49 @@
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 cursor-pointer" viewBox="0 0 20 20" fill="currentColor" @click="editName">
                 <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z" />
             </svg>
-            <modal :show="resourceEditModal.show" @close="resourceEditModal.show = false" @ok="setName">
+            <modal :show="resourceEditModal.show" @cancel="resourceEditModal.show = false" @confirm="setName">
                 <template #content>
                     <label for="name">Resource Name: </label><input name="name" type="text" v-model="resourceEditModal.name"><br>
                     <label for="desc">Resource Description: </label><input name="desc" type="text" v-model="resourceEditModal.desc">
+                </template>
+                <template #cancel>
+                    Cancel
+                </template>
+                <template #confirm>
+                    Save
                 </template>
             </modal>
         </div>
         <br>
         <table class="w-full">
-            <tr class="cursor-pointer" v-for="file in resource.res_files" :key="file.id">
+            <tr class="cursor-pointer" v-for="(file, index) in resource.res_files" :key="index">
                 <td>
-                    <p> {{ file.filename }} </p>
+                    <p> 
+                        <a :href="file.url" target="_blank">{{ file.filename }}</a>
+                    </p>
+                </td>
+                <td>
+                    <button style="color: red; font-face:bold;" @click="showFileDeleteModal(index)">X</button>
                 </td>
             </tr>
+            <tr>
+                <button>
+                    + Add Files
+                </button>
+            </tr>
         </table>
+        <modal :show="fileDeleteModal.show" @cancel="fileDeleteModal.show = false" @confirm="removeResourceFile()">
+            <template #content>
+                <h1>You sure you want to delete this file?</h1>
+                <h2>{{ resource.res_files[fileDeleteModal.index].filename }}</h2>
+            </template>
+            <template #cancel>
+                Cancel
+            </template>
+            <template #confirm>
+                Delete
+            </template>
+        </modal>
     </div><br>
 </template>
 
@@ -37,6 +65,10 @@ export default({
                 name: '',
                 desc: '',
                 show: false,
+            },
+            fileDeleteModal:{
+                index: undefined,
+                show: false,
             }
         }
     },
@@ -51,14 +83,17 @@ export default({
     },
     watch: {
         res_id(newVal){
-            this.fetchFiles(newVal)
+            this.getResource(newVal)
         }
     },
     methods: {
-        async fetchFiles(id){
-            var url = `/api/v1/resources/res/${id}`
-            const response = await axios.get(url)
+        async getResource(id){
+            const response = await axios.get(`/api/v1/resources/res/${id}`)
             this.resource = response.data
+
+            this.resource.res_files.forEach(file => {
+                file.url = process.env.VUE_APP_ROOT_MEDIA + file.file
+            });
         },
         editName(){
             this.resourceEditModal.name = this.resource.res_name
@@ -66,8 +101,7 @@ export default({
             this.resourceEditModal.show = true
         },
         async setName(){
-            var url = `/api/v1/resources/res/${this.resource.id}`
-            const response = await axios.put(url, {
+            const response = await axios.put(`/api/v1/resources/res/${this.resource.id}`, {
                 res_name: this.resourceEditModal.name,
                 description: this.resourceEditModal.desc
             })
@@ -78,10 +112,19 @@ export default({
             console.log(this.resource)
 
             this.resourceEditModal.show = false
-        }
+        },
+        showFileDeleteModal(index){
+            this.fileDeleteModal.index = index
+            this.fileDeleteModal.show = true
+        },
+        async removeResourceFile(){
+            const response = await axios.delete(`/api/v1/resources/file/${this.resource.res_files[this.fileDeleteModal.index].id}`)
+            this.resource.res_files.splice(this.fileDeleteModal.index, 1)
+            this.fileDeleteModal.show = false
+        },
     },
     async mounted(){
-        await this.fetchFiles(this.res_id)
+        await this.getResource(this.res_id)
     }
 })
 </script>
