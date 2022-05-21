@@ -42,7 +42,6 @@ export default({
     mounted(){
         document.title = 'Lab'
         this.getExps()
-        console.log(this.class_id);
     },
     data(){
         return{
