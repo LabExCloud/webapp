@@ -1,8 +1,11 @@
 <template>
 
-    <div class="bg-gray-800 w-7 h-full">
-
+    <!-- need total exp question numbers in API to iterate -->
+    <div class="bg-gray-800 w-7 h-full text-sm text-white">
+        <div class="h-12 bg-violet-700 rounded my-2 py-3 px-1"> 1 </div>
+        <div class="h-12 bg-violet-700 rounded my-2 py-3 px-1"> 2 </div>
     </div>
+    
     <div class="bg-cardclr w-[480px] h-screen pr-4 mr-auto text-white pl-2 py-5">
         <p> {{ qn.question }}</p>
     </div>
@@ -34,7 +37,8 @@
 
 
         <div class="bg-gray-700 w-full h-6">
-
+            <span class="px-4 text-sm"> Output </span>
+            <span class="px-4 text-sm"> Testcase </span>
         </div>
         <div class="bg-gray-500 w-full h-1/3">
             <div class="w-full h-full px-5 py-4" v-if="isOutputExist" v-html="htmlOutput"></div>   
