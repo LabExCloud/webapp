@@ -17,7 +17,7 @@
         </div>
 
         <div class="grid grid-cols-1 gap-10 py-14 px-8 text-white">
-            <resource-card v-for="resource in resources" :key="resource.id" :resource="resource"/>
+            <resource-card v-for="resource in resources" :key="resource.id" :res_id="resource.id"/>
         </div>
 
     </div>
@@ -43,7 +43,6 @@ export default({
     async mounted(){
         document.title = `Resources`
         await this.getResources()
-        console.log(this.resources);
     },
     methods: {
         async getResources(){
