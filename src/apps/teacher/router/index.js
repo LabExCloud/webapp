@@ -66,15 +66,19 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
-  if(!store.getters['auth/isAuthenticated']){
-    location.href = '/login'
+  if(store.getters['auth/isAuthenticated']){
+    if(store.getters['auth/user'].user_type === 'teacher'){
+      if(!store.getters['class_id'] && to.name !== 'home'){
+        next({ name: 'home' })
+        return
+      }else{
+        next()
+      }
+    }else{
+      location.href = '/login'
+    }
   }else{
-    next()
-  }
-  if(store.getters['auth/user'].user_type !== 'teacher'){
     location.href = '/login'
-  }else{
-    next()
   }
 })
 
