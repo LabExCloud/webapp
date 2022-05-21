@@ -10,8 +10,20 @@
     <div class="flex flex-col bg-white w-screen h-screen">
 
         <div class="bg-gray-700 w-full h-7">
-            <button @click="getResult" class="bg-white float-right">Run</button>
-            <select @change="selectLang">
+            <button class="bg-black text-sm text-white float-right rounded py-[1px] px-2 mr-4">
+                 Submit
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-3 inline rotate-90" viewBox="0 0 20 20" fill="currentColor">
+                    <path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z" />
+                </svg>
+            </button>
+
+            <button @click="getResult" class="bg-black text-sm text-white float-right rounded py-[1px] px-2 mr-4">
+                 Run
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 inline" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd" />
+                </svg>
+            </button>
+            <select @change="selectLang" class="bg-black text-sm text-white float-right rounded py-[1px] px-2 mr-4">
                 <option v-for="lang in languages" :key="lang.id" :value="lang.id">{{ lang.language }} - {{ lang.version }}</option>
             </select>
         </div>
@@ -25,7 +37,7 @@
 
         </div>
         <div class="bg-gray-500 w-full h-1/3">
-            <div class="w-full h-full" v-if="isOutputExist" v-html="htmlOutput"></div>   
+            <div class="w-full h-full px-5 py-4" v-if="isOutputExist" v-html="htmlOutput"></div>   
         </div>
 
     </div>
