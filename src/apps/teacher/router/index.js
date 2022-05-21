@@ -47,11 +47,11 @@ const routes = [
     name: 'demo',
     component: Demo
   },
-  {
-    path: '/demo/addresource',
-    name: 'addresourcedemo',
-    component: AddResource
-  },
+  // {
+  //   path: '/demo/addresource',
+  //   name: 'addresourcedemo',
+  //   component: AddResource
+  // },
   //not found pages
   {
     path: '/:catchAll(.*)',

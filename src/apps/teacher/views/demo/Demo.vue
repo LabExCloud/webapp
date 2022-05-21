@@ -7,9 +7,9 @@
         <div class="navigation">
             <ul>
                 <li>
-                    <router-link to="/demo/addresource">
+                    <!-- <router-link to="/demo/addresource">
                         <span class="mx-4">Add Resource</span>
-                    </router-link>
+                    </router-link> -->
                 </li>
             </ul>
         </div>
