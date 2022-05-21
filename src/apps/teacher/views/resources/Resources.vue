@@ -17,16 +17,30 @@
         </div>
 
         <div class="grid grid-cols-1 gap-10 py-14 px-8 text-white">
-            <resource-card v-for="resource in resources" :key="resource.id" :res_id="resource.id"/>
+            <resource-card v-for="(resource, index) in resources" :key="resource.id" :res_id="resource.id" @delete="showResourceDeleteModal(index)" />
         </div>
 
     </div>
+
+    <modal :show="resourceDeleteModal.show" @cancel="resourceDeleteModal.show = false" @confirm="deleteResource">
+        <template #content>
+            <h1>You sure you want to delete this resource?</h1>
+            <h2>{{ resources[this.resourceDeleteModal.index].res_name }}</h2>
+        </template>
+        <template #cancel>
+            Cancel
+        </template>
+        <template #confirm>
+            Delete
+        </template>
+    </modal>
 </template>
 
 
 <script>
 import { mapGetters } from 'vuex'
 import axios from 'axios'
+import Modal from '@/components/Modal.vue'
 
 import ResourceCard from '../../components/ResourceCard.vue'
 
@@ -35,10 +49,15 @@ export default({
     data(){
         return {
             resources: [],
+            resourceDeleteModal:{
+                index: undefined,
+                show: false,
+            }
         }
     },
     components: {
-        ResourceCard
+        ResourceCard,
+        Modal,
     },
     async mounted(){
         document.title = `Resources`
@@ -46,10 +65,18 @@ export default({
     },
     methods: {
         async getResources(){
-            var url = `/api/v1/resources/class/${this.class_id}`
-            const response = await axios.get(url);
+            const response = await axios.get(`/api/v1/resources/class/${this.class_id}`);
             this.resources = response.data.resources;
         },
+        async deleteResource(){
+            const response = await axios.delete(`/api/v1/resources/res/${this.resources[this.resourceDeleteModal.index].id}`)
+            this.resources.splice(this.resourceDeleteModal.index, 1)
+            this.resourceDeleteModal.show = false
+        },
+        showResourceDeleteModal(index){
+            this.resourceDeleteModal.index = index
+            this.resourceDeleteModal.show = true
+        }
     },
     computed: {
         ...mapGetters([
