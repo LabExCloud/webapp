@@ -35,7 +35,7 @@
                 </td>
             </tr>
             <tr>
-                <button>
+                <button @click="fileAddModal.show = true">
                     + Add Files
                 </button>
             </tr>
@@ -50,6 +50,17 @@
             </template>
             <template #confirm>
                 Delete
+            </template>
+        </modal>
+        <modal :show="fileAddModal.show" @cancel="fileAddModal.show = false" @confirm="addResourceFile()">
+            <template #content>
+                <label for="file">Choose File: </label><input name="file" type="file" @change="setFile($event)">
+            </template>
+            <template #cancel>
+                Cancel
+            </template>
+            <template #confirm>
+                Add
             </template>
         </modal>
     </div><br>
@@ -73,6 +84,10 @@ export default({
                 index: undefined,
                 show: false,
             },
+            fileAddModal: {
+                file: undefined,
+                show: false,
+            }
         }
     },
     components: {
@@ -125,6 +140,22 @@ export default({
             this.resource.res_files.splice(this.fileDeleteModal.index, 1)
             this.fileDeleteModal.show = false
         },
+        async addResourceFile(){
+            let data = new FormData()
+            data.append('file', this.fileAddModal.file)
+            const response = await axios.post(
+                `/api/v1/resources/file/${this.resource.id}`,
+                data,
+                {
+                    headers: {"Content-Type": "multipart/form-data",},
+                }
+            )
+            this.resource.res_files.push(response.data)
+            this.fileAddModal.show = false
+        },
+        setFile(event){
+            this.fileAddModal.file = event.target.files[0]
+        }
     },
     async mounted(){
         await this.getResource(this.res_id)
