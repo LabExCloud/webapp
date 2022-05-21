@@ -93,12 +93,11 @@ router.beforeEach((to, from, next) => {
   if(!store.getters['auth/isAuthenticated']){
     location.href = '/login'
   }else{
-    next()
-  }
-  if(store.getters['auth/user'].user_type !== 'student'){
-    location.href = '/login'
-  }else{
-    next()
+    if(store.getters['auth/user'].user_type !== 'student'){
+      location.href = '/login'
+    }else{
+      next()
+    }
   }
 })
 
