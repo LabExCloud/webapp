@@ -58,9 +58,6 @@
                     <div class="md:w-2/3"> <input class="rounded bg-gray-600" name="due" type="date" v-model="expAddModal.due"> </div>
                 </div>
             </div>
-            
-            
-            
         </template>
         <template #cancel>
             Cancel
