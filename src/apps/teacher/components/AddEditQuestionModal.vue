@@ -2,10 +2,10 @@
 
         <div v-if="show" class="form flex flex-col justify-center mx-12 bg-cardclr text-white border border-borderclr px-16 py-14 rounded-2xl text-center">
             
-                <h1 class="text-xl"> Add Question </h1><br>
+            <h1 class="text-xl"> Add Question </h1><br>
             
 
-            <form class="w-full max-w-sm">
+            <form class="w-full pr-12 pt-10">
                 <div class="md:flex md:items-center mb-6">
                     <div class="md:w-1/3">
                     <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" for="questionNo">Question No: 
