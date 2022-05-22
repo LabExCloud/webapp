@@ -18,9 +18,13 @@
         </modal>
 
         <div class="bg-cardclr border border-borderclr text-white h-34 mx-96 mt-10 rounded-md shadow-inner">
+            
             <a href="/logout">
-                <button class="bg-red-800 text-sm float-right mr-4 px-2 rounded"> Logout </button>
-            </a><br>
+                <button class="bg-red-800 text-sm float-right mr-4 px-2 mt-2 rounded"> Logout </button>
+            </a>
+            
+            <span class="material-symbols-outlined float-right text-lg mr-5 mt-1 cursor-pointer" @click="settings" > settings </span>
+            <br>
             <div class="flex  w-full mx-4 my-5">
                 <profile-image class="w-24 rounded-full border-2 border-white" :src="user.image" alt="teacher picture"/>
 
@@ -138,6 +142,9 @@ export default({
         clickCard(id){
             this.$store.commit('SET_CLASS_ID', id)
             this.$router.push('/labs')
+        },
+        settings(){
+            this.$router.push('/profile')
         }
     },
     computed: {
