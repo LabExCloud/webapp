@@ -37,7 +37,7 @@
 import axios from 'axios'
 import { mapGetters } from 'vuex'
 import LabItem from '../../components/LabItem.vue'
-import SemesterSelectBox from '../../components/SemesterSelectBox.vue'
+import SemesterSelectBox from '@/components/SemesterSelectBox.vue'
 
 export default({
     name: 'Labs',

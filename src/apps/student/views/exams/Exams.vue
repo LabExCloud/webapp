@@ -64,7 +64,7 @@
 <script>
 import axios from 'axios'
 import { mapGetters } from 'vuex'
-import SemesterSelectBox from '../../components/SemesterSelectBox.vue'
+import SemesterSelectBox from '@/components/SemesterSelectBox.vue'
 
 export default({
     name: 'Exams',
