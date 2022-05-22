@@ -10,7 +10,7 @@
             </li>
         </ul>
     </div>
-    <add-edit-question-modal :show="questionModal.show" @cancel="questionModal.show = false"/>
+    <add-edit-question-modal :show="questionModal.show" @cancel="questionModal.show = false" :id="questionModal.id" :edit="questionModal.edit" apiUrl="/api/v1/labs"/>
 </template>
 
 <script>
@@ -27,6 +27,8 @@ export default({
             },
             questionModal: {
                 show: false,
+                edit: false,
+                id: undefined,
             }
         }
     },
@@ -46,7 +48,17 @@ export default({
             const response = await axios.get(`/api/v1/labs/exp/${id}`)
             this.exp = response.data
         },
-        editExp(){}
+        editExp(){},
+        showEditQuestionModal(index){
+            this.questionModal.id = this.exp.questions[index].id
+            this.questionModal.edit = true
+            this.questionModal.show = true
+        },
+        showAddQuestionModal(){
+            this.questionModal.id = undefined
+            this.questionModal.edit = false
+            this.questionModal.show = true
+        }
     },
     async mounted(){
         await this.getExps(this.exp_id)
