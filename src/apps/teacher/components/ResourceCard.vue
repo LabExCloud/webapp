@@ -10,8 +10,10 @@
                 <path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd" />
             </svg>
             <modal :show="resourceEditModal.show" @cancel="resourceEditModal.show = false" @confirm="setName">
-                <template #content>
+                <template #header>
                     <h1>Edit resource</h1>
+                </template>
+                <template #content>
                     <label for="name">Resource Name: </label><input name="name" type="text" v-model="resourceEditModal.name"><br>
                     <label for="desc">Resource Description: </label><input name="desc" type="text" v-model="resourceEditModal.desc">
                 </template>
@@ -42,8 +44,10 @@
             </tr>
         </table>
         <modal :show="fileDeleteModal.show" @cancel="fileDeleteModal.show = false" @confirm="removeResourceFile()">
-            <template #content>
+            <template #header>
                 <h1>You sure you want to delete this file?</h1>
+            </template>
+            <template #content>
                 <h2>{{ resource.res_files[fileDeleteModal.index].filename }}</h2>
             </template>
             <template #cancel>
@@ -54,8 +58,10 @@
             </template>
         </modal>
         <modal :show="fileAddModal.show" @cancel="fileAddModal.show = false" @confirm="addResourceFile()">
-            <template #content>
+            <template #header>
                 <h1>Add new file</h1>
+            </template>
+            <template #content>
                 <label for="file">Choose File: </label><input name="file" type="file" @change="setFile($event)">
             </template>
             <template #cancel>

@@ -21,8 +21,10 @@
     </div>
 
     <modal :show="resourceDeleteModal.show" @cancel="resourceDeleteModal.show = false" @confirm="deleteResource">
-        <template #content>
+        <template #header>
             <h1>You sure you want to delete this resource?</h1>
+        </template>
+        <template #content>
             <h2>{{ resources[this.resourceDeleteModal.index].res_name }}</h2>
         </template>
         <template #cancel>
@@ -33,8 +35,10 @@
         </template>
     </modal>
     <modal :show="resourceAddModal.show" @cancel="resourceAddModal.show = false" @confirm="addResource">
-        <template #content>
+        <template #header>
             <h1>Add new resource</h1>
+        </template>
+        <template #content>
             <label for="name">Resource Name: </label><input name="name" type="text" v-model="resourceAddModal.name"><br>
             <label for="desc">Resource Description: </label><input name="desc" type="text" v-model="resourceAddModal.desc">
         </template>
