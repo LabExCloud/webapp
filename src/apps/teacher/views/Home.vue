@@ -107,7 +107,6 @@ export default({
         return{
             classes: {},
             classAddModal: {
-                name: '',
                 semester: '',
                 subject: '',
                 batch: '',
