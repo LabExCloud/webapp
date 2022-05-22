@@ -2,6 +2,21 @@
 
     <div class="content">
 
+        <modal :show="classAddModal.show" @cancel="classAddModal.show = false" @confirm="addClass">
+            <template #header>
+                <h1>Add new Class</h1>
+            </template>
+            <template #content>
+                <label for="name">Class Name: </label><input name="name" type="text" v-model="resourceAddModal.name"><br>
+            </template>
+            <template #cancel>
+                Cancel
+            </template>
+            <template #confirm>
+                Create
+            </template>
+        </modal>
+
         <div class="bg-cardclr border border-borderclr text-white h-34 mx-96 mt-10 rounded-md shadow-inner">
             <a href="/logout">
                 <button class="bg-red-800 text-sm float-right mr-4 px-2 rounded"> Logout </button>
@@ -47,20 +62,14 @@
             </select>
         </div>
 
-        <!-- {{user}} -->
-
         <div class="grid grid-cols-3 gap-10 py-14 px-4 text-white">
 
             <div v-for="classs in classes" :key="classs.id" class="flex items-center h-36 border border-borderclr rounded-2xl shadow-md bg-cardclr hover:border-gray-300 hover:shadow-2xl cursor-pointer" @click="clickCard(classs.id)">
-                
-
                 <img class="h-24 rounded-2xl px-3 py-1" :src="classs.subject.image" alt="student picture">
                 <div class="w-full ml-8">
-                    <!-- <router-link :to="'/labs/'"> -->
                     <span> {{ classs.subject.sub_code }} - {{ classs.subject.sub_name }} </span><br>
                     <p class="text-sm text-gray-300"> {{ classs.department.dept_name }} </p>
                     <p class="text-sm text-gray-300"> S{{ classs.semester.sem }} - {{ classs.department.dept_code }} </p>
-                    <!-- </router-link> -->
                 </div>
               
             </div>
@@ -82,11 +91,13 @@ import axios from 'axios'
 import { mapGetters } from 'vuex'
 
 import ProfileImage from '@/components/ProfileImage.vue'
+import Modal from '@/components/Modal.vue'
 
 export default({
     name: 'Home',
     components: {
         ProfileImage,
+        Modal,
     },
     async mounted(){
         document.title = 'Home'
@@ -94,7 +105,15 @@ export default({
     },
     data(){
         return{
-            classes: {}
+            classes: {},
+            classAddModal: {
+                name: '',
+                semester: '',
+                subject: '',
+                batch: '',
+                is_lab: false,
+                show: false
+            }
         }
     },
     methods: {
