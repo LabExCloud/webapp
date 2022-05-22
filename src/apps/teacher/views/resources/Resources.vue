@@ -34,6 +34,7 @@
     </modal>
     <modal :show="resourceAddModal.show" @cancel="resourceAddModal.show = false" @confirm="addResource">
         <template #content>
+            <h1>Add new resource</h1>
             <label for="name">Resource Name: </label><input name="name" type="text" v-model="resourceAddModal.name"><br>
             <label for="desc">Resource Description: </label><input name="desc" type="text" v-model="resourceAddModal.desc">
         </template>

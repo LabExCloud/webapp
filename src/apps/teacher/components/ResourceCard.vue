@@ -11,6 +11,7 @@
             </svg>
             <modal :show="resourceEditModal.show" @cancel="resourceEditModal.show = false" @confirm="setName">
                 <template #content>
+                    <h1>Edit resource</h1>
                     <label for="name">Resource Name: </label><input name="name" type="text" v-model="resourceEditModal.name"><br>
                     <label for="desc">Resource Description: </label><input name="desc" type="text" v-model="resourceEditModal.desc">
                 </template>
@@ -54,6 +55,7 @@
         </modal>
         <modal :show="fileAddModal.show" @cancel="fileAddModal.show = false" @confirm="addResourceFile()">
             <template #content>
+                <h1>Add new file</h1>
                 <label for="file">Choose File: </label><input name="file" type="file" @change="setFile($event)">
             </template>
             <template #cancel>
