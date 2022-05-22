@@ -1,9 +1,13 @@
 <template>
     <div class="h-36 border border-borderclr rounded-2xl shadow-md bg-cardclr hover:border-gray-300 hover:shadow-2xl">
-        <p class="mx-4 mt-5"> {{exp.exp_name}} - {{ exp.questions.length}} Questions. </p>
-            <span class="material-symbols-outlined cursor-pointer" @click="editExp">edit</span>
-            <span class="material-symbols-outlined cursor-pointer" @click="$emit('delete')">delete</span>
-            <span class="material-symbols-outlined cursor-pointer" @click="questionModal.show = true">add</span>
+        <p class="mx-4 mt-5 inline"> {{exp.exp_name}} - {{ exp.questions.length}} Questions. </p>
+
+        <span class="material-symbols-outlined cursor-pointer text-lg text-red-600 float-right mr-4 pt-2" @click="$emit('delete')">delete</span>
+        <span class="material-symbols-outlined cursor-pointer text-lg text-blue-400 float-right mr-2 pt-2" @click="editExp">edit</span>
+        <button class="flex items-center mt-2 ml-5 bg-gray-600 rounded px-2 py-0 text-sm" @click="questionModal.show = true">
+            <span class="material-symbols-outlined cursor-pointer text-lg">add</span> <span> ADD </span> 
+        </button>
+        
         <ul class="px-6 py-4">
             <li v-for="(question, index) in exp.questions" :key="question.id">
                 {{question.id}} ) {{ question.question }} - {{ question.mark}} marks <button style="color: red; font-face:bold;" @click="showQuestionDeleteModal(index)">X</button>

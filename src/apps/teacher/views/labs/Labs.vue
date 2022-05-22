@@ -41,9 +41,26 @@
             <h1>Add new Experiment</h1>
         </template>
         <template #content>
-            <label for="name">Experiment Name: </label><input name="name" type="text" v-model="expAddModal.name"><br>
-            <label for="marks">Total Marks: </label><input name="marks" type="number" v-model="expAddModal.marks"><br>
-            <label for="due">Due Date: </label><input name="due" type="date" v-model="expAddModal.due">
+
+            <div class="w-full">
+                <div class="md:flex md:items-center mb-2">
+                    <div class="md:w-1/3"> <label for="name">Experiment Name: </label> </div>
+                    <div class="md:w-2/3"> <input class="rounded bg-gray-600" name="name" type="text" v-model="expAddModal.name"> </div>
+                </div>
+
+                <div class="md:flex md:items-center mb-2">
+                    <div class="md:w-1/3"> <label for="marks">Total Marks: </label> </div>
+                    <div class="md:w-2/3"> <input class="rounded bg-gray-600" name="marks" type="number" v-model="expAddModal.marks">  </div>
+                </div>
+
+                <div class="md:flex md:items-center mb-2">
+                    <div class="md:w-1/3"> <label for="due">Due Date: </label> </div>
+                    <div class="md:w-2/3"> <input class="rounded bg-gray-600" name="due" type="date" v-model="expAddModal.due"> </div>
+                </div>
+            </div>
+            
+            
+            
         </template>
         <template #cancel>
             Cancel
