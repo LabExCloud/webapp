@@ -49,14 +49,6 @@
                 </li>
 
                 <li>
-                    <router-link to="/demo">
-                        <span class="material-symbols-outlined">adb</span>
-                        
-                        <span class="mx-4"> Demo </span>
-                    </router-link>
-                </li>
-
-                <li>
                     <a href="/logout">
                         <span class="material-symbols-outlined">logout</span>
 

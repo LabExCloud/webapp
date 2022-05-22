@@ -8,9 +8,6 @@ import Resources from '../views/resources/Resources.vue'
 import Profile from '../views/Profile.vue'
 
 
-import Demo from '../views/demo/Demo.vue'
-
-
 import NotFound from '@/views/NotFound.vue'
 
 import store from '../store'
@@ -43,16 +40,6 @@ const routes = [
     component: Profile
   },
 
-  {
-    path: '/demo',
-    name: 'demo',
-    component: Demo
-  },
-  // {
-  //   path: '/demo/addresource',
-  //   name: 'addresourcedemo',
-  //   component: AddResource
-  // },
   //not found pages
   {
     path: '/:catchAll(.*)',
