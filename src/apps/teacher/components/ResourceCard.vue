@@ -3,8 +3,8 @@
         <div>
             {{ resource.res_name }} <br>
             {{ resource.description }}
-            <span class="material-symbols-outlined">edit</span>
-            <span class="material-symbols-outlined">delete</span>
+            <span class="material-symbols-outlined cursor-pointer" @click="editName">edit</span>
+            <span class="material-symbols-outlined cursor-pointer" @click="$emit('delete')">delete</span>
             
             <modal :show="resourceEditModal.show" @cancel="resourceEditModal.show = false" @confirm="setName">
                 <template #header>
