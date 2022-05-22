@@ -71,6 +71,7 @@ export default({
             resourceAddModal: {
                 name: '',
                 desc: '',
+                show: false
             }
         }
     },
