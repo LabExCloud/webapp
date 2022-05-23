@@ -228,7 +228,6 @@ export default({
             }
         },
         showAddTestcaseModal(){
-            console.log('foo');
             this.testcaseAddModal.input = undefined
             this.testcaseAddModal.output = undefined
             this.testcaseAddModal.show = true
