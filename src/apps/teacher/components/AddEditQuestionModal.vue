@@ -205,6 +205,7 @@ export default({
             }else{
                 this.formData.questionNumber = undefined
                 this.formData.question = ''
+                this.formData.title = ''
                 this.formData.language = undefined
                 this.formData.mark = undefined
                 this.testcases = []
