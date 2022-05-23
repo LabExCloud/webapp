@@ -47,6 +47,20 @@
             Save
         </template>
     </modal>
+    <modal :show="questionDeleteModal.show" @cancel="questionDeleteModal.show = false" @confirm="deleteQuestion()">
+        <template #header>
+            <h1>You sure you want to delete this question?</h1>
+        </template>
+        <template #content>
+            <h2>{{ exp.questions[questionDeleteModal.index].question }}</h2>
+        </template>
+        <template #cancel>
+            Cancel
+        </template>
+        <template #confirm>
+            Delete
+        </template>
+    </modal>
 </template>
 
 <script>
@@ -54,6 +68,7 @@ import axios from 'axios'
 import Modal from '@/components/Modal.vue'
 import AddEditQuestionModal from './AddEditQuestionModal.vue'
 import DateView from '@/components/DateView.vue'
+import { throwStatement } from '@babel/types'
 
 export default({
     name: 'LabExperimentCard',
@@ -72,6 +87,10 @@ export default({
                 name: '',
                 marks: 0,
                 due: '',
+            },
+            questionDeleteModal: {
+                show: false,
+                index: undefined,
             }
         }
     },
@@ -113,9 +132,18 @@ export default({
             this.questionModal.edit = false
             this.questionModal.show = true
         },
+        showQuestionDeleteModal(index){
+            this.questionDeleteModal.index = index
+            this.questionDeleteModal.show = true
+        },
         questionSaved(){
             this.questionModal.show = false
             this.getExps(this.exp_id)
+        },
+        async deleteQuestion(){
+            const response = axios.delete(`/api/v1/labs/question/${this.exp.questions[this.questionDeleteModal.index].id}`)
+            this.exp.questions.splice(this.questionDeleteModal.index, 1)
+            this.questionDeleteModal.show = false
         }
     },
     async mounted(){
