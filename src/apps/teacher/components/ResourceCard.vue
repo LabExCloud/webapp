@@ -1,18 +1,37 @@
 <template>
     <div class="py-8 h-50 border border-borderclr rounded-2xl shadow-md bg-cardclr hover:border-gray-300 hover:shadow-2xl text-center ">
         <div>
-            {{ resource.res_name }} <br>
+            {{ resource.res_name }} <!-- <br> -->
             {{ resource.description }}
-            <span class="material-symbols-outlined cursor-pointer" @click="editName">edit</span>
-            <span class="material-symbols-outlined cursor-pointer" @click="$emit('delete')">delete</span>
+            <span class="material-symbols-outlined cursor-pointer float-right text-lg text-red-600 mr-5" @click="$emit('delete')">delete</span>
+            <span class="material-symbols-outlined cursor-pointer float-right text-lg text-blue-400 mr-2" @click="editName">edit</span>
             
             <modal :show="resourceEditModal.show" @cancel="resourceEditModal.show = false" @confirm="setName">
                 <template #header>
                     <h1>Edit resource</h1>
                 </template>
                 <template #content>
-                    <label for="name">Resource Name: </label><input name="name" type="text" v-model="resourceEditModal.name"><br>
-                    <label for="desc">Resource Description: </label><input name="desc" type="text" v-model="resourceEditModal.desc">
+
+                    <div class="w-full mt-4">
+                        <div class="md:flex md:items-center mb-2">
+                            <div class="md:w-1/3">
+                                <label for="name">Resource Name: </label>
+                            </div>
+                            <div class="md:w-2/3">
+                                <input class="rounded bg-gray-600" name="name" type="text" v-model="resourceEditModal.name">
+                            </div>
+                        </div>
+                        <div class="md:flex md:items-center mb-2">
+                            <div class="md:w-1/3">
+                                <label for="desc">Resource Description: </label>
+                            </div>
+                            <div class="md:w-2/3">
+                                <input class="rounded bg-gray-600" name="desc" type="text" v-model="resourceEditModal.desc">
+                            </div>
+                        </div>
+                        
+                    </div>
+                    
                 </template>
                 <template #cancel>
                     Cancel
@@ -35,7 +54,7 @@
                 </td>
             </tr>
             <tr>
-                <button @click="fileAddModal.show = true">
+                <button @click="fileAddModal.show = true" class="bg-gray-600 rounded text-sm px-2 py-1 mt-3">
                     + Add Files
                 </button>
             </tr>
@@ -56,7 +75,7 @@
         </modal>
         <modal :show="fileAddModal.show" @cancel="fileAddModal.show = false" @confirm="addResourceFile()">
             <template #header>
-                <h1>Add new file</h1>
+                <h1 class="mb-4">Add new file</h1>
             </template>
             <template #content>
                 <label for="file">Choose File: </label><input name="file" type="file" @change="setFile($event)">
