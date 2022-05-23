@@ -1,5 +1,5 @@
 <template>
-    <p>{{ date }}</p>
+    {{ date }}
 </template>
 
 <script>
