@@ -1,5 +1,5 @@
 <template>
-    <div class="h-36 border border-borderclr rounded-2xl shadow-md bg-cardclr hover:border-gray-300 hover:shadow-2xl">
+    <div class="min-h-36 border border-borderclr rounded-2xl shadow-md bg-cardclr hover:border-gray-300 hover:shadow-2xl">
         <p class="mx-4 mt-5 inline"> {{exp.exp_name}} - {{ exp.questions.length}} Questions. </p>
         Due date: <date-view v-model="exp.due_date"></date-view>
 
