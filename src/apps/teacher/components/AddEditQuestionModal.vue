@@ -107,7 +107,7 @@
         <template #content>
             <label for="infile">Choose Input File: </label><input name="infile" type="file" @change="setInFile($event)"><br>
             <label for="outfile">Choose Output File: </label><input name="outfile" type="file" @change="setOutFile($event)"><br>
-            <label for="marks">Marks: </label><input name="marks" type="number">
+            <label for="marks">Marks: </label><input name="marks" type="number" v-model="testcaseAddModal.mark">
         </template>
         <template #cancel>
             Cancel
@@ -118,6 +118,12 @@
     </modal>
 
 </template>
+
+<!-- 
+    TODO: testcase hidden checkbox
+    TODO: testcase delete
+    TODO: testcase edit (thonniyaal vakkam)   
+ -->
 
 <script>
 import axios from "axios"
@@ -243,6 +249,8 @@ export default({
             data.append('input_file', this.testcaseAddModal.input)
             data.append('output_file', this.testcaseAddModal.output)
             data.append('mark', this.testcaseAddModal.mark)
+            data.append('tc_number', this.testcases.length + 1)
+            console.log(this.testcases.length + 1);
             const response = await axios.post(
                 `${this.apiUrl}/testcase/${id}`, 
                 data,
@@ -250,10 +258,11 @@ export default({
                     headers: {"Content-Type": "multipart/form-data",},
                 }
             )
-            this.testcases.append(response.data)
+            this.testcases.push(response.data)
         },
         async addTestcaseFile(){
-            if(this.edit){
+            console.log(this.q_id, this.id);
+            if(!this.edit){
                 await this.createQuestion()
                 await this.createTestcase(this.q_id)
             }else{
