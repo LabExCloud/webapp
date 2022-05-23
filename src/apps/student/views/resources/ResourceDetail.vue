@@ -7,7 +7,7 @@
         
         <div class="grid grid-cols-1 gap-10 py-14 px-8 text-white">
             <!-- {{ resource }} -->
-            <div class="py-8 h-36 border border-borderclr rounded-2xl bg-cardclr text-center ">
+            <div class="py-8 min-h-36 border border-borderclr rounded-2xl bg-cardclr text-center ">
 
                 <table class="w-full">
                     <tr v-for="file in resource.res_files" :key="file.id">
