@@ -77,7 +77,7 @@
             <template #header>
                 <h1 class="mb-4">Add new file</h1>
             </template>
-            <template #content>
+            <template #contentgit >
                 <label for="file">Choose File: </label><input name="file" type="file" @change="setFile($event)">
             </template>
             <template #cancel>
