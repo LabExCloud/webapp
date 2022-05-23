@@ -84,7 +84,7 @@
                 </div>
                 <div class="md:w-1/5">
                     <span class="material-symbols-outlined cursor-pointer" @click="">edit</span>
-                    <span class="material-symbols-outlined cursor-pointer" @click="">delete</span>
+                    <span class="material-symbols-outlined cursor-pointer" @click="showDeleteTestcase(index)">delete</span>
                 </div>
             </div>
             <button @click="showAddTestcaseModal" class="bg-gray-500 text-black w-44 rounded">+ Add Testcase</button>
@@ -117,11 +117,24 @@
             Add
         </template>
     </modal>
+    <modal :show="testcaseDeleteModal.show" @cancel="testcaseDeleteModal.show = false" @confirm="deleteTestcase()">
+        <template #header>
+            <h1>You sure you want to delete this testcase?</h1>
+        </template>
+        <template #content>
+            <h2>Testcase {{ testcases[testcaseDeleteModal.index].tc_number }}</h2>
+        </template>
+        <template #cancel>
+            Cancel
+        </template>
+        <template #confirm>
+            Delete
+        </template>
+    </modal>
 
 </template>
 
 <!-- 
-    TODO: testcase delete
     TODO: testcase edit (thonniyaal vakkam)   
  -->
 
@@ -167,6 +180,10 @@ export default({
                 output: undefined,
                 mark: 0,
                 hidden: false,
+            },
+            testcaseDeleteModal:{
+                show: false,
+                index: undefined,
             }
         }
     },
@@ -275,6 +292,15 @@ export default({
             this.testcaseAddModal.mark = 0
             this.testcaseAddModal.show = false
         },
+        showDeleteTestcase(index){
+            this.testcaseDeleteModal.index = index
+            this.testcaseDeleteModal.show = true
+        },
+        deleteTestcase(){
+            const response = axios.delete(`${this.apiUrl}/testcase/${this.testcases[this.testcaseDeleteModal.index].id}`)
+            this.testcases.splice(this.testcaseDeleteModal.index, 1)
+            this.testcaseDeleteModal.show = false
+        }
     },
     components: {
         Modal,
