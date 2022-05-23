@@ -1,6 +1,7 @@
 <template>
     <div class="h-36 border border-borderclr rounded-2xl shadow-md bg-cardclr hover:border-gray-300 hover:shadow-2xl">
         <p class="mx-4 mt-5 inline"> {{exp.exp_name}} - {{ exp.questions.length}} Questions. </p>
+        Due date: <date-view v-model="exp.due_date"></date-view>
 
         <span class="material-symbols-outlined cursor-pointer text-lg text-red-600 float-right mr-4 pt-2" @click="$emit('delete')">delete</span>
         <span class="material-symbols-outlined cursor-pointer text-lg text-blue-400 float-right mr-2 pt-2" @click="expEditModal.show = true">edit</span>
@@ -52,6 +53,7 @@
 import axios from 'axios'
 import Modal from '@/components/Modal.vue'
 import AddEditQuestionModal from './AddEditQuestionModal.vue'
+import DateView from '@/components/DateView.vue'
 
 export default({
     name: 'LabExperimentCard',
@@ -122,6 +124,7 @@ export default({
     components: {
         AddEditQuestionModal,
         Modal,
+        DateView,
     }
 })
 </script>
