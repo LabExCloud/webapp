@@ -227,7 +227,7 @@ export default({
             });
         },
         async createQuestion(id){
-            const response = await axios.put(`${this.apiUrl}/question/${id}`,{
+            const response = await axios.post(`${this.apiUrl}/question/${id}`,{
                 question_number: this.formData.questionNumber,
                 title: this.formData.title,
                 question: this.formData.question,
@@ -280,12 +280,12 @@ export default({
             this.testcases.push(response.data)
         },
         async addTestcaseFile(){
-            console.log(this.q_id, this.id);
             if(!this.edit){
-                await this.createQuestion()
+                await this.createQuestion(this.id)
                 await this.createTestcase(this.q_id)
+                this.edit = true
             }else{
-                await this.createTestcase(this.id)
+                await this.createTestcase(this.q_id)
             }
             this.testcaseAddModal.input =  undefined
             this.testcaseAddModal.output = undefined
