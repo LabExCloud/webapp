@@ -87,7 +87,7 @@
                     <span class="material-symbols-outlined cursor-pointer" @click="">delete</span>
                 </div>
             </div>
-            <button @click="addTestcase" class="bg-gray-500 text-black w-44 rounded">+ Add Testcase</button>
+            <button @click="showAddTestcaseModal" class="bg-gray-500 text-black w-44 rounded">+ Add Testcase</button>
             
             <div class="md:flex md:items-center">
                 <div class="md:w-1/3"></div>
@@ -100,12 +100,28 @@
         </form>
     </div>
           
+    <modal :show="testcaseAddModal.show" @cancel="testcaseAddModal = false" @confirm="addTestcaseFile">
+        <template #header>
+            <h1>Add new testcase</h1>
+        </template>
+        <template #content>
+            <label for="infile">Choose Input File: </label><input name="infile" type="file" @change="setInFile($event)"><br>
+            <label for="outfile">Choose Output File: </label><input name="outfile" type="file" @change="setOutFile($event)"><br>
+            <label for="marks">Marks: </label><input name="marks" type="number">
+        </template>
+        <template #cancel>
+            Cancel
+        </template>
+        <template #confirm>
+            Add
+        </template>
+    </modal>
 
 </template>
 
 <script>
 import axios from "axios"
-
+import Modal from "@/components/Modal.vue"
 
 
 export default({
@@ -130,6 +146,7 @@ export default({
     },
     data(){
         return {
+            q_id: undefined,
             formData: {
                 title: '',
                 questionNumber: Number,
@@ -138,6 +155,12 @@ export default({
                 mark: Number,
             },
             testcases: [],
+            testcaseAddModal: {
+                show: false,
+                input: undefined,
+                output: undefined,
+                mark: 0,
+            }
         }
     },
     computed:{
@@ -179,15 +202,19 @@ export default({
                 testcase.outputUrl = process.env.VUE_APP_ROOT_MEDIA + testcase.output_file
             });
         },
+        async createQuestion(id){
+            const response = await axios.put(`${this.apiUrl}/question/${id}`,{
+                question_number: this.formData.questionNumber,
+                title: this.formData.title,
+                question: this.formData.question,
+                language: this.formData.language,
+                mark: this.formData.mark
+            })
+            this.q_id = response.data.id
+        },
         async saveQuestion(){
             if (this.edit){
-                const response = await axios.put(`${this.apiUrl}/question/${this.id}`,{
-                    question_number: this.formData.questionNumber,
-                    title: this.formData.title,
-                    question: this.formData.question,
-                    language: this.formData.language,
-                    mark: this.formData.mark
-                })
+                this.createQuestion(this.id)
                 this.$emit('saved')
             }else{
                 const response = await axios.post(`${this.apiUrl}/question/${this.id}`,{
@@ -199,7 +226,48 @@ export default({
                 })
                 this.$emit('saved')
             }
-        }
+        },
+        showAddTestcaseModal(){
+            console.log('foo');
+            this.testcaseAddModal.input = undefined
+            this.testcaseAddModal.output = undefined
+            this.testcaseAddModal.show = true
+        },
+        setInFile(event){
+            this.testcaseAddModal.input = event.target.files[0]
+        },
+        setOutFile(event){
+            this.testcaseAddModal.output = event.target.files[0]
+        },
+        async createTestcase(id){
+            let data = new FormData()
+            data.append('input_file', this.testcaseAddModal.input)
+            data.append('output_file', this.testcaseAddModal.output)
+            data.append('mark', this.testcaseAddModal.mark)
+            const response = await axios.post(
+                `${this.apiUrl}/testcase/${id}`, 
+                data,
+                {
+                    headers: {"Content-Type": "multipart/form-data",},
+                }
+            )
+            this.testcases.append(response.data)
+        },
+        async addTestcaseFile(){
+            if(this.edit){
+                await this.createQuestion()
+                await this.createTestcase(this.q_id)
+            }else{
+                await this.createTestcase(this.id)
+            }
+            this.testcaseAddModal.input =  undefined
+            this.testcaseAddModal.output = undefined
+            this.testcaseAddModal.mark = 0
+            this.testcaseAddModal.show = false
+        },
+    },
+    components: {
+        Modal,
     }
 })
 </script>
