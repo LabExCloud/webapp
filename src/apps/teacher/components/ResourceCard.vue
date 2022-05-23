@@ -1,10 +1,10 @@
 <template>
     <div class="py-8 h-50 border border-borderclr rounded-2xl shadow-md bg-cardclr hover:border-gray-300 hover:shadow-2xl text-center ">
         <div>
-            {{ resource.res_name }} <!-- <br> -->
-            {{ resource.description }}
             <span class="material-symbols-outlined cursor-pointer float-right text-lg text-red-600 mr-5" @click="$emit('delete')">delete</span>
             <span class="material-symbols-outlined cursor-pointer float-right text-lg text-blue-400 mr-2" @click="editName">edit</span>
+            {{ resource.res_name }} <br>
+            {{ resource.description }}
             
             <modal :show="resourceEditModal.show" @cancel="resourceEditModal.show = false" @confirm="setName">
                 <template #header>
@@ -77,7 +77,7 @@
             <template #header>
                 <h1 class="mb-4">Add new file</h1>
             </template>
-            <template #contentgit >
+            <template #content>
                 <label for="file">Choose File: </label><input name="file" type="file" @change="setFile($event)">
             </template>
             <template #cancel>
