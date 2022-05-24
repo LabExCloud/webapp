@@ -8,7 +8,7 @@
             <div class="profile">
                 <profile-image class="w-40" :src="user.image" alt="student picture"/>
                 <h2>{{ user.first_name }} {{ user.middle_name }} {{ user.last_name }}</h2>
-                <p>S{{ user.profile.semester }} - {{ user.profile.dept_code }} - {{ user.profile.rollno }}</p>
+                <p>S{{ user.profile.semester }} - {{ user.profile.department.dept_code }} - {{ user.profile.rollno }}</p>
             </div>
 
             <div class="grid grid-cols-2 gap-y-4 gap-x-12 py-8">
@@ -55,33 +55,27 @@
 
 
 <script>
-import axios from 'axios'
 import ProfileImage from '@/components/ProfileImage.vue'
+import { mapGetters } from 'vuex'
 
 export default({
     name: 'Profile',
     components: {
         ProfileImage,
     },
-    mounted(){
+    async mounted(){
         document.title = 'Profile'
-        this.getProfile()
+        await this.getProfile()
     },
     data(){
         return{
             title: "Your Profile",
-            user: {
-                profile: {}
-            },
         }
     },
-    methods: {
-        getProfile(){
-            axios({
-                method: 'get',
-                url: '/api/v1/profile',
-            }).then(response => this.user = response.data)
-        },
-    },
+    computed: {
+        ...mapGetters('auth', [
+            'user',
+        ]),
+    }
 })
 </script>
