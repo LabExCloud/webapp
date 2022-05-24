@@ -19,20 +19,9 @@
         </div>
         <div class="w-full pl-7">
             <label class="text-white text-lg" for="sem">Exams: </label>
-            <!-- <select class="text-center text-sm text-gray-400 bg-gray-700 border border-black rounded" id="sem" name="sem">
-                <option value="S8" selected>S8</option>
-                <option value="S7">S7</option>
-                <option value="S6">S6</option>
-                <option value="S5">S5</option>
-                <option value="S4">S4</option>
-                <option value="S3">S3</option>
-                <option value="S2">S2</option>
-                <option value="S1">S1</option>
-            </select> -->
             <semester-select-box :sems="user.profile.semesters" @selectSem="selectSem"/>
         </div>
 
-        <!-- {{ exams }} -->
         <div class="grid grid-cols-2 gap-10 py-14 px-8 text-white">
 
             <div v-for="exam in exams" :key="exam.id" class="lab-item cursor-pointer"  @click="clickCard(exam.id)">
@@ -53,10 +42,6 @@
                 </ul>
 
             </div>
-
-            <div class="h-36 border border-borderclr rounded-2xl shadow-md bg-cardclr hover:border-gray-300 hover:shadow-2xl">item 2</div>
-            <div class="h-36 border border-borderclr rounded-2xl shadow-md bg-cardclr hover:border-gray-300 hover:shadow-2xl">item 3</div>
-            <div class="h-36 border border-borderclr rounded-2xl shadow-md bg-cardclr hover:border-gray-300 hover:shadow-2xl">item 4</div>
         </div>
     </div>
 </template>
