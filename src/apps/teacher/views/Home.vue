@@ -60,14 +60,14 @@
                         Department:
                     </div>
                     <div class="bg-gray-800 rounded px-3 text-gray-300">
-                        Information Technology
+                        {{ user.profile.department.dept_name }}
                     </div>
                 
                     <div>
                         Active Classes:
                     </div>
                     <div class="bg-gray-800 rounded px-3 text-gray-300">
-                        {{ user.profile.classes.length}}
+                        {{ classes.length }}
                     </div>   
                 </div>
             </div>
