@@ -190,7 +190,8 @@ export default({
 
             this.classAddEditModal.show = true
         },
-        async showEditClassModal(){
+        async showEditClassModal(event){
+            event.stopPropagation()
             const response1 = await axios.get('/api/v1/base/batches')
             this.classAddEditModal.options.batches = response1.data
 
