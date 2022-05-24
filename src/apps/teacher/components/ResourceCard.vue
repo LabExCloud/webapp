@@ -8,7 +8,7 @@
             
             <modal :show="resourceEditModal.show" @cancel="resourceEditModal.show = false" @confirm="setName">
                 <template #header>
-                    <h1>Edit resource</h1>
+                    <h1 class="text-xl text-gray-400">Edit resource</h1>
                 </template>
                 <template #content>
 
@@ -18,7 +18,7 @@
                                 <label for="name">Resource Name: </label>
                             </div>
                             <div class="md:w-2/3">
-                                <input class="rounded bg-gray-600" name="name" type="text" v-model="resourceEditModal.name">
+                                <input class="rounded bg-gray-600 text-black" name="name" type="text" v-model="resourceEditModal.name">
                             </div>
                         </div>
                         <div class="md:flex md:items-center mb-2">
@@ -26,7 +26,7 @@
                                 <label for="desc">Resource Description: </label>
                             </div>
                             <div class="md:w-2/3">
-                                <input class="rounded bg-gray-600" name="desc" type="text" v-model="resourceEditModal.desc">
+                                <input class="rounded bg-gray-600 text-black" name="desc" type="text" v-model="resourceEditModal.desc">
                             </div>
                         </div>
                         
@@ -64,7 +64,7 @@
                 <h1>You sure you want to delete this file?</h1>
             </template>
             <template #content>
-                <h2>{{ resource.res_files[fileDeleteModal.index].filename }}</h2>
+                <h2 class="mt-4 text-gray-400">{{ resource.res_files[fileDeleteModal.index].filename }}</h2>
             </template>
             <template #cancel>
                 Cancel
@@ -75,7 +75,7 @@
         </modal>
         <modal :show="fileAddModal.show" @cancel="fileAddModal.show = false" @confirm="addResourceFile()">
             <template #header>
-                <h1 class="mb-4">Add new file</h1>
+                <h1 class="mb-4 text-xl text-gray-400">Add new file</h1>
             </template>
             <template #content>
                 <label for="file">Choose File: </label><input name="file" type="file" @change="setFile($event)">

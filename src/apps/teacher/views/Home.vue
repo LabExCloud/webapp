@@ -4,42 +4,68 @@
 
         <modal :show="classAddEditModal.show" @cancel="classAddEditModal.show = false" @confirm="addEditClass">
             <template #header>
-                <h1>{{ classAddEditModal.edit?'Edit':'Add new' }} Class</h1>
+                <h1 class="text-xl text-gray-400">{{ classAddEditModal.edit?'Edit':'Add new' }} Class</h1>
             </template>
             <template #content>
-                <label for="batch">Batch: </label>
-                <select name="batch" @change="classAddEditModal.batch = parseInt($event.target.value)">
-                    <option v-for="(batch, index) in classAddEditModal.options.batches" :selected="classAddEditModal.batch == index" :value="index">{{ batch.year }} - {{ batch.stream }}</option>
-                </select><br>
-                
-                <label for="semester">Semester: </label>
-                <select name="semester" @change="classAddEditModal.semester = parseInt($event.target.value)">
-                    <option disabled :selected="!classAddEditModal.edit" value> -- select an option -- </option>
-                    <option v-for="(sem, index) in this.classAddEditModal.options.semesters" :selected="classAddEditModal.semester == index" :value="index">S{{ sem }}</option>
-                </select><br>
 
-                <label for="subject">Subject: </label>
-                <select name="subject" @change="classAddEditModal.subject = parseInt($event.target.value)">
-                    <option disabled :selected="!classAddEditModal.edit" value> -- select an option -- </option>
-                    <option v-for="(subject, index) in classAddEditModal.options.subjects" :selected="classAddEditModal.subject == index" :value="index">{{ subject.sub_code }} - {{ subject.sub_name }}</option>
-                </select><br>
+                <div class="w-full mt-6">
+                    <div class="md:flex md:items-center mb-2">
+                        <div class="md:w-1/3">
+                            <label for="batch">Batch: </label>
+                        </div>
+                        <select class="rounded bg-gray-600 text-black" name="batch" @change="classAddEditModal.batch = parseInt($event.target.value)">
+                            <option v-for="(batch, index) in classAddEditModal.options.batches" :selected="classAddEditModal.batch == index" :value="index">{{ batch.year }} - {{ batch.stream }}</option>
+                        </select>
+                            
+                    </div>
 
-                <label for="islab">Is Lab</label>
-                <input type="checkbox" name="islab" v-model="classAddEditModal.is_lab">
+                    <div class="md:flex md:items-center mb-2">
+                        <div class="md:w-1/3">
+                            <label for="semester">Semester: </label>
+                        </div>
+                        <div class="md:w-2/3">
+                            <select class="rounded bg-gray-600 text-black" name="semester" @change="classAddEditModal.semester = parseInt($event.target.value)">
+                                <option disabled :selected="!classAddEditModal.edit" value> -- select an option -- </option>
+                                <option v-for="(sem, index) in this.classAddEditModal.options.semesters" :selected="classAddEditModal.semester == index" :value="index">S{{ sem }}</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="md:flex md:items-center mb-2">
+                        <div class="md:w-1/3">
+                            <label for="subject">Subject: </label>
+                        </div>
+                        <div class="md:w-2/3">
+                            <select class="rounded bg-gray-600 text-black" name="subject" @change="classAddEditModal.subject = parseInt($event.target.value)">
+                                <option disabled :selected="!classAddEditModal.edit" value> -- select an option -- </option>
+                                <option v-for="(subject, index) in classAddEditModal.options.subjects" :selected="classAddEditModal.subject == index" :value="index">{{ subject.sub_code }} - {{ subject.sub_name }}</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="md:flex md:items-center mb-2">
+                        <div class="md:w-1/3">
+                            <label for="islab">Is Lab:</label>
+                        </div>
+                        <input class="rounded bg-gray-600" type="checkbox" name="islab" v-model="classAddEditModal.is_lab">
+                    </div>
+                </div>              
             </template>
+
             <template #cancel>
                 Cancel
             </template>
             <template #confirm>
                 {{ classAddEditModal.edit?'Save':'Create' }}
             </template>
+
         </modal>
         <modal :show="deleteClassModal.show" @cancel="deleteClassModal.show = false" @confirm="deleteClass()">
             <template #header>
                 <h1>You sure you want to delete this Class?</h1>
             </template>
             <template #content>
-                <h2>S{{ deleteClassModal.c.semester.sem }} - {{ deleteClassModal.c.department.dept_name }} - {{ deleteClassModal.c.batch.stream }} - {{ deleteClassModal.c.batch.year }} - {{ deleteClassModal.c.subject.sub_code }} - {{ deleteClassModal.c.subject.sub_name }}</h2>
+                <h2 class="mt-4 text-gray-400">S{{ deleteClassModal.c.semester.sem }} - {{ deleteClassModal.c.department.dept_name }} - {{ deleteClassModal.c.batch.stream }} - {{ deleteClassModal.c.batch.year }} - {{ deleteClassModal.c.subject.sub_code }} - {{ deleteClassModal.c.subject.sub_name }}</h2>
             </template>
             <template #cancel>
                 Cancel
@@ -49,7 +75,7 @@
             </template>
         </modal>
 
-        <div class="flex justify-center">
+        <div class="flex justify-center items-center">
             <div class="bg-cardclr border border-borderclr text-white h-34 w-[610px] mt-10 rounded-md shadow-inner">
             
             <a href="/logout">
@@ -85,6 +111,11 @@
                 </div>
             </div>
             </div>
+            <div class="add-box">
+                <button class="text-center text-base w-40 text-white bg-gray-700 border border-black rounded-md" @click="showAddClassModal">
+                    <span class="mx-4">+ New Class</span>
+                </button>
+            </div>
         </div>
         
 
@@ -101,11 +132,7 @@
             </select>
         </div>
 
-        <div class="add-box">
-            <button class="text-center text-base w-40 text-white bg-gray-700 border border-black rounded-md" @click="showAddClassModal">
-                <span class="mx-4">+ New Class</span>
-            </button>
-        </div>
+        
 
         <div class="grid grid-cols-3 gap-10 py-14 px-4 text-white">
 

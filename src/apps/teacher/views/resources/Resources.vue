@@ -25,7 +25,7 @@
             <h1>You sure you want to delete this resource?</h1>
         </template>
         <template #content>
-            <h2>{{ resources[this.resourceDeleteModal.index].res_name }}</h2>
+            <h2 class="mt-4 text-gray-400">{{ resources[this.resourceDeleteModal.index].res_name }}</h2>
         </template>
         <template #cancel>
             Cancel
@@ -36,7 +36,7 @@
     </modal>
     <modal :show="resourceAddModal.show" @cancel="resourceAddModal.show = false" @confirm="addResource">
         <template #header>
-            <h1 class="mb-4">Add new resource</h1>
+            <h1 class="mb-4 text-xl text-gray-400">Add new resource</h1>
         </template>
         <template #content>
             <div class="w-full mt-4">
@@ -45,7 +45,7 @@
                                 <label for="name">Resource Name: </label>
                             </div>
                             <div class="md:w-2/3">
-                                <input class="rounded bg-gray-600" name="name" type="text" v-model="resourceAddModal.name">
+                                <input class="rounded bg-gray-600 text-black" name="name" type="text" v-model="resourceAddModal.name">
                             </div>
                         </div>
                         <div class="md:flex md:items-center mb-2">
@@ -53,7 +53,7 @@
                                 <label for="desc">Resource Description: </label>
                             </div>
                             <div class="md:w-2/3">
-                                <input class="rounded bg-gray-600" name="desc" type="text" v-model="resourceAddModal.desc">
+                                <input class="rounded bg-gray-600 text-black" name="desc" type="text" v-model="resourceAddModal.desc">
                             </div>
                         </div>
                         
