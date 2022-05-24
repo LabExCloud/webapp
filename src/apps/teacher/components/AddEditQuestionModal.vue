@@ -146,9 +146,9 @@ import Modal from "@/components/Modal.vue"
 export default({
     name: 'AddEditQuestionModal',
     props: {
-        apiUrl: {
+        pageType: {
             type: String,
-            required: true,
+            default: 'lab'
         },
         show: {
             type: Boolean,
@@ -193,6 +193,13 @@ export default({
                 return 'Edit Question'
             }else{
                 return 'Add Question'
+            }
+        },
+        apiUrl(){
+            if (this.pageType === 'lab'){
+                return '/api/v1/labs'
+            }else if (this.pageType === 'exam'){
+                return '/api/v1/labexams'
             }
         }
     },

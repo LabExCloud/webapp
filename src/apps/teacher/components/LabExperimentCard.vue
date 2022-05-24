@@ -16,7 +16,7 @@
             </li>
         </ul>
     </div>
-    <add-edit-question-modal :show="questionModal.show" @cancel="questionModal.show = false" @saved="questionSaved" :id="questionModal.id" :edit="questionModal.edit" apiUrl="/api/v1/labs"/>
+    <add-edit-question-modal :show="questionModal.show" @cancel="questionModal.show = false" @saved="questionSaved" :id="questionModal.id" :edit="questionModal.edit" pageType="lab"/>
     <modal :show="expEditModal.show" @cancel="expEditModal.show = false" @confirm="editExp">
         <template #header>
             <h1>Edit Experiment</h1>
