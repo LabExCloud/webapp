@@ -25,13 +25,27 @@
                 </select><br>
 
                 <label for="islab">Is Lab</label>
-                <input type="checkbox" name="islab" v-model="classAddEditModal.is_lab"><br>
+                <input type="checkbox" name="islab" v-model="classAddEditModal.is_lab">
             </template>
             <template #cancel>
                 Cancel
             </template>
             <template #confirm>
                 {{ classAddEditModal.edit?'Save':'Create' }}
+            </template>
+        </modal>
+        <modal :show="deleteClassModal.show" @cancel="deleteClassModal.show = false" @confirm="deleteClass()">
+            <template #header>
+                <h1>You sure you want to delete this Class?</h1>
+            </template>
+            <template #content>
+                <h2>S{{ deleteClassModal.c.semester.sem }} - {{ deleteClassModal.c.department.dept_name }} - {{ deleteClassModal.c.batch.stream }} - {{ deleteClassModal.c.batch.year }} - {{ deleteClassModal.c.subject.sub_code }} - {{ deleteClassModal.c.subject.sub_name }}</h2>
+            </template>
+            <template #cancel>
+                Cancel
+            </template>
+            <template #confirm>
+                Delete
             </template>
         </modal>
 
@@ -100,10 +114,10 @@
                 <div class="w-full ml-8">
                     <span> {{ classs.subject.sub_code }} - {{ classs.subject.sub_name }} </span><br>
                     <p class="text-sm text-gray-300"> {{ classs.department.dept_name }} </p>
-                    <p class="text-sm text-gray-300"> S{{ classs.semester.sem }} - {{ classs.department.dept_code }} </p>
+                    <p class="text-sm text-gray-300"> S{{ classs.semester.sem }} - {{ classs.department.dept_code }} - {{ classs.batch.stream }} - {{ classs.batch.year }} </p>
                 </div>
                 <span class="material-symbols-outlined cursor-pointer text-lg text-blue-400 float-right mr-2 pt-2" @click="showEditClassModal($event, index)">edit</span>
-                <span class="material-symbols-outlined cursor-pointer text-lg text-red-600 float-right mr-4 pt-2" @click="showDeleteClass">delete</span>
+                <span class="material-symbols-outlined cursor-pointer text-lg text-red-600 float-right mr-4 pt-2" @click="showDeleteClass($event, index)">delete</span>
                 
             </div>
         </div>
@@ -148,6 +162,10 @@ export default({
                 },
                 show: false,
                 edit: false,
+            },
+            deleteClassModal: {
+                show: false,
+                c: undefined,
             },
         }
     },
@@ -217,6 +235,11 @@ export default({
             this.classAddEditModal.edit = true
 
             this.classAddEditModal.show = true
+        },
+        showDeleteClass(event, index){
+            event.stopPropagation()
+            this.deleteClassModal.c = this.classes[index]
+            this.deleteClassModal.show = true
         },
         async addEditClass(){
             if(this.classAddEditModal.edit){
