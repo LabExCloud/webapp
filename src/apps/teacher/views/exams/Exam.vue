@@ -16,10 +16,6 @@
 
         <div class="grid grid-cols-1 gap-10 py-14 px-8 text-white">
             <lab-exam-card v-for="(exam, index) in exams" :key="exam.id" :exam_id="exam.id" @delete="showDeleteExamModal(index)"/>
-
-            <div class="h-36 border border-borderclr rounded-2xl shadow-md bg-cardclr hover:border-gray-300 hover:shadow-2xl">item 2</div>
-            <div class="h-36 border border-borderclr rounded-2xl shadow-md bg-cardclr hover:border-gray-300 hover:shadow-2xl">item 3</div>
-            <div class="h-36 border border-borderclr rounded-2xl shadow-md bg-cardclr hover:border-gray-300 hover:shadow-2xl">item 4</div>
         </div>
     </div>
 
