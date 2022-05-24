@@ -15,10 +15,6 @@
         <!-- {{ exps }} -->
         <div class="grid grid-cols-1 gap-10 py-14 px-8 text-white">
             <lab-experiment-card v-for="(exp, index) in exps" :key="exp.id" :exp_id="exp.id" @delete="showDeleteExpModal(index)"/>
-
-            <div class="h-36 border border-borderclr rounded-2xl shadow-md bg-cardclr hover:border-gray-300 hover:shadow-2xl">item 2</div>
-            <div class="h-36 border border-borderclr rounded-2xl shadow-md bg-cardclr hover:border-gray-300 hover:shadow-2xl">item 3</div>
-            <div class="h-36 border border-borderclr rounded-2xl shadow-md bg-cardclr hover:border-gray-300 hover:shadow-2xl">item 4</div>
         </div>
     </div>
 
