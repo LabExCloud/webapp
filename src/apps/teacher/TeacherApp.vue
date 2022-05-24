@@ -1,6 +1,6 @@
 <template>
 <div class="h-screen mainpage flex justify-center items-center font-snig text-base">
-    <Navigation v-if="$route.name !== 'home'"/>
+    <Navigation v-if="$route.name !== 'home' && $route.name !== 'profile'"/>
     
     <router-view/>
 </div>
