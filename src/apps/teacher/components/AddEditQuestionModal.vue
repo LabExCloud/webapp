@@ -46,6 +46,15 @@
             </div>
             <div class="md:flex md:items-center mb-6">
                 <div class="md:w-1/3">
+                    <label for="answer">Correct Answer: </label>
+                </div>
+                <div class="md:w-2/3">
+                    <a v-if="formData.answer !== ''" :href="formData.answer" target="_blank">Answer</a>
+                    <input type="file" name="answer" @change="setAnsFile($event)">
+                </div>
+            </div>
+            <div class="md:flex md:items-center mb-6">
+                <div class="md:w-1/3">
                 <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" for="mark">Mark:
                 </label>
                 </div>
@@ -73,10 +82,10 @@
             </div>
             <div class="md:flex md:items-center mb-6" v-for="(testcase, index) in testcases" :key="index">
                 <div class="md:w-1/5">
-                    <a :href="testcase.inputUrl">Input {{ testcase.tc_number }}</a>
+                    <a :href="testcase.inputUrl" target="_blank">Input {{ testcase.tc_number }}</a>
                 </div>
                 <div class="md:w-1/5">
-                    <a :href="testcase.outputUrl">Output {{ testcase.tc_number }}</a>
+                    <a :href="testcase.outputUrl" target="_blank">Output {{ testcase.tc_number }}</a>
                 </div>
                 <div class="md:w-1/5">
                     {{ testcase.mark }}
@@ -136,10 +145,6 @@
 
 </template>
 
-<!-- 
-    TODO: testcase edit (thonniyaal vakkam)   
- -->
-
 <script>
 import axios from "axios"
 import Modal from "@/components/Modal.vue"
@@ -174,6 +179,8 @@ export default({
                 question: '',
                 language: Number,
                 mark: Number,
+                answer: '',
+                answerFile: undefined,
             },
             testcases: [],
             testcaseAddModal: {
@@ -205,7 +212,7 @@ export default({
             }else if (this.pageType === 'exam'){
                 return '/api/v1/labexams'
             }
-        }
+        },
     },
     async mounted(){
         await this.getLanguages()
@@ -221,6 +228,8 @@ export default({
                 this.formData.title = ''
                 this.formData.language = undefined
                 this.formData.mark = undefined
+                this.formData.answer = ''
+                this.formData.answerFile = undefined
                 this.testcases = []
             }
         },
@@ -234,6 +243,8 @@ export default({
             this.formData.language = response.data.language
             this.formData.mark = response.data.mark
             this.testcases = response.data.testcases
+            this.formData.answer = (response.data.answer !== null)?(process.env.VUE_APP_ROOT_MEDIA + response.data.answer):''
+            this.formData.answerFile = undefined
 
             this.testcases.forEach(testcase => {
                 testcase.inputUrl = process.env.VUE_APP_ROOT_MEDIA + testcase.input_file
@@ -241,26 +252,35 @@ export default({
             });
         },
         async createQuestion(id){
-            const response = await axios.post(`${this.apiUrl}/question/${id}`,{
-                question_number: this.formData.questionNumber,
-                title: this.formData.title,
-                question: this.formData.question,
-                language: this.formData.language,
-                mark: this.formData.mark
+            let data = new FormData()
+            data.append('question_number', this.formData.questionNumber)
+            data.append('title', this.formData.title)
+            data.append('question', this.formData.question)
+            data.append('language', this.formData.language)
+            data.append('mark', this.formData.mark)
+            data.append('answer', this.formData.answerFile)
+            const response = await axios.post(`${this.apiUrl}/question/${id}`,
+            data, {
+                headers: {"Content-Type": "multipart/form-data",},
             })
             this.q_id = response.data.id
+            this.formData.answer = response.data.answer
         },
         async saveQuestion(){
             if (!this._edit){
                 this.createQuestion(this.id)
                 this.$emit('saved')
             }else{
-                const response = await axios.put(`${this.apiUrl}/question/${this.q_id}`,{
-                    question_number: this.formData.questionNumber,
-                    title: this.formData.title,
-                    question: this.formData.question,
-                    language: parseInt(this.formData.language),
-                    mark: this.formData.mark
+                let data = new FormData()
+                data.append('question_number', this.formData.questionNumber)
+                data.append('title', this.formData.title)
+                data.append('question', this.formData.question)
+                data.append('language', this.formData.language)
+                data.append('mark', this.formData.mark)
+                data.append('answer', this.formData.answerFile)
+                const response = await axios.put(`${this.apiUrl}/question/${id}`,
+                data, {
+                    headers: {"Content-Type": "multipart/form-data",},
                 })
                 this.$emit('saved')
             }
@@ -321,6 +341,9 @@ export default({
         async getLanguages(){
             const response = await axios.get('/api/v1/editor/languages')
             this.languages = response.data
+        },
+        setAnsFile(event){
+            this.formData.answerFile = event.target.files[0]
         }
     },
     components: {
