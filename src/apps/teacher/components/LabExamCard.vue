@@ -17,7 +17,7 @@
             </li>
         </ul>
     </div>
-    <add-edit-question-modal :show="questionModal.show" @cancel="questionModal.show = false" @saved="questionSaved" :id="questionModal.id" :edit="questionModal.edit" pageType="lab"/>
+    <add-edit-question-modal :show="questionModal.show" @cancel="questionModal.show = false" @saved="questionSaved" :id="questionModal.id" :edit="questionModal.edit" pageType="exam"/>
     <modal :show="examEditModal.show" @cancel="examEditModal.show = false" @confirm="editExam">
         <template #header>
             <h1>Edit Exam</h1>
