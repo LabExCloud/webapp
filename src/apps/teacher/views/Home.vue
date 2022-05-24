@@ -2,12 +2,31 @@
 
     <div class="content">
 
-        <modal :show="classAddModal.show" @cancel="classAddModal.show = false" @confirm="addClass">
+        <modal :show="classAddEditModal.show" @cancel="classAddEditModal.show = false" @confirm="addEditClass">
             <template #header>
                 <h1>Add new Class</h1>
             </template>
             <template #content>
-                <label for="name">Class Name: </label><input name="name" type="text" v-model="resourceAddModal.name"><br>
+                <label for="batch">Batch: </label>
+                <select name="batch" @change="classAddEditModal.batch = parseInt($event.target.value)">
+                    <option disabled selected value> -- select an option -- </option>
+                    <option v-for="(batch, index) in classAddEditModal.options.batches" :value="index">{{ batch.year }} - {{ batch.stream }}</option>
+                </select><br>
+                
+                <label for="semester">Semester: </label>
+                <select name="semester" @change="classAddEditModal.semester = parseInt($event.target.value)">
+                    <option disabled selected value> -- select an option -- </option>
+                    <option v-for="(sem, index) in this.classAddEditModal.options.semesters" :value="index">S{{ sem }}</option>
+                </select><br>
+
+                <label for="subject">Subject: </label>
+                <select name="subject" @change="classAddEditModal.subject = parseInt($event.target.value)">
+                    <option disabled selected value> -- select an option -- </option>
+                    <option v-for="(subject, index) in classAddEditModal.options.subjects" :value="index">{{ subject.sub_code }} - {{ subject.sub_name }}</option>
+                </select><br>
+
+                <label for="islab">Is Lab</label>
+                <input type="checkbox" name="islab" v-model="classAddEditModal.is_lab"><br>
             </template>
             <template #cancel>
                 Cancel
@@ -69,6 +88,12 @@
             </select>
         </div>
 
+        <div class="add-box">
+            <button class="text-center text-base w-40 text-white bg-gray-700 border border-black rounded-md" @click="showAddClassModal">
+                <span class="mx-4">+ New Class</span>
+            </button>
+        </div>
+
         <div class="grid grid-cols-3 gap-10 py-14 px-4 text-white">
 
             <div v-for="classs in classes" :key="classs.id" class="flex items-center h-36 border border-borderclr rounded-2xl shadow-md bg-cardclr hover:border-gray-300 hover:shadow-2xl cursor-pointer" @click="clickCard(classs.id)">
@@ -78,7 +103,9 @@
                     <p class="text-sm text-gray-300"> {{ classs.department.dept_name }} </p>
                     <p class="text-sm text-gray-300"> S{{ classs.semester.sem }} - {{ classs.department.dept_code }} </p>
                 </div>
-              
+                <span class="material-symbols-outlined cursor-pointer text-lg text-blue-400 float-right mr-2 pt-2" @click="showEditClassModal">edit</span>
+                <span class="material-symbols-outlined cursor-pointer text-lg text-red-600 float-right mr-4 pt-2" @click="showDeleteClass">delete</span>
+                
             </div>
         </div>
 
@@ -93,27 +120,36 @@ import { mapGetters } from 'vuex'
 
 import ProfileImage from '@/components/ProfileImage.vue'
 import Modal from '@/components/Modal.vue'
+import SemesterSelectBox from '@/components/SemesterSelectBox.vue'
 
 export default({
     name: 'Home',
     components: {
         ProfileImage,
         Modal,
+        SemesterSelectBox,
     },
     async mounted(){
         document.title = 'Home'
         await this.getClasses();
+        console.log(this.user);
     },
     data(){
         return{
             classes: {},
-            classAddModal: {
-                semester: '',
-                subject: '',
-                batch: '',
+            classAddEditModal: {
+                semester: undefined,
+                subject: undefined,
+                batch: undefined,
                 is_lab: false,
-                show: false
-            }
+                options: {
+                    batches: [],
+                    subjects: [],
+                    semesters: [],
+                },
+                show: false,
+                edit: false,
+            },
         }
     },
     methods: {
@@ -142,12 +178,62 @@ export default({
         },
         settings(){
             this.$router.push('/profile')
+        },
+        async showAddClassModal(){
+            const response1 = await axios.get('/api/v1/base/batches')
+            this.classAddEditModal.options.batches = response1.data
+
+            const response2 = await axios.get('/api/v1/base/subjects')
+            this.classAddEditModal.options.subjects = response2.data
+
+            this.classAddEditModal.edit = false
+
+            this.classAddEditModal.show = true
+        },
+        async showEditClassModal(){
+            const response1 = await axios.get('/api/v1/base/batches')
+            this.classAddEditModal.options.batches = response1.data
+
+            const response2 = await axios.get('/api/v1/base/subjects')
+            this.classAddEditModal.options.subjects = response2.data
+
+            this.classAddEditModal.edit = true
+
+            this.classAddEditModal.show = true
+        },
+        async addEditClass(){
+            const subject = this.classAddEditModal.options.subjects[this.classAddEditModal.subject].id
+            const batch = this.classAddEditModal.options.batches[this.classAddEditModal.batch].id
+            const semester = this.classAddEditModal.options.semesters[this.classAddEditModal.semester]
+            const response = await axios.post('/api/v1/class', {
+                department: this.user.profile.department.id,
+                semester,
+                subject,
+                batch,
+                // teachers: ,  // optional
+                is_lab: this.classAddEditModal.is_lab
+            })
+
+            this.classAddEditModal.show = false
+            await this.getClasses()
         }
     },
     computed: {
         ...mapGetters('auth', [
             'user',
         ]),
+    },
+    watch: {
+        'classAddEditModal.batch': function(){
+            const stream = this.classAddEditModal.options.batches[this.classAddEditModal.batch].stream
+            if(stream === 'B.Tech'){
+                this.classAddEditModal.options.semesters = [1, 2, 3, 4, 5, 6, 7, 8]
+            }else if(stream === 'M.Tech'){
+                this.classAddEditModal.options.semesters = [1, 2, 3, 4]
+            }else{
+                this.classAddEditModal.options.semesters = []
+            }
+        }
     }
 })
 </script>
