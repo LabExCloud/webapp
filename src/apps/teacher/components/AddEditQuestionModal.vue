@@ -39,7 +39,9 @@
                 </label>
                 </div>
                 <div class="md:w-2/3">
-                <input type="number" name="language" v-model="formData.language" class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="inline-full-name">
+                <select @change="selectLang">
+                    <option v-for="lang in languages" :key="lang.id" :value="lang.id" :selected="lang.id == formData.language">{{ lang.language }}</option>
+                </select>
                 </div>
             </div>
             <div class="md:flex md:items-center mb-6">
@@ -186,6 +188,7 @@ export default({
                 index: undefined,
             },
             _edit: undefined,
+            languages: [],
         }
     },
     computed:{
@@ -205,6 +208,7 @@ export default({
         }
     },
     async mounted(){
+        await this.getLanguages()
     },
     watch: {
         show(){
@@ -310,6 +314,13 @@ export default({
             const response = axios.delete(`${this.apiUrl}/testcase/${this.testcases[this.testcaseDeleteModal.index].id}`)
             this.testcases.splice(this.testcaseDeleteModal.index, 1)
             this.testcaseDeleteModal.show = false
+        },
+        selectLang(event){
+            this.formData.language = parseInt(event.target.value)
+        },
+        async getLanguages(){
+            const response = await axios.get('/api/v1/editor/languages')
+            this.languages = response.data
         }
     },
     components: {
