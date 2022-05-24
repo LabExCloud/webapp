@@ -17,7 +17,8 @@
             </template>
         </modal>
 
-        <div class="bg-cardclr border border-borderclr text-white h-34 mx-96 mt-10 rounded-md shadow-inner">
+        <div class="flex justify-center">
+            <div class="bg-cardclr border border-borderclr text-white h-34 w-[610px] mt-10 rounded-md shadow-inner">
             
             <a href="/logout">
                 <button class="bg-red-800 text-sm float-right mr-4 px-2 mt-2 rounded"> Logout </button>
@@ -51,7 +52,9 @@
                     </div>   
                 </div>
             </div>
+            </div>
         </div>
+        
 
 
         <div class="w-full pl-7">
