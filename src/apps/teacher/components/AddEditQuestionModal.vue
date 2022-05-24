@@ -184,12 +184,13 @@ export default({
             testcaseDeleteModal:{
                 show: false,
                 index: undefined,
-            }
+            },
+            _edit: undefined,
         }
     },
     computed:{
         header(){
-            if (this.edit) {
+            if (this._edit) {
                 return 'Edit Question'
             }else{
                 return 'Add Question'
@@ -207,7 +208,8 @@ export default({
     },
     watch: {
         show(){
-            if(this.edit){
+            this._edit = this.edit
+            if(this._edit){
                 this.getQuestion(this.id)
             }else{
                 this.formData.questionNumber = undefined
@@ -245,11 +247,11 @@ export default({
             this.q_id = response.data.id
         },
         async saveQuestion(){
-            if (this.edit){
+            if (!this._edit){
                 this.createQuestion(this.id)
                 this.$emit('saved')
             }else{
-                const response = await axios.post(`${this.apiUrl}/question/${this.id}`,{
+                const response = await axios.put(`${this.apiUrl}/question/${this.q_id}`,{
                     question_number: this.formData.questionNumber,
                     title: this.formData.title,
                     question: this.formData.question,
@@ -277,7 +279,6 @@ export default({
             data.append('mark', this.testcaseAddModal.mark)
             data.append('tc_number', this.testcases.length + 1)
             data.append('hidden', this.testcaseAddModal.hidden)
-            console.log(this.testcases.length + 1);
             const response = await axios.post(
                 `${this.apiUrl}/testcase/${id}`, 
                 data,
@@ -288,12 +289,13 @@ export default({
             this.testcases.push(response.data)
         },
         async addTestcaseFile(){
-            if(!this.edit){
+            console.log(this.id, this.q_id, this._edit);
+            if(!this._edit){
                 await this.createQuestion(this.id)
                 await this.createTestcase(this.q_id)
-                this.edit = true
+                this._edit = true
             }else{
-                await this.createTestcase(this.q_id)
+                await this.createTestcase(this.id)
             }
             this.testcaseAddModal.input =  undefined
             this.testcaseAddModal.output = undefined
