@@ -123,7 +123,7 @@
         <div class="grid grid-cols-3 gap-10 py-14 px-4 text-white">
 
             <div v-for="(classs, index) in classes" :key="classs.id" class="flex items-center h-36 border border-borderclr rounded-2xl shadow-md bg-cardclr hover:border-gray-300 hover:shadow-2xl cursor-pointer" @click="clickCard(classs)">
-                <img class="h-24 rounded-2xl px-3 py-1" :src="classs.subject.image" alt="student picture">
+                <profile-image class="h-24 rounded-2xl px-3 py-1" :src="classs.subject.image" alt="class picture"/>
                 <div class="w-full ml-8">
                     <span> {{ classs.subject.sub_code }} - {{ classs.subject.sub_name }} </span><br>
                     <p class="text-sm text-gray-300"> {{ classs.department.dept_name }} </p>
@@ -187,10 +187,7 @@ export default({
             for(let eachClass in this.classes){
 
                 if(!this.classes[eachClass].subject.image){
-                    this.classes[eachClass].subject.image = "https://telegra.ph/file/9326a1797d1e96975cde9.png";
-                }
-                else{
-                    this.classes[eachClass].subject.image = axios.defaults.baseURL + this.classes[eachClass].subject.image;
+                    this.classes[eachClass].subject.image = "https://telegra.ph/file/9326a1797d1e96975cde9.png"; //add this default image to media/ use path here.
                 }
             }
 

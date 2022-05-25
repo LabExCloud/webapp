@@ -1,10 +1,9 @@
 <template>
     <div class="sidepage" v-if="classs">
         <div class="profile">
-            <profile-image class="w-28" :src="user.image" alt="teacher picture"/>
-            <h2>{{ user.first_name }} {{ user.last_name }}</h2>
-            <p>{{ classs.subject.sub_code }} - {{ classs.subject.sub_name }}</p>
-            <p>{{ classs.batch.stream }} - {{ classs.batch.year }}</p>
+            <profile-image class="w-28" :src="classs.subject.image" alt="class picture"/>
+            <h3>{{ classs.subject.sub_code }} - {{ classs.subject.sub_name }}</h3>
+            <p> {{ classs.batch.stream }} - S{{ classs.semester.sem }} </p>
         </div>
         <div class="navigation">
             <aside>

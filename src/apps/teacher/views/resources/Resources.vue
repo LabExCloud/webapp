@@ -13,7 +13,6 @@
                 </button>
             </div>
         </div>
-
         <div class="grid grid-cols-1 gap-10 py-14 px-8 text-white">
             <resource-card v-for="(resource, index) in resources" :key="resource.id" :res_id="resource.id" @delete="showResourceDeleteModal(index)" />
         </div>
