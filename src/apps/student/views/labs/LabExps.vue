@@ -28,10 +28,6 @@
                     </li>
                 </ul>
             </div>
-
-            <div class="h-36 border border-borderclr rounded-2xl bg-cardclr">item 2</div>
-            <div class="h-36 border border-borderclr rounded-2xl bg-cardclr">item 3</div>
-            <div class="h-36 border border-borderclr rounded-2xl bg-cardclr">item 4</div>
         </div>
         
     </div>
