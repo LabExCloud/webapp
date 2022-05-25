@@ -1,5 +1,5 @@
 <template>
-    <div class="sidepage">
+    <div class="sidepage" v-if="classs">
         <div class="profile">
             <profile-image class="w-28" :src="user.image" alt="teacher picture"/>
             <h2>{{ user.first_name }} {{ user.last_name }}</h2>
@@ -16,7 +16,7 @@
                     </router-link>
                 </li>
 
-                <li v-if="is_lab">
+                <li v-if="classs.is_lab">
                     <router-link to="/labs">
                         <span class="material-symbols-outlined">desktop_windows</span>
 
@@ -24,7 +24,7 @@
                     </router-link>
                 </li>
 
-                <li v-if="is_lab">
+                <li v-if="classs.is_lab">
                     <router-link to="/exam">
                         <span class="material-symbols-outlined">notes</span>
 
@@ -94,7 +94,7 @@ export default({
     },
     computed: {
         ...mapGetters([
-            'is_lab',
+            'classs',
         ]),
     }
 })

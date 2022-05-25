@@ -217,8 +217,7 @@ export default({
 
         },
         clickCard(c){
-            this.$store.commit('SET_CLASS_ID', c.id)
-            this.$store.commit('SET_IS_LAB', c.is_lab)
+            this.$store.commit('SET_CLASSS', c)
             if(c.is_lab){
                 this.$router.push('/labs')
             }else{

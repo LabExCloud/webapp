@@ -98,13 +98,13 @@ export default({
     },
     methods: {
         async getExps(){
-            var url = `/api/v1/labs/${this.class_id}`;
+            var url = `/api/v1/labs/${this.classs.id}`;
 
             const response = await axios.get(url);
             this.exps = response.data;
         },
         async addExp(){
-            const response = await axios.post(`/api/v1/labs/exp/${this.class_id}`, {
+            const response = await axios.post(`/api/v1/labs/exp/${this.classs.id}`, {
                 exp_name: this.expAddModal.name,
                 total_marks: this.expAddModal.marks,
                 due_date: this.expAddModal.due
@@ -124,7 +124,7 @@ export default({
     },
     computed: {
         ...mapGetters([
-            'class_id',
+            'classs',
         ]),
     }
 })

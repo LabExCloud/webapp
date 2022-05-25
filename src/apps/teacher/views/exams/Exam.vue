@@ -104,13 +104,13 @@ export default({
     },
     methods: {
         async getExams(){
-            var url = `/api/v1/labexams/${this.class_id}`;
+            var url = `/api/v1/labexams/${this.classs.id}`;
 
             const response = await axios.get(url);
             this.exams = response.data;
         },
         async addExam(){
-            const response = await axios.post(`/api/v1/labexams/exam/${this.class_id}`, {
+            const response = await axios.post(`/api/v1/labexams/exam/${this.classs.id}`, {
                 exam_name: this.examAddModal.name,
                 total_marks: this.examAddModal.marks,
                 start_date: this.examAddModal.start,
@@ -131,7 +131,7 @@ export default({
     },
     computed: {
         ...mapGetters([
-            'class_id',
+            'classs',
         ]),
     }
 })

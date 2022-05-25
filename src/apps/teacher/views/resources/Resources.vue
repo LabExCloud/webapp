@@ -103,7 +103,7 @@ export default({
     },
     methods: {
         async getResources(){
-            const response = await axios.get(`/api/v1/resources/class/${this.class_id}`);
+            const response = await axios.get(`/api/v1/resources/class/${this.classs.id}`);
             this.resources = response.data.resources;
         },
         async deleteResource(){
@@ -116,7 +116,7 @@ export default({
             this.resourceDeleteModal.show = true
         },
         async addResource(){
-            const response = await axios.post(`/api/v1/resources/res/${this.class_id}`, {
+            const response = await axios.post(`/api/v1/resources/res/${this.classs.id}`, {
                 res_name: this.resourceAddModal.name,
                 description: this.resourceAddModal.desc
             })
@@ -130,7 +130,7 @@ export default({
     },
     computed: {
         ...mapGetters([
-            'class_id',
+            'classs',
         ]),
     }
 })

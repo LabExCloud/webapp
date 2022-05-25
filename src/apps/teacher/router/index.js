@@ -56,7 +56,7 @@ const router = createRouter({
 router.beforeEach((to, from, next) => {
   if(store.getters['auth/isAuthenticated']){
     if(store.getters['auth/user'].user_type === 'teacher'){
-      if(!store.getters['class_id'] && to.name !== 'home' && to.name !== 'profile'){
+      if(!store.getters['classs'] && to.name !== 'home' && to.name !== 'profile'){
         next({ name: 'home' })
         return
       }else{
