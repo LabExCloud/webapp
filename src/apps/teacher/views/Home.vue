@@ -136,7 +136,7 @@
 
         <div class="grid grid-cols-3 gap-10 py-14 px-4 text-white">
 
-            <div v-for="(classs, index) in classes" :key="classs.id" class="flex items-center h-36 border border-borderclr rounded-2xl shadow-md bg-cardclr hover:border-gray-300 hover:shadow-2xl cursor-pointer" @click="clickCard(classs.id)">
+            <div v-for="(classs, index) in classes" :key="classs.id" class="flex items-center h-36 border border-borderclr rounded-2xl shadow-md bg-cardclr hover:border-gray-300 hover:shadow-2xl cursor-pointer" @click="clickCard(classs)">
                 <img class="h-24 rounded-2xl px-3 py-1" :src="classs.subject.image" alt="student picture">
                 <div class="w-full ml-8">
                     <span> {{ classs.subject.sub_code }} - {{ classs.subject.sub_name }} </span><br>
@@ -216,9 +216,14 @@ export default({
             }
 
         },
-        clickCard(id){
-            this.$store.commit('SET_CLASS_ID', id)
-            this.$router.push('/labs')
+        clickCard(c){
+            this.$store.commit('SET_CLASS_ID', c.id)
+            this.$store.commit('SET_IS_LAB', c.is_lab)
+            if(c.is_lab){
+                this.$router.push('/labs')
+            }else{
+                this.$router.push('/resources')
+            }
         },
         settings(){
             this.$router.push('/profile')

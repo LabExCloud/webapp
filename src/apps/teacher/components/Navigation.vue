@@ -16,7 +16,7 @@
                     </router-link>
                 </li>
 
-                <li>
+                <li v-if="is_lab">
                     <router-link to="/labs">
                         <span class="material-symbols-outlined">desktop_windows</span>
 
@@ -24,7 +24,7 @@
                     </router-link>
                 </li>
 
-                <li>
+                <li v-if="is_lab">
                     <router-link to="/exam">
                         <span class="material-symbols-outlined">notes</span>
 
@@ -67,6 +67,7 @@
 <script>
 import axios from 'axios'
 import ProfileImage from '@/components/ProfileImage.vue'
+import { mapGetters } from 'vuex'
 
 export default({
     name: 'Navigation',
@@ -91,5 +92,10 @@ export default({
     mounted(){
         this.getProfile()
     },
+    computed: {
+        ...mapGetters([
+            'is_lab',
+        ]),
+    }
 })
 </script>
