@@ -1,69 +1,66 @@
 <template>
 
-    <div v-if="show" class="form flex flex-col justify-center bg-cardclr text-white px-16 py-14 text-center absolute top-0 right-0 bottom-0 left-0">
+    <div v-if="show" class="h-full overflow-scroll form flex flex-col justify-center bg-cardclr text-white px-16 py-14 text-center absolute top-0 right-0 bottom-0 left-0">
         
-        <h1 class="text-xl"> {{ header }} </h1><br>
+        <h1 class="text-2xl mt-12 text-blue-600"> {{ header }} </h1><br>
 
         <form class="w-full pr-12 pt-10" @submit.prevent>
             <div class="md:flex md:items-center mb-6">
-                <div class="md:w-1/3">
-                <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" for="questionNo">Question No: 
+                <div class="md:w-1/4">
+                <label class="block md:text-right mb-1 md:mb-0 pr-4" for="questionNo">Question No: 
                 </label>
                 </div>
                 <div class="md:w-2/3">
-                <input type="number" name="questionNo" v-model="formData.questionNumber" class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="inline-full-name">
+                <input type="number" name="questionNo" v-model="formData.questionNumber" class="rounded bg-gray-600 text-black w-full py-1 px-4" id="inline-full-name">
                 </div>
             </div>
             <div class="md:flex md:items-center mb-6">
-                <div class="md:w-1/3">
-                <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" for="title">Question Title
+                <div class="md:w-1/4">
+                <label class="block  md:text-right mb-1 md:mb-0 pr-4" for="title">Question Title
                 </label>
                 </div>
                 <div class="md:w-2/3">
-                <input type="text" name="title" v-model="formData.title" class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="inline-full-name">
+                <input type="text" name="title" v-model="formData.title" class="rounded bg-gray-600 text-black w-full py-1 px-4" id="inline-full-name">
                 </div>
             </div>
             <div class="md:flex md:items-center mb-6">
-                <div class="md:w-1/3">
-                <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" for="question">Question: 
+                <div class="md:w-1/4">
+                <label class="block md:text-right mb-1 md:mb-0 pr-4" for="question">Question: 
                 </label>
                 </div>
                 <div class="md:w-2/3">
                 <textarea name="question" cols="30" rows="10" :value="formData.question" @input="formData.question = $event.target.value"
-                class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="inline-password" ></textarea>
+                class="rounded bg-gray-600 text-black w-full py-1 px-4" id="inline-password" ></textarea>
                 </div>
             </div>
             <div class="md:flex md:items-center mb-6">
-                <div class="md:w-1/3">
-                <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" for="language">Language:
+                <div class="md:w-1/4">
+                <label class="block  md:text-right mb-1 md:mb-0 pr-4" for="language">Language:
                 </label>
                 </div>
-                <div class="md:w-2/3">
-                <select @change="selectLang">
+                <div class="">
+                <select @change="selectLang" class="rounded bg-gray-600 text-black min-w-20 py-1 px-4">
                     <option v-for="lang in languages" :key="lang.id" :value="lang.id" :selected="lang.id == formData.language">{{ lang.language }}</option>
                 </select>
                 </div>
-            </div>
-            <div class="md:flex md:items-center mb-6">
-                <div class="md:w-1/3">
-                    <label for="answer">Correct Answer: </label>
-                </div>
-                <div class="md:w-2/3">
-                    <a v-if="formData.answer !== ''" :href="formData.answer" target="_blank">Answer</a>
-                    <input type="file" name="answer" @change="setAnsFile($event)">
-                </div>
-            </div>
-            <div class="md:flex md:items-center mb-6">
-                <div class="md:w-1/3">
-                <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" for="mark">Mark:
-                </label>
-                </div>
-                <div class="md:w-2/3">
-                <input type="number" name="mark" v-model="formData.mark" class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="inline-full-name">
-                </div>
-            </div>
 
+                <label class="block md:text-right mb-1 md:mb-0 pr-4 ml-12" for="mark">Mark:
+                </label>
+                <input type="number" name="mark" v-model="formData.mark" class="rounded bg-gray-600 text-black w-24 py-1 px-4" id="inline-full-name">
+
+            </div>
             <div class="md:flex md:items-center mb-6">
+                <div class="md:w-1/4">
+                    <label class="block md:text-right mb-1 md:mb-0 pr-4" for="answer">Correct Answer: </label>
+                </div>
+                <div class="">
+                    <a v-if="formData.answer !== ''" :href="formData.answer" target="_blank">Answer</a>
+                    <input class="bg-gray-900 rounded" type="file" name="answer" @change="setAnsFile($event)">
+                </div>
+            </div>
+            
+
+            <div class="md:flex md:items-center mt-4 mb-6 text-blue-500">
                 <div class="md:w-1/5">
                     Input
                 </div>
@@ -98,11 +95,11 @@
                     <span class="material-symbols-outlined cursor-pointer" @click="showDeleteTestcase(index)">delete</span>
                 </div>
             </div>
-            <button @click="showAddTestcaseModal" class="bg-gray-500 text-black w-44 rounded">+ Add Testcase</button>
+            <button @click="showAddTestcaseModal" class="bg-gray-400 text-black w-44 rounded">+ Add Testcase</button>
             
-            <div class="md:flex md:items-center">
-                <div class="md:w-1/3"></div>
-                <div class="md:w-2/3">
+            <div class="md:flex md:items-center mt-6">
+                
+                <div class="md:w-full">
                 
                 <button class="bg-indigo-500 px-4 py-2 rounded-md text-md text-white" @click="$emit('cancel')"> Cancel </button>
                 <button class="bg-red-500 px-7 py-2 ml-2 rounded-md text-md text-white font-semibold" @click="saveQuestion"> Save </button>
@@ -113,13 +110,45 @@
           
     <modal :show="testcaseAddModal.show" @cancel="testcaseAddModal = false" @confirm="addTestcaseFile">
         <template #header>
-            <h1>Add new testcase</h1>
+            <h1 class="mb-4 text-xl text-gray-400">Add new testcase</h1>
         </template>
         <template #content>
-            <label for="infile">Choose Input File: </label><input name="infile" type="file" @change="setInFile($event)"><br>
-            <label for="outfile">Choose Output File: </label><input name="outfile" type="file" @change="setOutFile($event)"><br>
-            <label for="marks">Marks: </label><input name="marks" type="number" v-model="testcaseAddModal.mark"><br>
-            <label for="hidden">Hidden </label><input type="checkbox" name="hiidden" v-model="testcaseAddModal.hidden">
+
+            <div class="w-full mt-4">
+                <div class="md:flex md:items-center mb-2">
+                    <div class="md:w-1/3">
+                        <label for="infile">Choose Input File: </label>
+                    </div>
+                    <div class="md:w-2/3">
+                        <input class="rounded bg-gray-900" name="infile" type="file" @change="setInFile($event)">
+                    </div>
+                </div>
+                <div class="md:flex md:items-center mb-2">
+                    <div class="md:w-1/3">
+                        <label for="outfile">Choose Output File: </label>
+                    </div>
+                    <div class="md:w-2/3">
+                        <input class="rounded bg-gray-900" name="outfile" type="file" @change="setOutFile($event)">
+                    </div>
+                </div>
+                <div class="md:flex md:items-center mb-2">
+                    <div class="md:w-1/3">
+                        <label for="marks">Marks: </label>
+                    </div>
+                    <div class="">
+                        <input class="bg-gray-600 text-black rounded w-14" name="marks" type="number" v-model="testcaseAddModal.mark">
+                    </div>
+                </div>
+                <div class="md:flex md:items-center mb-2">
+                    <div class="md:w-1/3">
+                        <label for="hidden">Hidden </label>
+                    </div>
+                    <div class="">
+                        <input class="bg-gray-600 text-black rounded" type="checkbox" name="hiidden" v-model="testcaseAddModal.hidden">
+                    </div>
+                </div> 
+            </div>
+
         </template>
         <template #cancel>
             Cancel
@@ -133,7 +162,7 @@
             <h1>You sure you want to delete this testcase?</h1>
         </template>
         <template #content>
-            <h2>Testcase {{ testcases[testcaseDeleteModal.index].tc_number }}</h2>
+            <h2 class="mt-4 text-gray-400">Testcase {{ testcases[testcaseDeleteModal.index].tc_number }}</h2>
         </template>
         <template #cancel>
             Cancel

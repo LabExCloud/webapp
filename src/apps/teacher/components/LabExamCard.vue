@@ -27,22 +27,22 @@
             <div class="w-full">
                 <div class="md:flex md:items-center mb-2">
                     <div class="md:w-1/3"> <label for="name">Exam Name: </label> </div>
-                    <div class="md:w-2/3"> <input class="rounded bg-gray-600" name="name" type="text" v-model="examEditModal.name"> </div>
+                    <div class="md:w-2/3"> <input class="rounded bg-gray-600 text-black" name="name" type="text" v-model="examEditModal.name"> </div>
                 </div>
 
                 <div class="md:flex md:items-center mb-2">
                     <div class="md:w-1/3"> <label for="marks">Total Marks: </label> </div>
-                    <div class="md:w-2/3"> <input class="rounded bg-gray-600" name="marks" type="number" v-model="examEditModal.marks">  </div>
+                    <div class="md:w-2/3"> <input class="rounded bg-gray-600 text-black" name="marks" type="number" v-model="examEditModal.marks">  </div>
                 </div>
 
                 <div class="md:flex md:items-center mb-2">
                     <div class="md:w-1/3"><label for="start">Start: </label></div>
-                    <div class="md:w-2/3"><input class="rounded bg-gray-600" name="start" type="date" v-model="examEditModal.start"></div>
+                    <div class="md:w-2/3"><input class="rounded bg-gray-600 text-black" name="start" type="date" v-model="examEditModal.start"></div>
                 </div>
 
                 <div class="md:flex md:items-center mb-2">
                     <div class="md:w-1/3"> <label for="due">Due Date: </label> </div>
-                    <div class="md:w-2/3"> <input class="rounded bg-gray-600" name="due" type="date" v-model="examEditModal.due"> </div>
+                    <div class=""> <input class="rounded bg-gray-600 text-black ml-2" name="due" type="date" v-model="examEditModal.due"> </div>
                 </div>
             </div>
         </template>
@@ -58,7 +58,7 @@
             <h1>You sure you want to delete this question?</h1>
         </template>
         <template #content>
-            <h2>{{ exam.questions[questionDeleteModal.index].question }}</h2>
+            <h2 class="mt-4 text-gray-400">{{ exam.questions[questionDeleteModal.index].question }}</h2>
         </template>
         <template #cancel>
             Cancel

@@ -23,7 +23,7 @@
             <h1>You sure you want to delete this Experiment?</h1>
         </template>
         <template #content>
-            <h2>{{ exps[this.expDeleteModal.index].exp_name }}</h2>
+            <h2 class="mt-4 text-gray-400">{{ exps[this.expDeleteModal.index].exp_name }}</h2>
         </template>
         <template #cancel>
             Cancel
@@ -34,24 +34,24 @@
     </modal>
     <modal :show="expAddModal.show" @cancel="expAddModal.show = false" @confirm="addExp">
         <template #header>
-            <h1>Add new Experiment</h1>
+            <h1 class="text-xl text-gray-400 mb-4">Add new Experiment</h1>
         </template>
         <template #content>
 
             <div class="w-full">
                 <div class="md:flex md:items-center mb-2">
                     <div class="md:w-1/3"> <label for="name">Experiment Name: </label> </div>
-                    <div class="md:w-2/3"> <input class="rounded bg-gray-600" name="name" type="text" v-model="expAddModal.name"> </div>
+                    <div class="md:w-2/3"> <input class="rounded bg-gray-600 text-black" name="name" type="text" v-model="expAddModal.name"> </div>
                 </div>
 
                 <div class="md:flex md:items-center mb-2">
                     <div class="md:w-1/3"> <label for="marks">Total Marks: </label> </div>
-                    <div class="md:w-2/3"> <input class="rounded bg-gray-600" name="marks" type="number" v-model="expAddModal.marks">  </div>
+                    <div class="md:w-2/3"> <input class="rounded bg-gray-600 text-black" name="marks" type="number" v-model="expAddModal.marks">  </div>
                 </div>
 
                 <div class="md:flex md:items-center mb-2">
                     <div class="md:w-1/3"> <label for="due">Due Date: </label> </div>
-                    <div class="md:w-2/3"> <input class="rounded bg-gray-600" name="due" type="date" v-model="expAddModal.due"> </div>
+                    <div class=""> <input class="rounded bg-gray-600 text-black ml-2" name="due" type="date" v-model="expAddModal.due"> </div>
                 </div>
             </div>
         </template>

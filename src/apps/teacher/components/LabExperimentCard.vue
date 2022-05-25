@@ -19,24 +19,24 @@
     <add-edit-question-modal :show="questionModal.show" @cancel="questionModal.show = false" @saved="questionSaved" :id="questionModal.id" :edit="questionModal.edit" pageType="lab"/>
     <modal :show="expEditModal.show" @cancel="expEditModal.show = false" @confirm="editExp">
         <template #header>
-            <h1>Edit Experiment</h1>
+            <h1 class="mb-4 text-xl text-gray-400">Edit Experiment</h1>
         </template>
         <template #content>
 
             <div class="w-full">
                 <div class="md:flex md:items-center mb-2">
                     <div class="md:w-1/3"> <label for="name">Experiment Name: </label> </div>
-                    <div class="md:w-2/3"> <input class="rounded bg-gray-600" name="name" type="text" v-model="expEditModal.name"> </div>
+                    <div class="md:w-2/3"> <input class="rounded bg-gray-600 text-black" name="name" type="text" v-model="expEditModal.name"> </div>
                 </div>
 
                 <div class="md:flex md:items-center mb-2">
                     <div class="md:w-1/3"> <label for="marks">Total Marks: </label> </div>
-                    <div class="md:w-2/3"> <input class="rounded bg-gray-600" name="marks" type="number" v-model="expEditModal.marks">  </div>
+                    <div class="md:w-2/3"> <input class="rounded bg-gray-600 text-black" name="marks" type="number" v-model="expEditModal.marks">  </div>
                 </div>
 
                 <div class="md:flex md:items-center mb-2">
                     <div class="md:w-1/3"> <label for="due">Due Date: </label> </div>
-                    <div class="md:w-2/3"> <input class="rounded bg-gray-600" name="due" type="date" v-model="expEditModal.due"> </div>
+                    <div class=""> <input class="rounded bg-gray-600 text-black ml-2" name="due" type="date" v-model="expEditModal.due"> </div>
                 </div>
             </div>
         </template>
@@ -52,7 +52,7 @@
             <h1>You sure you want to delete this question?</h1>
         </template>
         <template #content>
-            <h2>{{ exp.questions[questionDeleteModal.index].question }}</h2>
+            <h2 class="mt-4 text-gray-400">{{ exp.questions[questionDeleteModal.index].question }}</h2>
         </template>
         <template #cancel>
             Cancel

@@ -39,24 +39,24 @@
         </template>
         <template #content>
             <div class="w-full mt-4">
-                        <div class="md:flex md:items-center mb-2">
-                            <div class="md:w-1/3">
-                                <label for="name">Resource Name: </label>
-                            </div>
-                            <div class="md:w-2/3">
-                                <input class="rounded bg-gray-600 text-black" name="name" type="text" v-model="resourceAddModal.name">
-                            </div>
-                        </div>
-                        <div class="md:flex md:items-center mb-2">
-                            <div class="md:w-1/3">
-                                <label for="desc">Resource Description: </label>
-                            </div>
-                            <div class="md:w-2/3">
-                                <input class="rounded bg-gray-600 text-black" name="desc" type="text" v-model="resourceAddModal.desc">
-                            </div>
-                        </div>
-                        
+                <div class="md:flex md:items-center mb-2">
+                    <div class="md:w-1/3">
+                        <label for="name">Resource Name: </label>
                     </div>
+                    <div class="md:w-2/3">
+                        <input class="rounded bg-gray-600 text-black" name="name" type="text" v-model="resourceAddModal.name">
+                    </div>
+                </div>
+                <div class="md:flex md:items-center mb-2">
+                    <div class="md:w-1/3">
+                        <label for="desc">Resource Description: </label>
+                    </div>
+                    <div class="md:w-2/3">
+                        <input class="rounded bg-gray-600 text-black" name="desc" type="text" v-model="resourceAddModal.desc">
+                    </div>
+                </div>
+                        
+            </div>
 
         </template>
         <template #cancel>
