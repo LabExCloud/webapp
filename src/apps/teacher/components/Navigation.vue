@@ -50,6 +50,14 @@
                 </li>
 
                 <li>
+                    <router-link to="/settings">
+                        <span class="material-symbols-outlined">settings</span>
+
+                        <span class="mx-4"> Settings </span>
+                    </router-link>
+                </li>
+
+                <li>
                     <a href="/logout">
                         <span class="material-symbols-outlined">logout</span>
 

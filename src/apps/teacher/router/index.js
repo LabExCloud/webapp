@@ -6,6 +6,7 @@ import Labs from '../views/labs/Labs.vue'
 import Exam from '../views/exams/Exam.vue'
 import Resources from '../views/resources/Resources.vue'
 import Profile from '../views/Profile.vue'
+import Settings from '../views/Settings.vue'
 
 
 import NotFound from '@/views/NotFound.vue'
@@ -33,6 +34,11 @@ const routes = [
     path: '/resources',
     name: 'resources',
     component: Resources
+  },
+  {
+    path: '/settings',
+    name: 'settings',
+    component: Settings
   },
   {
     path: '/profile',
