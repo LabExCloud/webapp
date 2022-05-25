@@ -175,6 +175,7 @@ export default({
                 }
             )
             this.resource.res_files.push(response.data)
+            this.fileAddModal.file = undefined
             this.fileAddModal.show = false
         },
         setFile(event){
