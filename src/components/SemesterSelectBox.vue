@@ -16,7 +16,8 @@ export default({
         sems: [],
     },
     mounted() {
-        const sems = this.sems.sort((a, b) => a < b)
+        const sems = this.sems
+        sems.sort((a, b) => b - a)
         sems.forEach(sem => {
             this.semSelectBox.push({
                 sem,
