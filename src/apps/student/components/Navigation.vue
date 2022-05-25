@@ -1,7 +1,7 @@
 <template>
     <div class="sidepage">
         <div class="profile">
-            <profile-image class="w-28" :src="user.image" alt="student picture"/>
+            <profile-image class="w-28" :src="user.image?user.image:'/static/images/profile.png'" alt="student picture"/>
             <h2>{{ user.first_name }} {{ user.last_name }}</h2>
             <p>S{{ user.profile.semester }} - {{ user.profile.department.dept_code }} - {{ user.profile.rollno }}</p>
         </div>

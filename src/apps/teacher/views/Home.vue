@@ -71,7 +71,7 @@
             <span class="material-symbols-outlined float-right text-lg mr-5 mt-1 cursor-pointer" @click="settings" > settings </span>
             <br>
             <div class="flex  w-full mx-4 my-5">
-                <profile-image class="w-24 rounded-full border-2 border-white" :src="user.image" alt="teacher picture"/>
+                <profile-image class="w-24 rounded-full border-2 border-white" :src="user.image?user.image:'/static/images/profile.png'" alt="teacher picture"/>
 
                 <div class="grid grid-cols-2 gap-y-1 gap-x-[1px] ml-10">
                     <div>

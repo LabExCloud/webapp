@@ -6,7 +6,7 @@
         </div>
         <div class="profile py-16 px-9 text-white">
             <div class="profile">
-                <profile-image class="w-40" :src="user.image" alt="teacher picture"/>
+                <profile-image class="w-40" :src="user.image?user.image:'/static/images/profile.png'" alt="teacher picture"/>
                 <h2>{{ user.first_name }} {{ user.middle_name }} {{ user.last_name }}</h2>
                 <!-- <p>S{{ user.profile.semester }} - {{ user.profile.department }} - {{ user.profile.rollno }}</p> -->
             </div>
