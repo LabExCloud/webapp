@@ -30,6 +30,7 @@ export default {
     },
     mounted() {
         this.$store.commit('auth/INIT')
+        this.$store.dispatch('auth/getUser')
     }
 }
 </script>
