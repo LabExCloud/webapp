@@ -1,0 +1,146 @@
+<template>
+    <div class="content">
+        <h1 class="text-xl text-blue-400 text-center mt-7"> Students </h1>
+        <button class="text-center text-base w-36 ml-9 mt-9 text-white bg-gray-700 border border-black rounded-md" @click="showAddClassModal">
+            <span class="mx-3">+ Add student</span>
+        </button>
+        <div class="grid grid-cols-3 gap-y-6 gap-x-5 py-10 px-10 mx-10 my-12 min-h-36 border border-borderclr rounded-2xl shadow-md bg-cardclr text-white">
+            
+            <div>
+                1 
+            </div>
+            <div class="">
+                Adithyan MV
+            </div>
+            <div class="">
+                <span class="material-symbols-outlined text-lg">preview</span>
+            </div>
+            
+            <div>
+                2
+            </div>
+            <div>
+                Akshaylal S
+            </div>
+            <div class="">
+                <span class="material-symbols-outlined text-lg">preview</span>
+            </div>
+        
+            <div>
+                3
+            </div>
+            <div>
+                Alwin C Sheejoy
+            </div>
+            <div class="">
+                <span class="material-symbols-outlined text-lg">preview</span>
+            </div>
+        
+            <div>
+                4
+            </div>
+            <div>
+                Jinso Raj
+            </div>
+            <div class="">
+                <span class="material-symbols-outlined text-lg">preview</span>
+            </div>
+        
+        </div>
+
+        <div>
+            <!-- <h1 class="text-xl text-blue-400 text-center mt-7"> Analysis </h1> -->
+            <v-chart class="chart" :option="option" />
+        </div>
+    </div>
+</template>
+
+<script>
+import { mapGetters } from 'vuex'
+
+import { use } from "echarts/core";
+import { CanvasRenderer } from "echarts/renderers";
+import { PieChart } from "echarts/charts";
+import {
+  TitleComponent,
+  TooltipComponent,
+  LegendComponent
+} from "echarts/components";
+import VChart, { THEME_KEY } from "vue-echarts";
+import { ref } from "vue";
+
+use([
+  CanvasRenderer,
+  PieChart,
+  TitleComponent,
+  TooltipComponent,
+  LegendComponent
+]);
+
+
+export default({
+    name: 'Students',
+    async mounted(){
+        document.title = 'Students'
+    },
+    components: {
+    VChart
+    },
+    provide: {
+        [THEME_KEY]: "dark"
+    },
+    setup() {
+        const option = ref({
+        title: {
+            text: "Analysis - Score",
+            left: "center"
+        },
+        tooltip: {
+            trigger: "item",
+            formatter: "{a} <br/>{b} : {c} ({d}%)"
+        },
+        legend: {
+            orient: "vertical",
+            left: "left",
+            data: ["Above 90%", "Above 80%", "Above 75%", "Above 50%", "Above 25%"]
+        },
+        series: [
+            {
+            name: "Analysis - Score",
+            type: "pie",
+            radius: "55%",
+            center: ["50%", "60%"],
+            data: [
+                { value: 14, name: "Above 90%" },
+                { value: 42, name: "Above 80%" },
+                { value: 31, name: "Above 75%" },
+                { value: 19, name: "Above 50%" },
+                { value: 3, name: "Above 25%" }
+            ],
+            emphasis: {
+                itemStyle: {
+                shadowBlur: 10,
+                shadowOffsetX: 0,
+                shadowColor: "rgba(0, 0, 0, 0.5)"
+                }
+            }
+            }
+        ]
+        });
+        return { option };
+    }
+    
+})
+</script>
+
+<style scoped>
+.chart {
+  height: 100vh;
+}
+</style>
+
+<style>
+body {
+  margin: 0;
+}
+</style>

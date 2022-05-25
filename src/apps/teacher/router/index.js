@@ -7,6 +7,8 @@ import Exam from '../views/exams/Exam.vue'
 import Resources from '../views/resources/Resources.vue'
 import Profile from '../views/Profile.vue'
 import Settings from '../views/Settings.vue'
+import Students from '../views/Students.vue'
+
 
 
 import NotFound from '@/views/NotFound.vue'
@@ -44,6 +46,11 @@ const routes = [
     path: '/profile',
     name: 'profile',
     component: Profile
+  },
+  {
+    path: '/student',
+    name: 'students',
+    component: Students
   },
 
   //not found pages
