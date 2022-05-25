@@ -40,7 +40,7 @@
                     </router-link>
                 </li>
 
-                <li>
+                <!-- <li>
                     <router-link to="/editor">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             
@@ -48,7 +48,7 @@
 
                         <span class="mx-4"> Editor Demo </span>
                     </router-link>
-                </li>
+                </li> -->
 
                 <li>
                     <a href="/logout">
