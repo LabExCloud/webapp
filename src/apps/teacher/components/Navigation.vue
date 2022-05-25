@@ -3,7 +3,6 @@
         <div class="profile">
             <profile-image class="w-28" :src="user.image" alt="teacher picture"/>
             <h2>{{ user.first_name }} {{ user.last_name }}</h2>
-            <!-- <p>S{{ user.profile.semester }} - {{ user.profile.department_code }} - {{ user.profile.rollno }}</p> -->
             <p>{{ classs.subject.sub_code }} - {{ classs.subject.sub_name }}</p>
             <p>{{ classs.batch.stream }} - {{ classs.batch.year }}</p>
         </div>
