@@ -187,7 +187,7 @@ export default({
             for(let eachClass in this.classes){
 
                 if(!this.classes[eachClass].subject.image){
-                    this.classes[eachClass].subject.image = "https://telegra.ph/file/9326a1797d1e96975cde9.png"; //add this default image to media/ use path here.
+                    this.classes[eachClass].subject.image = "/static/images/class.png"; //add this default image to media/ use path here.
                 }
             }
 
