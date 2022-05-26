@@ -9,6 +9,8 @@
         <div><date-view v-model="answer.submitted" /></div>
         <div><date-view v-model="answer.modified"></date-view></div>
         <div>{{ answer.total_marks }}</div>
+        <div>{{ answer.student.username }}</div>
+        <div>{{ answer.student.firstname }}</div>
     </div>
 </div>
 </template>
