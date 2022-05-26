@@ -12,6 +12,7 @@
         <ul class="px-6 py-4">
             <li v-for="(question, index) in exp.questions" :key="question.id">
                 <span class="cursor-pointer" @click="showEditQuestionModal(index)">{{question.question_number}} ) {{ question.question }} - {{ question.mark}} marks</span> 
+                <button class="px-2 bg-gray-600 rounded" @click="$router.push(`/answers/${question.id}`)">answers</button>
                 <button style="color: red; font-face:bold;" @click="showQuestionDeleteModal(index)">X</button>
             </li>
         </ul>
@@ -144,7 +145,7 @@ export default({
             const response = axios.delete(`/api/v1/labs/question/${this.exp.questions[this.questionDeleteModal.index].id}`)
             this.exp.questions.splice(this.questionDeleteModal.index, 1)
             this.questionDeleteModal.show = false
-        }
+        },
     },
     async mounted(){
         await this.getExps(this.exp_id)

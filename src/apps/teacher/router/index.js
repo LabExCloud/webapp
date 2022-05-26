@@ -11,6 +11,8 @@ import Students from '../views/Students.vue'
 
 
 
+import Answers from '../views/Answers.vue'
+
 import NotFound from '@/views/NotFound.vue'
 
 import store from '../store'
@@ -51,6 +53,11 @@ const routes = [
     path: '/student',
     name: 'students',
     component: Students
+  },
+  {
+    path: '/answers/:ansid',
+    name: 'answers',
+    component: Answers
   },
 
   //not found pages
