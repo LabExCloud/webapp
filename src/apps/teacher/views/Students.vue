@@ -4,43 +4,13 @@
         <button class="text-center text-base w-36 ml-9 mt-9 text-white bg-gray-700 border border-black rounded-md" @click="showAddClassModal">
             <span class="mx-3">+ Add student</span>
         </button>
-        <div class="grid grid-cols-3 gap-y-6 gap-x-5 py-10 px-10 mx-10 my-12 min-h-36 border border-borderclr rounded-2xl shadow-md bg-cardclr text-white">
+        <div v-for="(student, index) in students" :key="index" class="grid grid-cols-3 gap-y-6 gap-x-5 py-10 px-10 mx-10 my-12 min-h-36 border border-borderclr rounded-2xl shadow-md bg-cardclr text-white">
             
             <div>
-                1 
+                {{ index + 1 }}
             </div>
             <div class="">
-                Adithyan MV
-            </div>
-            <div class="">
-                <span class="material-symbols-outlined text-lg">preview</span>
-            </div>
-            
-            <div>
-                2
-            </div>
-            <div>
-                Akshaylal S
-            </div>
-            <div class="">
-                <span class="material-symbols-outlined text-lg">preview</span>
-            </div>
-        
-            <div>
-                3
-            </div>
-            <div>
-                Alwin C Sheejoy
-            </div>
-            <div class="">
-                <span class="material-symbols-outlined text-lg">preview</span>
-            </div>
-        
-            <div>
-                4
-            </div>
-            <div>
-                Jinso Raj
+                {{ student.first_name }} {{ student.last_name }}
             </div>
             <div class="">
                 <span class="material-symbols-outlined text-lg">preview</span>
@@ -68,6 +38,7 @@ import {
 } from "echarts/components";
 import VChart, { THEME_KEY } from "vue-echarts";
 import { ref } from "vue";
+import axios from 'axios';
 
 use([
   CanvasRenderer,
@@ -82,6 +53,23 @@ export default({
     name: 'Students',
     async mounted(){
         document.title = 'Students'
+        await this.getStudents()
+    },
+    methods: {
+        async getStudents(){
+            const response = await axios.get(`/api/v1/class/students/${this.classs.id}`)
+            this.students = response.data
+        }
+    },
+    data() {
+        return {
+            students: []
+        }
+    },
+    computed: {
+        ...mapGetters([
+            'classs',
+        ]),
     },
     components: {
     VChart

@@ -4,6 +4,7 @@
         <p>Answers</p>
     </div>
 
+<<<<<<< HEAD
     <div class="grid grid-cols-6 gap-y-2 gap-x-2 py-5 px-4 min-h-36 text-white text-lg">
             <span> Qn: </span>
             <span> Name </span>
@@ -22,6 +23,15 @@
             <span> <date-view v-model="answer.modified"></date-view> </span>
             <span> {{ answer.total_marks }} </span>
         </div>
+=======
+    <div v-for="(answer, index) in answers">
+        <div>{{ answer.answer }}</div>
+        <div><date-view v-model="answer.submitted" /></div>
+        <div><date-view v-model="answer.modified"></date-view></div>
+        <div>{{ answer.total_marks }}</div>
+        <div>{{ answer.student.username }}</div>
+        <div>{{ answer.student.firstname }}</div>
+>>>>>>> 380ed0e67850cf9ab136ed8eadbebb938cf358bd
     </div>
 
 </div>
