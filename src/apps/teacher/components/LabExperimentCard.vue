@@ -11,9 +11,10 @@
         
         <ul class="px-6 py-4">
             <li v-for="(question, index) in exp.questions" :key="question.id">
-                <span class="cursor-pointer" @click="showEditQuestionModal(index)">{{question.question_number}} ) {{ question.question }} - {{ question.mark}} marks</span> 
-                <button class="px-2 bg-gray-600 rounded" @click="$router.push(`/answers/${question.id}`)">answers</button>
-                <button style="color: red; font-face:bold;" @click="showQuestionDeleteModal(index)">X</button>
+                <span class="cursor-pointer" @click="showEditQuestionModal(index)"><span> {{question.question_number}} ) {{ question.question }} </span> - {{ question.mark}} marks </span> 
+                <button class="ml-4 text-red-600" @click="showQuestionDeleteModal(index)">X</button>
+                <button class="ml-8 px-2 bg-gray-600 rounded" @click="$router.push(`/answers/${question.id}`)">answers</button>
+                
             </li>
         </ul>
     </div>

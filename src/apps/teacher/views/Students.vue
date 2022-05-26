@@ -4,7 +4,7 @@
         <button class="text-center text-base w-36 ml-9 mt-9 text-white bg-gray-700 border border-black rounded-md" @click="showAddClassModal">
             <span class="mx-3">+ Add student</span>
         </button>
-        <div v-for="(student, index) in students" :key="index" class="grid grid-cols-3 gap-y-6 gap-x-5 py-10 px-10 mx-10 my-12 min-h-36 border border-borderclr rounded-2xl shadow-md bg-cardclr text-white">
+        <div v-for="(student, index) in students" :key="index" class="grid grid-cols-3 gap-y-2 gap-x-5 py-2 px-10 mx-10 my-4 min-h-36 rounded-2xl shadow-md bg-cardclr hover:border-gray-300 hover:shadow-2xl text-white">
             
             <div>
                 {{ index + 1 }}
