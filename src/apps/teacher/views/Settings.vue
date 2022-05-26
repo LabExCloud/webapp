@@ -78,7 +78,7 @@
 
 </template>
 
-<style>
+<style scoped>
 select{
     width: 100%
 }
