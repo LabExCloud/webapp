@@ -23,11 +23,11 @@
         </div>
 
 
-        <div class="grid grid-cols-1 gap-10 py-14 px-8 text-white">
+        <div class="grid grid-cols-2 gap-10 py-14 px-8 text-white">
             <div v-for="subject in subjects" :key="subject.id" class="py-8 min-h-36 border border-borderclr rounded-2xl shadow-md bg-cardclr hover:border-gray-300 hover:shadow-2xl text-center ">
                 {{ subject.sub_name }} <br><br>
                 <table class="w-full">
-                        <tr class="cursor-pointer" v-for="resource in subject.resources" :key="resource.id" @click="cardClick(resource.id)">
+                        <tr class="hover:bg-mainclr-200 cursor-pointer" v-for="resource in subject.resources" :key="resource.id" @click="cardClick(resource.id)">
                             <td>
                                 <!-- <router-link :to="'/resources/res/' + resource.id"> -->
                                 <p> {{ resource.res_name }} </p>
@@ -36,9 +36,9 @@
                             <td>
                                 <date-view v-model="resource.created"/>
                             </td>
-                            <td>
+                            <!-- <td>
                                 <p>tag</p>
-                            </td>
+                            </td> -->
                         </tr>
                 </table>
             </div><br>
