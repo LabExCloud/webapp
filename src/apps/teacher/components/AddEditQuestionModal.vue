@@ -40,6 +40,7 @@
                 </div>
                 <div class="">
                 <select @change="selectLang" class="rounded bg-gray-600 text-black min-w-20 py-1 px-4">
+                    <option disabled :selected="formData.language === undefined" value> -- select an option -- </option>
                     <option v-for="lang in languages" :key="lang.id" :value="lang.id" :selected="lang.id == formData.language">{{ lang.language }}</option>
                 </select>
                 </div>
@@ -144,7 +145,7 @@
                         <label for="hidden">Hidden </label>
                     </div>
                     <div class="">
-                        <input class="bg-gray-600 text-black rounded" type="checkbox" name="hiidden" v-model="testcaseAddModal.hidden">
+                        <input class="bg-gray-600 text-black rounded" type="checkbox" name="hidden" v-model="testcaseAddModal.hidden">
                     </div>
                 </div> 
             </div>
@@ -366,6 +367,7 @@ export default({
         },
         selectLang(event){
             this.formData.language = parseInt(event.target.value)
+            console.log(this.formData.language);
         },
         async getLanguages(){
             const response = await axios.get('/api/v1/editor/languages')
