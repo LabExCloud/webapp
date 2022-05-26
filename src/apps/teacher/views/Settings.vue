@@ -21,56 +21,76 @@
             </template>
         </modal>
 
-        <div class="w-full mt-6">
+        <div class="w-full mt-6 px-10 py-5">
             <div class="md:flex md:items-center mb-2">
-                <div class="md:w-1/3 text-white">
+                <div class="label">
                     <label for="batch">Batch: </label>
                 </div>
-                <select class="rounded bg-gray-600 text-black" name="batch" @change="batch = parseInt($event.target.value)">
-                    <option v-for="(batch, index) in options.batches" :selected="batch == index" :value="index">{{ batch.year }} - {{ batch.stream }}</option>
-                </select>
+                <div class="input">
+                    <select class="h-8 rounded bg-gray-600 text-black" name="batch" @change="batch = parseInt($event.target.value)">
+                        <option v-for="(batch, index) in options.batches" :selected="batch == index" :value="index">{{ batch.year }} - {{ batch.stream }}</option>
+                    </select>
+                </div>
                     
             </div>
 
             <div class="md:flex md:items-center mb-2">
-                <div class="md:w-1/3 text-white">
+                <div class="label">
                     <label for="semester">Semester: </label>
                 </div>
-                <div class="md:w-2/3">
-                    <select class="rounded bg-gray-600 text-black" name="semester" @change="semester = parseInt($event.target.value)">
+                <div class="input">
+                    <select class="h-8 rounded bg-gray-600 text-black" name="semester" @change="semester = parseInt($event.target.value)">
                         <option v-for="(sem, index) in this.options.semesters" :selected="semester == index" :value="index">S{{ sem }}</option>
                     </select>
                 </div>
             </div>
 
             <div class="md:flex md:items-center mb-2">
-                <div class="md:w-1/3 text-white">
+                <div class="label">
                     <label for="subject">Subject: </label>
                 </div>
-                <div class="md:w-2/3">
-                    <select class="rounded bg-gray-600 text-black" name="subject" @change="subject = parseInt($event.target.value)">
+                <div class="input">
+                    <select class="h-8 rounded bg-gray-600 text-black" name="subject" @change="subject = parseInt($event.target.value)">
                         <option v-for="(sub, index) in options.subjects" :selected="subject == index" :value="index">{{ sub.sub_code }} - {{ sub.sub_name }}</option>
                     </select>
                 </div>
             </div>
 
             <div class="md:flex md:items-center mb-2">
-                <div class="md:w-1/3 text-white">
+                <div class="label">
                     <label for="islab">Is Lab:</label>
                 </div>
-                <input class="rounded bg-gray-600" type="checkbox" name="islab" v-model="is_lab">
+                <input class="h-5 w-5 rounded bg-gray-600" type="checkbox" name="islab" v-model="is_lab">
             </div>
 
             <div class="md:flex md:items-center mb-2">
-                <button class="bg-gray-500 px-7 py-2 ml-2 rounded-md text-md text-white font-semibold mt-3" @click="discard">Discard</button>
-                <button class="bg-green-500 px-7 py-2 ml-2 rounded-md text-md text-white font-semibold mt-3" @click="save">Update</button>
-                <button class="bg-red-500 px-7 py-2 ml-2 rounded-md text-md text-white font-semibold mt-3" @click="showDeleteClass = true">Delete</button>
+                <div class="md:w-5/6">
+                    <button class="bg-gray-500 px-7 py-2 ml-2 rounded-md text-md text-white font-semibold mt-3" @click="discard">Discard</button>
+                    <button class="bg-green-500 px-7 py-2 ml-2 rounded-md text-md text-white font-semibold mt-3" @click="save">Update</button>
+                </div>
+                <div class="md:w-1/6">
+                    <button class="bg-red-500 px-7 py-2 ml-2 rounded-md text-md text-white font-semibold mt-3 float-right" @click="showDeleteClass = true">Delete</button>
+                </div>
             </div>
 
         </div>
     </div>
 
 </template>
+
+<style>
+select{
+    width: 100%
+}
+
+.label{
+    @apply md:w-1/5 text-white justify-end
+}
+
+.input{
+    @apply md:w-4/5
+}
+</style>
 
 
 <script>
