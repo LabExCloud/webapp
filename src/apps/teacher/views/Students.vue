@@ -2,7 +2,7 @@
     <div class="content">
         <h1 class="text-xl text-blue-400 text-center mt-7"> Students </h1>
         <button class="text-center text-base w-36 ml-9 mt-9 text-white bg-gray-700 border border-black rounded-md" @click="showAddClassModal">
-            <span class="mx-3">+ Add student</span>
+            <span @click="addStudentModal.show = true" class="mx-3">+ Add student</span>
         </button>
         <div v-for="(student, index) in students" :key="index" class="grid grid-cols-3 gap-y-2 gap-x-5 py-2 px-10 mx-10 my-4 min-h-36 rounded-2xl shadow-md bg-cardclr hover:border-gray-300 hover:shadow-2xl text-white">
             
@@ -23,6 +23,34 @@
             <v-chart class="chart" :option="option" />
         </div>
     </div>
+    <modal :show="addStudentModal.show" @cancel="addStudentModal.show = false" @confirm="addStudent">
+        <template #header>
+            <h1 class="mb-4 text-xl text-gray-400">Add student to this class</h1>
+        </template>
+        <template #content>
+            <div class="w-full mt-4">
+                <div class="md:flex md:items-center mb-2">
+                    <div class="md:w-1/3">
+                        <label for="search">Search: </label>
+                    </div>
+                    <div class="md:w-2/3">
+                        <input list="students" class="rounded bg-gray-600 text-black" name="search" type="text" v-model="addStudentModal.username" autocomplete="off">
+                        <datalist v-if="students" id="students">
+                            <option v-for="student in addStudentModal.students" :value="student.username">{{ student.username }} - {{ student.first_name }}</option>
+                        </datalist>
+                    </div>
+                </div>
+                        
+            </div>
+
+        </template>
+        <template #cancel>
+            Cancel
+        </template>
+        <template #confirm>
+            Add 
+        </template>
+    </modal>
 </template>
 
 <script>
@@ -40,6 +68,8 @@ import VChart, { THEME_KEY } from "vue-echarts";
 import { ref } from "vue";
 import axios from 'axios';
 
+import Modal from '@/components/Modal.vue'
+
 use([
   CanvasRenderer,
   PieChart,
@@ -54,16 +84,32 @@ export default({
     async mounted(){
         document.title = 'Students'
         await this.getStudents()
+        await this.getAllStudents()
     },
     methods: {
         async getStudents(){
             const response = await axios.get(`/api/v1/class/students/${this.classs.id}`)
             this.students = response.data
+        },
+        async getAllStudents(){
+            const response = await axios.get(`/api/v1/students`)
+            this.addStudentModal.students = response.data
+        },
+        async addStudent(){
+            const student = this.addStudentModal.students.find(st => st.username === this.addStudentModal.username)
+            const response = await axios.post(`/api/v1/class/student/${this.classs.id}/${student.student}`)
+            this.addStudentModal.show = false
+            this.students.push(student)
         }
     },
     data() {
         return {
-            students: []
+            students: [],
+            addStudentModal: {
+                show: false,
+                students: [],
+                username: '',
+            }
         }
     },
     computed: {
@@ -71,8 +117,14 @@ export default({
             'classs',
         ]),
     },
+    watch:{
+        'addStudentModal.show': async function(){
+            await this.getAllStudents()
+        },
+    },
     components: {
-    VChart
+        VChart,
+        Modal,
     },
     provide: {
         [THEME_KEY]: "dark"
