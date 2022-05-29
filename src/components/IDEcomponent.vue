@@ -13,7 +13,7 @@
     <div class="flex flex-col bg-white w-screen h-screen">
 
         <div class="bg-gray-700 w-full h-7">
-            <button class="bg-black text-sm text-white float-right rounded py-[1px] px-2 mr-4">
+            <button @click="submit" class="bg-black text-sm text-white float-right rounded py-[1px] px-2 mr-4">
                  Submit
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-3 inline rotate-90" viewBox="0 0 20 20" fill="currentColor">
                     <path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z" />
@@ -74,7 +74,8 @@ export default({
         language: '',
         languages: [],
         isOutputExist: false,
-        qn: {}
+        qn: {},
+        ans_id: undefined,
         }
     },
     methods: {
@@ -127,6 +128,32 @@ export default({
             this.language = this.languages.find(obj => obj.id == parseInt(event.target.value))
             this.code = await this.getDemoCode(this.language.id)
         },
+
+        async submit(){
+            let data = new FormData()
+            let answer = new File([this.code], "answer.cpp")
+            data.append('execution_tries', 2)
+            data.append('execution_time', 3600)
+            data.append('total_marks', 10)
+            data.append('answer', answer)
+
+            if(this.ans_id){
+                const response = await axios.put(`/api/v1/labs/answer/${this.ans_id}`,
+                    data,
+                    {
+                        headers: {"Content-Type": "multipart/form-data",},
+                    }
+                )
+            }else{
+                const response = await axios.post(`/api/v1/labs/answer/${this.qn.id}`,
+                    data,
+                    {
+                        headers: {"Content-Type": "multipart/form-data",},
+                    }
+                )
+                this.ans_id = response.data.id
+            }
+        }
     },
     computed: {
         htmlOutput(){
