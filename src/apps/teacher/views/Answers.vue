@@ -6,14 +6,15 @@
 
     <button @click="getAnswers($route.params.ansid)" class="bg-gray-600 px-4 py-2 rounded m-5"><span class="material-symbols-outlined text-xl">refresh</span></button>
 
-    <div class="grid grid-cols-6 gap-y-2 gap-x-2 py-5 px-4 min-h-36 text-white text-lg">
+    <div v-if="answers.length > 0" class="grid grid-cols-6 gap-y-2 gap-x-2 py-5 px-4 min-h-36 text-white text-lg">
             <span> Qn: </span>
             <span> Name </span>
             <span> Answers </span>
             <span> Submitted date </span>
             <span> Modified date </span>
             <span> Total Marks </span>
-        </div>
+    </div>
+    <div v-else class="text-white text-xl text-center"> Nothing to show ! </div>
 
     <div v-for="(answer, index) in answers" class="grid grid-cols-1 gap-1 py-2 px-2 text-white">
         <div class="grid grid-cols-6 gap-y-2 gap-x-2 py-5 px-4 min-h-36  rounded-2xl shadow-md bg-cardclr hover:border-gray-300 hover:shadow-2xl">
