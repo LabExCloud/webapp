@@ -7,7 +7,7 @@
     </div>
     
     <div class="bg-cardclr w-[480px] h-screen pr-4 mr-auto text-white pl-2 py-5">
-        <p> {{ qn.question }}</p>
+        <p> {{ qn.question }} </p>
     </div>
 
     <div class="flex flex-col bg-white w-screen h-screen">
@@ -31,8 +31,22 @@
             </select>
         </div>
 
-        <div class="bg-gray-900 w-full h-3/4">
-        <Editor class="w-full h-full" :language="language.editor_lang" v-model="code" theme="vs-dark"/>
+        <div class="bg-gray-900 w-full h-3/4 realtive">
+            <div v-if="noti" class="text-white px-6 py-4 border-0 rounded absolute top-10 right-3 z-10 bg-emerald-500">
+                <span class="text-2xl inline-block mr-2 align-middle">
+                    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="check-circle" class="w-4 h-4 fill-current" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                        <path fill="currentColor" d="M504 256c0 136.967-111.033 248-248 248S8 392.967 8 256 119.033 8 256 8s248 111.033 248 248zM227.314 387.314l184-184c6.248-6.248 6.248-16.379 0-22.627l-22.627-22.627c-6.248-6.249-16.379-6.249-22.628 0L216 308.118l-70.059-70.059c-6.248-6.248-16.379-6.248-22.628 0l-22.627 22.627c-6.248 6.248-6.248 16.379 0 22.627l104 104c6.249 6.249 16.379 6.249 22.628.001z"></path>
+                    </svg>
+                </span>
+                <span class="inline-block align-middle mr-8">
+                    <b>Done 👍</b> - Your code has been submitted!
+                </span>
+                <button class="absolute bg-transparent text-lg leading-none right-0 top-0 mt-4 mr-6 outline-none focus:outline-none" v-on:click="closeNoti()">
+                    <span class="material-symbols-outlined text-gray-600">cancel</span>
+                </button>
+            </div>
+
+            <Editor class="w-full h-full" :language="language.editor_lang" v-model="code" theme="vs-dark"/>
         </div>
 
 
@@ -76,6 +90,7 @@ export default({
         isOutputExist: false,
         qn: {},
         ans_id: undefined,
+        noti: false
         }
     },
     methods: {
@@ -128,8 +143,22 @@ export default({
             this.language = this.languages.find(obj => obj.id == parseInt(event.target.value))
             this.code = await this.getDemoCode(this.language.id)
         },
+        async showNoti(){
+            this.noti = true
+
+            setTimeout(() => {
+                this.noti = false;
+            }, 2000);
+        },
+
+        closeNoti(){
+            this.noti = false;
+        },
 
         async submit(){
+            
+            await this.showNoti(); //change - on success.
+
             let data = new FormData()
             let answer = new File([this.code], "answer.cpp")
             data.append('execution_tries', 2)
@@ -153,6 +182,8 @@ export default({
                 )
                 this.ans_id = response.data.id
             }
+            
+            
         }
     },
     computed: {
