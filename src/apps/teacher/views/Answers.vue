@@ -4,6 +4,8 @@
         <p>Answers</p>
     </div>
 
+    <button @click="getAnswers($route.params.ansid)" class="bg-gray-600 px-4 py-2 rounded m-5"><span class="material-symbols-outlined text-xl">refresh</span></button>
+
     <div class="grid grid-cols-6 gap-y-2 gap-x-2 py-5 px-4 min-h-36 text-white text-lg">
             <span> Qn: </span>
             <span> Name </span>
