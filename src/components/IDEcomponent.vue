@@ -51,11 +51,20 @@
 
 
         <div class="bg-gray-700 w-full h-6">
-            <span class="px-4 text-sm"> Output </span>
-            <span class="px-4 text-sm"> Testcase </span>
+            <!-- <span class="px-4 text-sm"> Output </span>
+            <span class="px-4 text-sm"> Testcase </span> -->
+           <tabs v-model="active">
+                <tab>Output</tab>
+                <tab>Testcase</tab>
+            </tabs>
+
         </div>
         <div class="bg-gray-500 w-full h-1/3">
-            <div class="w-full h-full px-5 py-4" v-if="isOutputExist" v-html="htmlOutput"></div>   
+            <!-- <div class="w-full h-full px-5 py-4" v-if="isOutputExist" v-html="htmlOutput"></div>    -->
+            <tab-panels v-model="active">
+                <tab-panel v-show="isOutputExist" v-html="htmlOutput"></tab-panel>
+                <tab-panel>Testcase out</tab-panel>
+            </tab-panels>
         </div>
 
     </div>
@@ -68,9 +77,17 @@ import axios from 'axios'
 import AnsiUp from 'ansi_up'
 
 import Editor from '@/components/Editor.vue'
+import Tabs from '@/components/Tabs.vue'
+import Tab from '@/components/Tab.vue'
+import TabPanels from '@/components/TabPanels.vue'
+import TabPanel from '@/components/TabPanel.vue'
+
+import { ref } from "vue";
+
 
 export default({
     name: 'IDEcomponent',
+    
 
     async mounted(){
         document.title = 'Question'
@@ -78,7 +95,11 @@ export default({
         await this.getLanguages()
     },
     components: {
-        Editor
+        Editor,
+        Tabs,
+        Tab,
+        TabPanels,
+        TabPanel
     },
     data() {
         return {
@@ -198,6 +219,12 @@ export default({
     beforeMount () {
         this.ansi = new AnsiUp()
     },
+
+    setup() {
+        const active = ref(0);
+
+        return { active };
+    }
 })
 
 </script>
