@@ -1,5 +1,16 @@
 <template>
 <div class="content">
+
+    <AnswerModal :show="AnsModal.show">
+        <template #header>
+            <h1 class="text-xl text-gray-400">heading</h1>
+        </template>
+        <template #content>
+            <h2> content </h2>
+        </template>
+
+    </AnswerModal>
+
     <div class="header">
         <p>Answers</p>
     </div>
@@ -20,7 +31,9 @@
         <div class="grid grid-cols-6 gap-y-2 gap-x-2 py-5 px-4 min-h-36  rounded-2xl shadow-md bg-cardclr hover:border-gray-300 hover:shadow-2xl">
             <span> {{ answer.question }}</span>
             <span> {{ answer.student.first_name }} {{ answer.student.last_name }}</span>
-            <button class="bg-gray-600 rounded" > <a :href="answer.answer"> View answer </a> </button>
+            <button class="bg-gray-600 rounded" @click="ShowAnswerModal"> View
+                <!-- <a :href="answer.answer"> View answer </a> -->
+            </button>
             <span> <date-view v-model="answer.submitted"></date-view> </span>
             <span> <date-view v-model="answer.modified"></date-view> </span>
             <span> {{ answer.total_marks }} </span>
@@ -33,12 +46,16 @@
 <script>
 import axios from "axios"
 import DateView from "@/components/DateView.vue"
+import AnswerModal from "../components/AnswerModal.vue"
 
 export default({
     name: 'Answers',
     data(){
         return {
             answers: [],
+            AnsModal: {
+                show: false,
+            },
         }
     },
     async mounted() {
@@ -56,10 +73,14 @@ export default({
                 this.answers[eachAns].answer = axios.defaults.baseURL + this.answers[eachAns].answer;
             }
                 //console.log(this.answers)
-        }
+        },
+        async showAnswerModal(){
+            this.AnsModal.show = true
+        },
     },
     components:{
         DateView,
+        AnswerModal
     }
 })
 </script>
