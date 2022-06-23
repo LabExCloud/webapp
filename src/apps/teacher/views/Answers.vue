@@ -31,7 +31,7 @@
         <div class="grid grid-cols-6 gap-y-2 gap-x-2 py-5 px-4 min-h-36  rounded-2xl shadow-md bg-cardclr hover:border-gray-300 hover:shadow-2xl">
             <span> {{ answer.question }}</span>
             <span> {{ answer.student.first_name }} {{ answer.student.last_name }}</span>
-            <button class="bg-gray-600 rounded" @click="ShowAnswerModal"> View
+            <button class="bg-gray-600 rounded" @click="showAnswerModal"> View
                 <!-- <a :href="answer.answer"> View answer </a> -->
             </button>
             <span> <date-view v-model="answer.submitted"></date-view> </span>
