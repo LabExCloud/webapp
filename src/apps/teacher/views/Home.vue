@@ -23,24 +23,24 @@
                         <div class="md:w-1/3">
                             <label for="semester">Semester: </label>
                         </div>
-                        <div class="md:w-2/3">
-                            <select class="rounded bg-gray-600 text-black" name="semester" @change="classAddModal.semester = parseInt($event.target.value)">
+                       
+                            <select class="rounded bg-gray-600 text-black ml-4" name="semester" @change="classAddModal.semester = parseInt($event.target.value)">
                                 <option disabled selected value> -- select an option -- </option>
                                 <option v-for="(sem, index) in this.classAddModal.options.semesters" :value="index">S{{ sem }}</option>
                             </select>
-                        </div>
+                        
                     </div>
 
                     <div class="md:flex md:items-center mb-2">
                         <div class="md:w-1/3">
                             <label for="subject">Subject: </label>
                         </div>
-                        <div class="md:w-2/3">
-                            <select class="rounded bg-gray-600 text-black" name="subject" @change="classAddModal.subject = parseInt($event.target.value)">
+                        
+                            <select class="rounded bg-gray-600 text-black w-44 ml-4" name="subject" @change="classAddModal.subject = parseInt($event.target.value)">
                                 <option disabled selected value> -- select an option -- </option>
                                 <option v-for="(subject, index) in classAddModal.options.subjects" :value="index">{{ subject.sub_code }} - {{ subject.sub_name }}</option>
                             </select>
-                        </div>
+                        
                     </div>
 
                     <div class="md:flex md:items-center mb-2">
