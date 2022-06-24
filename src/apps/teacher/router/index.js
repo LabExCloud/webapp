@@ -7,7 +7,7 @@ import Exam from '../views/exams/Exam.vue'
 import Resources from '../views/resources/Resources.vue'
 import Profile from '../views/Profile.vue'
 import Settings from '../views/Settings.vue'
-import Students from '../views/Students.vue'
+import Analysis from '../views/Analysis.vue'
 
 
 
@@ -50,9 +50,9 @@ const routes = [
     component: Profile
   },
   {
-    path: '/student',
-    name: 'students',
-    component: Students
+    path: '/analysis',
+    name: 'analysis',
+    component: Analysis
   },
   {
     path: '/answers/:ansid',

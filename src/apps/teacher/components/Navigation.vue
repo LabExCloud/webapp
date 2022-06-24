@@ -41,7 +41,7 @@
                 </li>
 
                 <li>
-                    <router-link to="/student">
+                    <router-link to="/analysis">
                         <span class="material-symbols-outlined">school</span>
 
                         <span class="mx-4"> Student </span>
