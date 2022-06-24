@@ -5,7 +5,8 @@
             <slot name="content">content</slot><br>
 
             <div class="text-center">
-                <button class="bg-green-500 px-4 py-2 rounded-md text-md text-white mt-2 mb-1" @click="$emit('close')"><slot name="close"></slot></button>
+                <button class="bg-green-500 px-4 py-2 mx-2 rounded-md text-md text-white mt-2 mb-1"><slot name="dl"></slot></button>
+                <button class="bg-red-500 px-4 py-2 mx-2 rounded-md text-md text-white mt-2 mb-1" @click="$emit('close')"><slot name="close"></slot></button>
             </div>
             
         </div>

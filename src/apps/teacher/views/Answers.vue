@@ -32,6 +32,9 @@
             </div>
         </template>
         
+        <template #dl>
+                <a :href="AnsModal.CurrentAnsUrl"> Download </a>
+        </template>
 
         <template #close>
                 Close
@@ -59,9 +62,7 @@
         <div class="grid grid-cols-6 gap-y-2 gap-x-2 py-5 px-4 min-h-36  rounded-2xl shadow-md bg-cardclr hover:border-gray-300 hover:shadow-2xl">
             <span> {{ answer.question }}</span>
             <span> {{ answer.student.first_name }} {{ answer.student.last_name }}</span>
-            <button class="bg-gray-600 rounded" @click="showAnswerModal"> View
-                <!-- <a :href="answer.answer"> View answer </a> -->
-            </button>
+            <button class="bg-gray-600 rounded" @click="showAnswerModal(answer.answer)"> View </button>
             <span> <date-view v-model="answer.submitted"></date-view> </span>
             <span> <date-view v-model="answer.modified"></date-view> </span>
             <span> {{ answer.total_marks }} </span>
@@ -82,6 +83,7 @@ export default({
         return {
             answers: [],
             AnsModal: {
+                CurrentAnsUrl: "",
                 show: false,
             },
         }
@@ -100,10 +102,12 @@ export default({
             for(let eachAns in this.answers){
                 this.answers[eachAns].answer = axios.defaults.baseURL + this.answers[eachAns].answer;
             }
-                //console.log(this.answers)
+
         },
-        async showAnswerModal(){
+        async showAnswerModal(Ansurl){
             this.AnsModal.show = true
+            this.AnsModal.CurrentAnsUrl = Ansurl
+
         },
     },
     components:{
