@@ -6,9 +6,9 @@
             <h1 class="text-xl text-gray-400  text-center">Answer</h1>
         </template>
         <template #content>
-           <div class="w-[32rem] h-96 bg-gray-800 overflow-auto rounded mt-6 p-8">
-                <p>
-                    <pre v-highlightjs="AnsModal.answer"><code></code></pre>
+           <div class="w-[32rem] h-96 bg-gray-800 overflow-auto rounded mt-6 p-0">
+                <p class="h-full">
+                    <pre v-highlightjs="AnsModal.answer" class="h-full"><code class="h-full"></code></pre>
                 </p>
                         <!-- {{ AnsModal.answer }} -->
             </div>

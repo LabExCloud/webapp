@@ -4,7 +4,7 @@ import router from './router'
 import store from './store'
 import axios from 'axios'
 import VueHighlightJS from 'vue3-highlightjs'
-import 'highlight.js/styles/monokai.css'
+import 'highlight.js/styles/github-dark.css'
 
 import '@/index.css'
 
