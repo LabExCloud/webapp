@@ -7,7 +7,10 @@
         </template>
         <template #content>
            <div class="w-[32rem] h-96 bg-gray-800 overflow-auto rounded mt-6 p-8">
-                <p> {{ AnsModal.answer }} </p>
+                <p>
+                    <pre v-highlightjs="AnsModal.answer"><code></code></pre>
+                </p>
+                        <!-- {{ AnsModal.answer }} -->
             </div>
         </template>
         
@@ -85,6 +88,7 @@ export default({
 
         },
         async showAnswerModal(Ansurl){
+
             this.AnsModal.show = true
             this.AnsModal.CurrentAnsUrl = Ansurl
             try {
@@ -97,7 +101,7 @@ export default({
     },
     components:{
         DateView,
-        AnswerModal
+        AnswerModal,
     }
 })
 </script>
