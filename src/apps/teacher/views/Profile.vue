@@ -1,7 +1,12 @@
 <template>
 
     <div class="content">
-        <div class="header">
+        <div class="pt-5 pl-5 absolute z-10">
+            <button class="text-center text-base w-10 text-white bg-gray-700 border border-black rounded-md" @click="goHome">
+                <span class="material-symbols-outlined text-lg text-black">arrow_back</span>
+            </button>
+        </div>
+        <div class="header relative">
             <p> Your Profile </p>
         </div>
         <div class="profile py-16 px-9 text-white">
@@ -68,6 +73,9 @@ export default({
                 url: '/api/v1/profile',
             }).then(response => this.user = response.data)
         },
+        goHome(){
+            this.$router.push('/')
+        }
     },
 })
 </script>
