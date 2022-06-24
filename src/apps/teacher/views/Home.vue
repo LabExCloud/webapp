@@ -62,6 +62,7 @@
         </modal>
 
         <div class="flex justify-center items-center">
+            
             <div class="bg-cardclr border border-borderclr text-white h-34 w-[610px] mt-10 rounded-md shadow-inner">
             
             <a href="/logout">
@@ -99,7 +100,10 @@
             </div>
             <div class="add-box">
                 <button class="text-center text-base w-40 text-white bg-gray-700 border border-black rounded-md" @click="showAddClassModal">
-                    <span class="mx-4">+ New Class</span>
+                    <span class="mx-3">+ New Class</span>
+                </button>
+                <button class="text-center text-sm w-24 mx-2 text-white bg-gray-700 border border-black rounded-md" @click="allStudents">
+                    <span>Students</span>
                 </button>
             </div>
         </div>
@@ -202,6 +206,9 @@ export default({
         },
         settings(){
             this.$router.push('/profile')
+        },
+        allStudents(){
+            this.$router.push('/students')
         },
         async showAddClassModal(){
             const response1 = await axios.get('/api/v1/base/batches')
