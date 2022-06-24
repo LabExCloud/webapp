@@ -26,7 +26,7 @@
             <v-chart class="chart" :option="option" />
         </div>
     </div>
-    <modal :show="addStudentModal.show" @cancel="addStudentModal.show = false" @confirm="uploadStudentCsv">
+    <modal :show="addStudentModal.show" @cancel="addStudentModal.show = false" @confirm="addStudent">
         <template #header>
             <h1 class="mb-4 text-xl text-gray-400">Add student to this class</h1>
         </template>
