@@ -160,6 +160,7 @@ export default({
     async mounted(){
         document.title = 'Home'
         await this.getClasses();
+        this.$store.commit('SET_CLASSS', undefined)
     },
     data(){
         return{
