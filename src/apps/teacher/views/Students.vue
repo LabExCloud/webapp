@@ -83,7 +83,7 @@ export default({
             let data = new FormData()
             data.append('file', this.addStudentCsvModal.file)
             const response = await axios.post(
-                `/api/v1/students/csv/`, 
+                `/api/v1/students/csv`, 
                 data,
                 {
                     headers: {"Content-Type": "multipart/form-data",},
