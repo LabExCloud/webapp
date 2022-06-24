@@ -8,6 +8,7 @@ import Resources from '../views/resources/Resources.vue'
 import Profile from '../views/Profile.vue'
 import Settings from '../views/Settings.vue'
 import Analysis from '../views/Analysis.vue'
+import Students from '../views/Students.vue'
 
 
 
@@ -23,6 +24,11 @@ const routes = [
     path: '/',
     name: 'home',
     component: Home
+  },
+  {
+    path: '/students',
+    name: 'students',
+    component: Students
   },
   {
     path: '/labs',
@@ -76,7 +82,7 @@ const router = createRouter({
 router.beforeEach((to, from, next) => {
   if(store.getters['auth/isAuthenticated']){
     if(store.getters['auth/user'].user_type === 'teacher'){
-      if(!store.getters['classs'] && to.name !== 'home' && to.name !== 'profile'){
+      if(!store.getters['classs'] && to.name !== 'home' && to.name !== 'profile' && to.name !== 'students'){
         next({ name: 'home' })
         return
       }else{
