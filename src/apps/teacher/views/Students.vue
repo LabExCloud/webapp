@@ -91,7 +91,7 @@ export default({
             )
             if (response.status == 200){
                 this.addStudentCsvModal.show = false
-                //this.getStudents()
+                this.getAllStudents()
             }else{
                 //show the error in response.data
             }
