@@ -1,6 +1,6 @@
 <template>
     <div class="content">
-        <h1 class="text-xl text-blue-400 text-center mt-7"> Students </h1>
+        <h1 class="text-xl text-blue-400 text-center mt-7"> Student Analysis </h1>
         <button class="text-center text-base w-36 ml-9 mt-9 text-white bg-gray-700 border border-black rounded-md" @click="showAddClassModal">
             <span @click="addStudentModal.show = true" class="mx-3">+ Add student</span>
         </button>
@@ -108,9 +108,9 @@ use([
 
 
 export default({
-    name: 'Students',
+    name: 'Analysis',
     async mounted(){
-        document.title = 'Students'
+        document.title = 'Student Analysis'
         await this.getStudents()
         await this.getAllStudents()
     },
