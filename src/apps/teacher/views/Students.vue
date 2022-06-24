@@ -4,6 +4,9 @@
         <button class="text-center text-base w-36 ml-9 mt-9 text-white bg-gray-700 border border-black rounded-md" @click="showAddClassModal">
             <span @click="addStudentModal.show = true" class="mx-3">+ Add student</span>
         </button>
+        <button class="text-center text-base w-36 ml-9 mt-9 text-white bg-gray-700 border border-black rounded-md" @click="showAddClassModal">
+            <span @click="addStudentCsvModal.show = true" class="mx-3">+ Add student csv</span>
+        </button>
         <div v-for="(student, index) in students" :key="index" class="grid grid-cols-3 gap-y-2 gap-x-5 py-2 px-10 mx-10 my-4 min-h-36 rounded-2xl shadow-md bg-cardclr hover:border-gray-300 hover:shadow-2xl text-white">
             
             <div>
@@ -23,7 +26,7 @@
             <v-chart class="chart" :option="option" />
         </div>
     </div>
-    <modal :show="addStudentModal.show" @cancel="addStudentModal.show = false" @confirm="addStudent">
+    <modal :show="addStudentModal.show" @cancel="addStudentModal.show = false" @confirm="uploadStudentCsv">
         <template #header>
             <h1 class="mb-4 text-xl text-gray-400">Add student to this class</h1>
         </template>
@@ -38,6 +41,31 @@
                         <datalist v-if="students" id="students">
                             <option v-for="student in addStudentModal.students" :value="student.username">{{ student.username }} - {{ student.first_name }}</option>
                         </datalist>
+                    </div>
+                </div>
+                        
+            </div>
+
+        </template>
+        <template #cancel>
+            Cancel
+        </template>
+        <template #confirm>
+            Add 
+        </template>
+    </modal>
+    <modal :show="addStudentCsvModal.show" @cancel="addStudentCsvModal.show = false" @confirm="uploadStudentCsv">
+        <template #header>
+            <h1 class="mb-4 text-xl text-gray-400">Add student to this class</h1>
+        </template>
+        <template #content>
+            <div class="w-full mt-4">
+                <div class="md:flex md:items-center mb-2">
+                    <div class="md:w-1/3">
+                        <label for="upload">Upload csv file: </label>
+                    </div>
+                    <div class="md:w-2/3">
+                        <input type="file" accept=".csv" name="upload" @change="setAddStudentFile($event)">
                     </div>
                 </div>
                         
@@ -100,6 +128,26 @@ export default({
             const response = await axios.post(`/api/v1/class/student/${this.classs.id}/${student.student}`)
             this.addStudentModal.show = false
             this.students.push(student)
+        },
+        setAddStudentFile(event){
+            this.addStudentCsvModal.file = event.target.files[0]
+        },
+        async uploadStudentCsv(){
+            let data = new FormData()
+            data.append('file', this.addStudentCsvModal.file)
+            const response = await axios.post(
+                `/api/v1/class/student/${this.classs.id}`, 
+                data,
+                {
+                    headers: {"Content-Type": "multipart/form-data",},
+                }
+            )
+            if (response.status == 200){
+                this.addStudentCsvModal.show = false
+                this.getStudents()
+            }else{
+                //show the error in response.data
+            }
         }
     },
     data() {
@@ -109,6 +157,10 @@ export default({
                 show: false,
                 students: [],
                 username: '',
+            },
+            addStudentCsvModal: {
+                show: false,
+                file: undefined,
             }
         }
     },
