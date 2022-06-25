@@ -104,7 +104,7 @@ export default({
     data() {
         return {
         ansi: undefined,
-        output: {},
+        output: '',
         code: '',
         language: '',
         languages: [],
@@ -115,6 +115,33 @@ export default({
         }
     },
     methods: {
+        async runTestcases(){
+            var mark = 0
+
+            for (const key in this.qn.testcases) {
+                if (Object.hasOwnProperty.call(this.qn.testcases, key)) {
+                    const t = this.qn.testcases[key];
+                    if(await this.runTestcase(t)){
+                        mark += t.mark
+                    }
+                }
+            }
+
+            return mark
+        },
+        async runTestcase(t){
+            const response1 = await fetch(axios.defaults.baseURL + t.input_file)
+            const input = await response1.text()
+            const response2 = await fetch(axios.defaults.baseURL + t.output_file)
+            const output = await response2.text()
+
+            const client = piston({ server: "https://emkc.org" });
+            const response = await client.execute(this.language.piston_lang, this.code, {stdin: input});
+
+            this.output += response.run.stdout
+            
+            return response.run.stdout === output
+        },
 
         async getQuestion(){
 
@@ -125,8 +152,7 @@ export default({
             this.qn = response.data;
         },
         async getResult(){
-            const client = piston({ server: "https://emkc.org" });
-            this.output = await client.execute(this.language.piston_lang, this.code);
+            await this.runTestcases()
             if(this.output){
                 this.isOutputExist = true
             }
@@ -180,11 +206,13 @@ export default({
             
             await this.showNoti(); //change - on success.
 
+            const mark = await this.runTestcases()
+
             let data = new FormData()
             let answer = new File([this.code], "answer.cpp")
             data.append('execution_tries', 2)
             data.append('execution_time', 3600)
-            data.append('total_marks', 10)
+            data.append('total_marks', mark)
             data.append('answer', answer)
 
             if(this.ans_id){
@@ -209,11 +237,7 @@ export default({
     },
     computed: {
         htmlOutput(){
-            if(this.output.run){
-                return this.ansi.ansi_to_html(this.output.run.output).replace(/\n/gm, '<br>')
-            }else{
-                return ''
-            }
+            return this.ansi.ansi_to_html(this.output).replace(/\n/gm, '<br>')
         }
     },
     beforeMount () {
