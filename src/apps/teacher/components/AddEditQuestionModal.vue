@@ -308,7 +308,7 @@ export default({
                 data.append('language', this.formData.language)
                 data.append('mark', this.formData.mark)
                 data.append('answer', this.formData.answerFile)
-                const response = await axios.put(`${this.apiUrl}/question/${id}`,
+                const response = await axios.put(`${this.apiUrl}/question/${this.id}`,
                 data, {
                     headers: {"Content-Type": "multipart/form-data",},
                 })
