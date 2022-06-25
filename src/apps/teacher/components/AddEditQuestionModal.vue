@@ -7,15 +7,6 @@
         <form class="w-full pr-12 pt-10" @submit.prevent>
             <div class="md:flex md:items-center mb-6">
                 <div class="md:w-1/4">
-                <label class="block md:text-right mb-1 md:mb-0 pr-4" for="questionNo">Question No: 
-                </label>
-                </div>
-                <div class="md:w-2/3">
-                <input type="number" name="questionNo" v-model="formData.questionNumber" class="rounded bg-gray-600 text-black w-full py-1 px-4" id="inline-full-name">
-                </div>
-            </div>
-            <div class="md:flex md:items-center mb-6">
-                <div class="md:w-1/4">
                 <label class="block  md:text-right mb-1 md:mb-0 pr-4" for="title">Question Title
                 </label>
                 </div>
@@ -205,7 +196,6 @@ export default({
             q_id: undefined,
             formData: {
                 title: '',
-                questionNumber: Number,
                 question: '',
                 language: Number,
                 mark: Number,
@@ -253,7 +243,6 @@ export default({
             if(this._edit){
                 this.getQuestion(this.id)
             }else{
-                this.formData.questionNumber = undefined
                 this.formData.question = ''
                 this.formData.title = ''
                 this.formData.language = undefined
@@ -267,7 +256,6 @@ export default({
     methods: {
         async getQuestion(id){
             const response = await axios.get(`${this.apiUrl}/question/${id}`)
-            this.formData.questionNumber = response.data.question_number
             this.formData.title = response.data.title
             this.formData.question = response.data.question
             this.formData.language = response.data.language
@@ -283,7 +271,6 @@ export default({
         },
         async createQuestion(id){
             let data = new FormData()
-            data.append('question_number', this.formData.questionNumber)
             data.append('title', this.formData.title)
             data.append('question', this.formData.question)
             data.append('language', this.formData.language)
@@ -302,7 +289,6 @@ export default({
                 this.$emit('saved')
             }else{
                 let data = new FormData()
-                data.append('question_number', this.formData.questionNumber)
                 data.append('title', this.formData.title)
                 data.append('question', this.formData.question)
                 data.append('language', this.formData.language)
