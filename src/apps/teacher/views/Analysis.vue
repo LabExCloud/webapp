@@ -16,7 +16,12 @@
                 {{ student.first_name }} {{ student.last_name }}
             </div>
             <div class="">
-                <span class="material-symbols-outlined text-lg">preview</span>
+                <button>
+                    <span class="material-symbols-outlined text-lg">preview</span>
+                </button>
+                <button @click="showRemoveStudentModal(student)" class="ml-16">
+                    <span class="material-symbols-outlined text-lg">delete</span>
+                </button>
             </div>
         
         </div>
@@ -79,6 +84,23 @@
             Add 
         </template>
     </modal>
+    <modal :show="removeStudentModal.show" @cancel="removeStudentModal.show = false" @confirm="removeStudent">
+        <template #header>
+            <h1 class="mb-4 text-xl text-gray-400">You sure you want to remove this student from this class?</h1>
+        </template>
+        <template #content>
+            <div class="w-full mt-4">
+                <h2>{{ removeStudentModal.student.first_name }} {{ removeStudentModal.student.last_name }} ({{ removeStudentModal.student.username }}) will be removed from this class</h2>
+            </div>
+
+        </template>
+        <template #cancel>
+            Cancel
+        </template>
+        <template #confirm>
+            Remove
+        </template>
+    </modal>
 </template>
 
 <script>
@@ -126,8 +148,18 @@ export default({
         async addStudent(){
             const student = this.addStudentModal.students.find(st => st.username === this.addStudentModal.username)
             const response = await axios.post(`/api/v1/class/student/${this.classs.id}/${student.student}`)
+            await this.getStudents()
             this.addStudentModal.show = false
-            this.students.push(student)
+        },
+        async removeStudent(){
+            const response = await axios.delete(`/api/v1/class/student/${this.classs.id}/${this.removeStudentModal.student.student}`)
+            await this.getStudents()
+            this.removeStudentModal.show = false
+        },
+        showRemoveStudentModal(student){
+            this.removeStudentModal.student = student
+            console.log(student);
+            this.removeStudentModal.show = true
         },
         setAddStudentFile(event){
             this.addStudentCsvModal.file = event.target.files[0]
@@ -161,6 +193,10 @@ export default({
             addStudentCsvModal: {
                 show: false,
                 file: undefined,
+            },
+            removeStudentModal: {
+                show: false,
+                student: undefined,
             }
         }
     },
