@@ -11,8 +11,8 @@
             <p> Students </p>
         </div>
 
-        <button class="text-center text-base w-36 ml-9 mt-9 text-white bg-gray-700 border border-black rounded-md" @click="showAddClassModal">
-            <span @click="addStudentCsvModal.show = true" class="mx-3">+ Add student CSV</span>
+        <button class="text-center text-base w-36 ml-9 mt-9 text-white bg-gray-700 border border-black rounded-md" @click="addStudentCsvModal.show = true">
+            <span class="mx-3">+ Add student CSV</span>
         </button>
 
         <div v-for="(student, index) in students" :key="index" class="grid grid-cols-3 gap-y-2 gap-x-5 py-2 px-10 mx-10 my-4 min-h-36 rounded-2xl shadow-md bg-cardclr hover:border-gray-300 hover:shadow-2xl text-white">
@@ -24,7 +24,9 @@
                 {{ student.first_name }} {{ student.last_name }}
             </div>
             <div class="">
-                <span class="material-symbols-outlined text-lg text-red-700">delete</span>
+                <button @click="showDeleteStudentModal(student)">
+                    <span class="material-symbols-outlined text-lg text-red-700">delete</span>
+                </button>
             </div>
         
         </div>
@@ -32,7 +34,7 @@
     </div>
     <modal :show="addStudentCsvModal.show" @cancel="addStudentCsvModal.show = false" @confirm="uploadStudentCsv">
         <template #header>
-            <h1 class="mb-4 text-xl text-gray-400">Add student to this class</h1>
+            <h1 class="mb-4 text-xl text-gray-400">Create Student From CSV</h1>
         </template>
         <template #content>
             <div class="w-full mt-4">
@@ -52,7 +54,24 @@
             Cancel
         </template>
         <template #confirm>
-            Add 
+            Upload
+        </template>
+    </modal>
+    <modal :show="deleteStudentModal.show" @cancel="deleteStudentModal.show = false" @confirm="deleteStudent">
+        <template #header>
+            <h1 class="mb-4 text-xl text-gray-400">You sure you want to delete this student account?</h1>
+        </template>
+        <template #content>
+            <div class="w-full mt-4">
+                <h2>All the data related to {{ deleteStudentModal.student.first_name }} {{ deleteStudentModal.student.last_name }} ({{ deleteStudentModal.student.username }}) will be deleted</h2>
+            </div>
+
+        </template>
+        <template #cancel>
+            Cancel
+        </template>
+        <template #confirm>
+            Delete
         </template>
     </modal>
 </template>
@@ -74,10 +93,27 @@ export default({
             addStudentCsvModal: {
                 show: false,
                 file: undefined,
+            },
+            deleteStudentModal: {
+                show: false,
+                student: undefined,
             }
         }
     },
     methods: {
+        async deleteStudent(){
+            const response = await axios.delete(`/api/v1/student/${this.deleteStudentModal.student.student}`)
+            if (response.status == 200){
+                this.deleteStudentModal.show = false
+                this.getAllStudents()
+            }else{
+                //show the error in response.data
+            }
+        },
+        showDeleteStudentModal(student){
+            this.deleteStudentModal.student = student
+            this.deleteStudentModal.show = true
+        },
         async getAllStudents(){
             const response = await axios.get(`/api/v1/students`)
             this.students = response.data
