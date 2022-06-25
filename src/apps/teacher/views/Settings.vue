@@ -49,7 +49,23 @@
             </template>
         </modal>
 
-        <!-- TODO: implement remove teacher, fix css -->
+        <modal :show="removeTeacherModal.show" @cancel="removeTeacherModal.show = false" @confirm="removeTeacher">
+            <template #header>
+                <h1 class="mb-4 text-xl text-gray-400">You sure you want to remove this teacher from this class?</h1>
+            </template>
+            <template #content>
+                <div class="w-full mt-4">
+                    <h2>{{ removeTeacherModal.teacher.first_name }} {{ removeTeacherModal.teacher.last_name }} ({{ removeTeacherModal.teacher.username }}) will be removed from this class</h2>
+                </div>
+
+            </template>
+            <template #cancel>
+                Cancel
+            </template>
+            <template #confirm>
+                Remove
+            </template>
+        </modal>
 
         <div class="w-full mt-6 px-10 py-5">
             <div class="md:flex md:items-center mb-2">
@@ -59,8 +75,8 @@
                 <div>
                     {{ teacher.first_name }} {{ teacher.last_name }}
                 </div>
-                <div>
-                    <button>
+                <div v-if="classs.owner.id !== teacher.id">
+                    <button @click="showRemoveTeacherModal(teacher)" class="ml-16">
                         <span class="material-symbols-outlined text-lg">delete</span>
                     </button>
                 </div>
@@ -117,9 +133,36 @@ export default({
                 username: '',
             },
             showDeleteClass: false,
+            removeTeacherModal: {
+                show: false,
+                teacher: undefined,
+            }
         }
     },
     methods: {
+        async removeTeacher(){
+            this.classs.teachers.splice(this.classs.teachers.indexOf(this.removeTeacherModal.teacher), 1)
+            
+            var teachers = []
+            this.classs.teachers.forEach(t => {
+                teachers.push(t.teacher)
+            });
+
+            const response = await axios.put(`/api/v1/class/${this.classs.id}`, {
+                department: this.classs.department.id,
+                semester: this.classs.semester.id,
+                subject: this.classs.subject.id,
+                batch: this.classs.batch.id,
+                teachers: teachers
+            })
+
+            this.removeTeacherModal.show = false
+        },
+        showRemoveTeacherModal(teacher){
+            this.removeTeacherModal.teacher = teacher
+            console.log(teacher);
+            this.removeTeacherModal.show = true
+        },
         showAddTeacherModal(){
             this.getTeachers()
             this.addTeacherModal.show = true
