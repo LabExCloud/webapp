@@ -23,8 +23,8 @@
             <div v-for="exp in exps" :key="exp.id" class="h-36 border border-borderclr rounded-2xl bg-cardclr">
                 <p class="mx-4 mt-5"> {{exp.exp_name}} - {{ exp.questions.length}} Questions. </p>
                 <ul class="px-6 py-4">
-                    <li class="cursor-pointer" v-for="question in exp.questions" :key="question.id" @click="clickQuestion(question.id)">
-                        {{question.question_number}} ) {{ question.question }} - {{ question.mark}} marks
+                    <li class="cursor-pointer" v-for="(question, index) in exp.questions" :key="question.id" @click="clickQuestion(question.id)">
+                        {{ index + 1 }} ) {{ question.question }} - {{ question.mark}} marks
                     </li>
                 </ul>
             </div>
