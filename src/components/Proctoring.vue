@@ -8,13 +8,6 @@
         width="500"
         height="300"
     />
-
-    <canvas
-        class="size"
-        ref="canvasRef"
-        width="500"
-        height="300"
-    />
 </template>
 
 <script>
@@ -51,7 +44,7 @@ export default({
 
             Promise.all([modelPromise, webCamPromise])
             .then(values => {
-                this.detectFrame(this.$refs.videoRef, values[0])
+                setInterval(this.detectFrame, 500, this.$refs.videoRef, values[0])
             })
             .catch(error => {
                 console.error(error)
@@ -62,9 +55,6 @@ export default({
         detectFrame(video, model){
             model.detect(video).then(predictions => {
                 this.$emit('predictions', predictions)
-                requestAnimationFrame(() => {
-                    this.detectFrame(video, model)
-                })
             }).catch(e => {
                 console.log(e)
             })
@@ -79,6 +69,7 @@ export default({
     position: absolute;
     top: 0;
     left: 0;
+    display: none;
 }
 
 </style>
