@@ -6,7 +6,9 @@
         </div>
         <div class="profile py-16 px-9 text-white">
             <div class="profile">
-                <profile-image class="w-40" :src="user.image?user.image:'/static/images/profile.png'" alt="student picture"/>
+                <button @click="changeProfileImageModal.show = true">
+                    <profile-image class="w-40" :src="user.image?user.image:'/static/images/profile.png'" alt="student picture"/>
+                </button>
                 <h2>{{ user.first_name }} {{ user.middle_name }} {{ user.last_name }}</h2>
                 <p>S{{ user.profile.semester }} - {{ user.profile.department.dept_code }} - {{ user.profile.rollno }}</p>
             </div>
@@ -86,6 +88,26 @@
             Change 
         </template>
     </modal>
+    <modal :show="changeProfileImageModal.show" @cancel="changeProfileImageModal.show = false" @confirm="uploadProfileImage">
+        <template #header>
+            <h1 class="mb-4 text-xl text-gray-400">Change Profile Picture</h1>
+        </template>
+        <template #content>
+            <div class="w-full mt-4">
+                <input ref="input" type="file" name="image" accept="image/*" @change="setImage" />
+
+                <vue-cropper ref="cropper" :aspect-ratio="1" :src="changeProfileImageModal.img" preview=".preview"></vue-cropper>
+                        
+            </div>
+
+        </template>
+        <template #cancel>
+            Cancel
+        </template>
+        <template #confirm>
+            Upload
+        </template>
+    </modal>
 
 </template>
 
@@ -95,16 +117,18 @@ import ProfileImage from '@/components/ProfileImage.vue'
 import Modal from '@/components/Modal.vue'
 import { mapGetters } from 'vuex'
 import axios from 'axios'
+import VueCropper from 'vue-cropperjs'
+import 'cropperjs/dist/cropper.css'
 
 export default({
     name: 'Profile',
     components: {
         ProfileImage,
-        Modal
+        Modal,
+        VueCropper
     },
     async mounted(){
         document.title = 'Profile'
-        await this.getProfile()
     },
     data(){
         return{
@@ -114,6 +138,10 @@ export default({
                 password1: '',
                 password2: '',
                 error: '',
+            },
+            changeProfileImageModal: {
+                show: false,
+                img: undefined,
             }
         }
     },
@@ -139,7 +167,43 @@ export default({
             }else{
                 this.changePasswordModal.error = 'Passwords Does not match'
             }
+        },
+        setImage(e){
+            const file = e.target.files[0]
+
+            const reader = new FileReader()
+
+            reader.onload = (event) => {
+                this.changeProfileImageModal.img = event.target.result
+                this.$refs.cropper.replace(event.target.result)
+            }
+
+            reader.readAsDataURL(file)
+        },
+        async uploadProfileImage(){
+            this.$refs.cropper.getCroppedCanvas().toBlob(async (blob) => {
+                let data = new FormData()
+                data.append('image', blob, `${this.user.username}.jpg`)
+                const response = await axios.put(
+                    `/api/v1/profilepicture`, 
+                    data,
+                    {
+                        headers: {"Content-Type": "multipart/form-data",},
+                    }
+                )
+                this.$store.dispatch('auth/getUser')
+                this.changeProfileImageModal.show = false
+                this.changeProfileImageModal.img = undefined
+            })
         }
     },
 })
 </script>
+
+<style>
+
+.preview {
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+}</style>

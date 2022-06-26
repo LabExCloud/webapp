@@ -25,8 +25,8 @@ export default {
     },
     created() {
         this.$store.commit('auth/INIT')
-        this.$store.dispatch('auth/getUser')
         axios.defaults.headers.common['Authorization'] = 'Token ' + this.token
+        this.$store.dispatch('auth/getUser')
     },
 }
 </script>

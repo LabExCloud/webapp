@@ -16,6 +16,7 @@
     "monaco-editor-webpack-plugin": "^7.0.1",
     "piston-client": "^1.0.2",
     "vue": "^3.2.13",
+    "vue-cropperjs": "^5.0.0",
     "vue-echarts": "^6.0.3",
     "vue-router": "^4.0.13",
     "vue3-highlightjs": "^1.0.5",
