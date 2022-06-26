@@ -64,6 +64,7 @@ export default({
     },
     beforeUnmount(){
         clearInterval(this.timer)
+        window.stream.getTracks().forEach((track) => track.stop())
     }
 })
 </script>
