@@ -48,7 +48,7 @@
                     </router-link>
                 </li>
 
-                <li>
+                <li v-if="classs.owner.id == user.id">
                     <router-link to="/settings">
                         <span class="material-symbols-outlined">settings</span>
 
@@ -84,25 +84,14 @@ export default({
     },
     data(){
         return {
-            user: {
-                profile: {}
-            },
         }
-    },
-    methods: {
-        getProfile(){
-            axios({
-                method: 'get',
-                url: '/api/v1/profile',
-            }).then(response => this.user = response.data)
-        },
-    },
-    mounted(){
-        this.getProfile()
     },
     computed: {
         ...mapGetters([
             'classs',
+        ]),
+        ...mapGetters('auth', [
+            'user',
         ]),
     }
 })
