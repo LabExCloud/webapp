@@ -17,7 +17,9 @@ import "@tensorflow/tfjs"
 export default({
     name: 'Proctoring',
     data(){
-        return{}
+        return{
+            timer: undefined,
+        }
     },
     mounted(){
         if(navigator.mediaDevices && navigator.mediaDevices.getUserMedia){
@@ -44,7 +46,7 @@ export default({
 
             Promise.all([modelPromise, webCamPromise])
             .then(values => {
-                setInterval(this.detectFrame, 500, this.$refs.videoRef, values[0])
+                this.timer = setInterval(this.detectFrame, 500, this.$refs.videoRef, values[0])
             })
             .catch(error => {
                 console.error(error)
@@ -60,6 +62,9 @@ export default({
             })
         },
     },
+    beforeUnmount(){
+        clearInterval(this.timer)
+    }
 })
 </script>
 
