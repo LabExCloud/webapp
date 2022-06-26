@@ -116,7 +116,7 @@ export default({
             qn: {},
             ans_id: undefined,
             noti: false,
-            exam: true,
+            exam: false,
         }
     },
     methods: {
@@ -173,6 +173,17 @@ export default({
 
             const response = await axios.get(url);
             this.qn = response.data;
+
+            try{
+                const response = await axios.get(`/api/v1/labs/answer/question/${this.qn.id}`)
+                if(response.status == 200){
+                    this.ans_id = response.data.id
+                    const aresponse = await fetch(axios.defaults.baseURL + response.data.answer)
+                    this.code = await aresponse.text()
+                }
+            }catch(e){
+
+            }
         },
         async getResult(){
             const result = await this.runTestcases()
@@ -197,7 +208,9 @@ export default({
             }
 
             this.language = this.languages[0]
-            this.code = await this.getDemoCode(this.language.id)
+            if(!this.ans_id){
+                this.code = await this.getDemoCode(this.language.id)
+            }
         },
 
         async getDemoCode(id){
