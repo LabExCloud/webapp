@@ -8,7 +8,7 @@
             </div>
         </div>
 
-        <div class="w-full px-4 py-5">
+        <!-- <div class="w-full px-4 py-5">
             <div class="bg-gray-400 h-1.5 rounded">
                 <div class="bg-blue-600 h-1.5 rounded" style="width: 45%"></div>
             </div>
@@ -16,7 +16,7 @@
                 <div class="float-left">50%</div>
                 <div class="float-right">5/10</div>
             </div>
-        </div>
+        </div> -->
     </div>
 </template>
 
