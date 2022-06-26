@@ -5,14 +5,14 @@
         </div>
 
         <div class="search-sort-box">
-            <input class="text-center py-2 w-72 bg-gray-700 border border-black rounded-xl" type="search" id="search" placeholder="Search Exps"/>
+            <!-- <input class="text-center py-2 w-72 bg-gray-700 border border-black rounded-xl" type="search" id="search" placeholder="Search Exps"/> -->
             <div class="add-box">
                 <button class="text-center text-base w-40 text-white bg-gray-700 border border-black rounded-md" @click="expAddModal.show = true">
                     <span class="mx-4">+ New Exp</span>
                 </button>
             </div>
         </div>
-        <!-- {{ exps }} -->
+        
         <div class="grid grid-cols-1 gap-10 py-14 px-8 text-white">
             <lab-experiment-card v-for="(exp, index) in exps" :key="exp.id" :exp_id="exp.id" @delete="showDeleteExpModal(index)"/>
         </div>

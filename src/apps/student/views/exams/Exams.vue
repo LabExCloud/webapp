@@ -5,18 +5,18 @@
             <p> Your Exams </p>
         </div>
         
-        <div class="search-sort-box">
-                <input class="text-center py-2 w-72 bg-gray-700 border border-black rounded-xl" type="search" id="search" placeholder="Search Exams"/>
-                <div class="sort-box">
-                    <label class="text-white" for="sort">sort: </label>
-                    <select class="text-center text-sm text-gray-400 bg-gray-700 border border-black rounded" id="sort" name="sort">
-                        <option value="recent" selected>Recent</option>
-                        <option value="star">Starred</option>
-                        <option value="date">Date</option>
-                        <option value="alph">Alphabet</option>
-                    </select>
-                </div>   
-        </div>
+        <!-- <div class="search-sort-box">
+            <input class="text-center py-2 w-72 bg-gray-700 border border-black rounded-xl" type="search" id="search" placeholder="Search Exams"/>
+            <div class="sort-box">
+                <label class="text-white" for="sort">sort: </label>
+                <select class="text-center text-sm text-gray-400 bg-gray-700 border border-black rounded" id="sort" name="sort">
+                    <option value="recent" selected>Recent</option>
+                    <option value="star">Starred</option>
+                    <option value="date">Date</option>
+                    <option value="alph">Alphabet</option>
+                </select>
+            </div>   
+        </div> -->
         <div class="w-full pl-7">
             <label class="text-white text-lg" for="sem">Exams: </label>
             <semester-select-box :sems="user.profile.semesters" @selectSem="selectSem"/>

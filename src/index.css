@@ -78,5 +78,5 @@
 /* Resource page - search and add box*/
 
 .add-box{
-    @apply absolute right-28 w-48 h-12 flex;
+    @apply absolute right-28 w-48 h-12 flex mt-10;
 }

@@ -6,7 +6,7 @@
         </div>
         
         <div class="search-sort-box">
-            <input class="text-center py-2 w-72 bg-gray-700 border border-black rounded-xl" type="search" id="search" placeholder="Search Exams"/>
+            <!-- <input class="text-center py-2 w-72 bg-gray-700 border border-black rounded-xl" type="search" id="search" placeholder="Search Exams"/> -->
             <div class="add-box">
                 <button class="text-center text-base w-40 text-white bg-gray-700 border border-black rounded-md" @click="examAddModal.show = true">
                     <span class="mx-4">+ New Exam</span>
