@@ -1,6 +1,6 @@
 <template>
 
-    <IDEcomponent :exam="false"/>
+    <IDEcomponent :exam="false" @submit="submit"/>
 
 
 </template>
@@ -14,6 +14,11 @@ export default({
     components: {
         IDEcomponent,
     },
+    methods:{
+        submit(){
+            this.$router.go(-1)
+        }
+    }
 })
 
 </script>
