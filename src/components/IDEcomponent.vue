@@ -1,10 +1,10 @@
 <template>
 
     <!-- need total exp question numbers in API to iterate -->
-    <div class="bg-gray-800 w-7 h-full text-sm text-white">
+    <!-- <div class="bg-gray-800 w-7 h-full text-sm text-white">
         <div class="h-12 bg-violet-700 rounded my-2 py-3 px-1"> 1 </div>
         <div class="h-12 bg-violet-700 rounded my-2 py-3 px-1"> 2 </div>
-    </div>
+    </div> -->
     
     <div class="bg-cardclr w-[480px] h-screen pr-4 mr-auto text-white pl-2 py-5">
         <p> {{ qn.question }} </p>
