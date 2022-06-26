@@ -7,11 +7,11 @@
         <div class="h-12 bg-violet-700 rounded my-2 py-3 px-1"> 2 </div>
     </div> -->
     
-    <div class="bg-cardclr w-[480px] h-screen pr-4 mr-auto text-white pl-2 py-5">
+    <div class="bg-cardclr w-[480px] h-screen overflow-scroll pr-4 mr-auto text-white pl-2 py-5">
         <p> {{ qn.question }} </p>
     </div>
 
-    <div class="flex flex-col bg-white w-screen h-screen">
+    <div class="flex flex-col bg-cardclr w-screen h-screen">
 
         <div class="bg-gray-700 w-full h-7">
             <button @click="submit" class="bg-black text-sm text-white float-right rounded py-[1px] px-2 mr-4">
@@ -60,7 +60,7 @@
             </tabs>
 
         </div>
-        <div class="bg-gray-500 w-full h-1/3">
+        <div class="bg-gray-500 w-full h-1/3 overflow-scroll">
             <!-- <div class="w-full h-full px-5 py-4" v-if="isOutputExist" v-html="htmlOutput"></div>    -->
             <tab-panels v-model="active">
                 <tab-panel v-show="isOutputExist" v-html="htmlOutput"></tab-panel>
