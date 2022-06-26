@@ -158,7 +158,6 @@ export default({
         },
         showRemoveStudentModal(student){
             this.removeStudentModal.student = student
-            console.log(student);
             this.removeStudentModal.show = true
         },
         setAddStudentFile(event){

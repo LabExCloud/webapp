@@ -151,8 +151,6 @@ export default({
             this.resource.res_name = response.data.res_name
             this.resource.res_name = response.data.res_name
 
-            console.log(this.resource)
-
             this.resourceEditModal.show = false
         },
         showFileDeleteModal(index){

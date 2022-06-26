@@ -329,7 +329,6 @@ export default({
             this.testcases.push(response.data)
         },
         async addTestcaseFile(){
-            console.log(this.id, this.q_id, this._edit);
             if(!this._edit){
                 await this.createQuestion(this.id)
                 await this.createTestcase(this.q_id)
@@ -353,7 +352,6 @@ export default({
         },
         selectLang(event){
             this.formData.language = parseInt(event.target.value)
-            console.log(this.formData.language);
         },
         async getLanguages(){
             const response = await axios.get('/api/v1/editor/languages')

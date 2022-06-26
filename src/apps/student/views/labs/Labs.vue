@@ -63,7 +63,6 @@ export default({
             const response = await axios.get(url);
             this.labs = response.data;
             this.updateImages()
-            //console.log(url)
         },
         updateImages(){
             for(let eachLab in this.labs){

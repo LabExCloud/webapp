@@ -160,7 +160,6 @@ export default({
         },
         showRemoveTeacherModal(teacher){
             this.removeTeacherModal.teacher = teacher
-            console.log(teacher);
             this.removeTeacherModal.show = true
         },
         showAddTeacherModal(){
