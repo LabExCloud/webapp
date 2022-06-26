@@ -4,7 +4,7 @@
             <p> Experiments </p>
         </div>
 
-        <div class="search-sort-box">
+        <!-- <div class="search-sort-box">
                 <input class="text-center py-2 w-72 bg-gray-700 border border-black rounded-xl" type="search" id="search" placeholder="Search Exps"/>
                 <div class="sort-box">
                     <label class="text-white" for="sort">sort: </label>
@@ -15,7 +15,7 @@
                         <option value="alph">Alphabet</option>
                     </select>
                 </div>   
-        </div>
+        </div> -->
 
         
         <!-- {{ exps }} -->
