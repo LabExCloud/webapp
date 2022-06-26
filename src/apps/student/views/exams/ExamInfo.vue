@@ -18,8 +18,13 @@
             <p class="text-xl text-white pl-10 pt-12 pb-1"> Instructions: </p>
             <div class="h-96 mx-9 mb-12 text-white border border-borderclr rounded-2xl bg-cardclr">
                 <ul class="list-disc px-8 py-4">
-                    <li> aaa </li>
-                    <li> bbb </li>
+                    <li> You must use a functioning webcam and microphone. </li>
+                    <li> No cell phones or other secondary devices in the room or test area. </li>
+                    <li> Your desk/table must be clear or any materials except your test-taking device. </li>
+                    <li> No one else can be in the room with you. </li>
+                    <li> No talking. </li>
+                    <li> Each question is worth the same/different marks.  </li>
+                    <li> During this exam you will/won’t be permitted to review previous questions. </li>
                 </ul>
             </div>
             <div class="flex justify-center w-full mb-12">
