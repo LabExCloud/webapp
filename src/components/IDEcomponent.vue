@@ -1,6 +1,4 @@
 <template>
-    <proctoring v-if="exam" @predictions="predictions"/>
-
     <!-- need total exp question numbers in API to iterate -->
     <!-- <div class="bg-gray-800 w-7 h-full text-sm text-white">
         <div class="h-12 bg-violet-700 rounded my-2 py-3 px-1"> 1 </div>
@@ -96,8 +94,6 @@ import Tab from '@/components/Tab.vue'
 import TabPanels from '@/components/TabPanels.vue'
 import TabPanel from '@/components/TabPanel.vue'
 
-import Proctoring from './Proctoring.vue'
-
 import { ref } from "vue";
 
 
@@ -116,7 +112,6 @@ export default({
         Tab,
         TabPanels,
         TabPanel,
-        Proctoring,
     },
     data() {
         return {
@@ -133,9 +128,6 @@ export default({
         }
     },
     methods: {
-        predictions(event){
-            console.log(event);
-        },
         async runTestcases(){
             var mark = 0
 
@@ -180,9 +172,7 @@ export default({
         },
 
         async getQuestion(){
-
-            var qnid = this.$route.params.expid;
-            var url = `/api/v1/${this.loc}/question/${qnid}`;
+            var url = `/api/v1/${this.loc}/question/${this.qnid}`;
 
             const response = await axios.get(url);
             this.qn = response.data;
@@ -308,6 +298,10 @@ export default({
         exam: {
             type: Boolean,
             default: false
+        },
+        qnid: {
+            type: Number,
+            required: true
         }
     }
 })

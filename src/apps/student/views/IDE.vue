@@ -1,6 +1,6 @@
 <template>
 
-    <IDEcomponent :exam="false" @submit="submit"/>
+    <IDEcomponent :exam="false" @submit="submit" :qnid="$route.params.expid"/>
 
 
 </template>

@@ -93,7 +93,7 @@ export default({
 
         },
         clickCard(id){
-            this.$router.push(`/exams/exam/info/${id}`)
+            this.$router.push(`/exams/class/${id}`)
         },
         async selectSem(sobj){
             await this.getExams(sobj.sem)

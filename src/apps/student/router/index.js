@@ -4,7 +4,8 @@ import Labs from '../views/labs/Labs.vue'
 import LabExps from '../views/labs/LabExps.vue'
 
 import Exams from '../views/exams/Exams.vue'
-import ExamInfo from '../views/exams/ExamInfo.vue'
+import ExamClass from '../views/exams/ExamClass.vue'
+import Exam from '../views/exams/Exam.vue'
 
 import Resources from '../views/resources/Resources.vue'
 import ResourceDetail from '../views/resources/ResourceDetail.vue'
@@ -44,9 +45,14 @@ const routes = [
     component: Exams
   },
   {
-    path: '/exams/exam/info/:examid',
+    path: '/exams/class/:cid',
+    name: 'examlist',
+    component: ExamClass
+  },
+  {
+    path: '/exams/exam/:eid',
     name: 'exam',
-    component: ExamInfo
+    component: Exam
   },
 
   {
