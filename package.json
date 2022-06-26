@@ -7,6 +7,8 @@
     "build": "vue-cli-service build"
   },
   "dependencies": {
+    "@tensorflow-models/coco-ssd": "^2.2.2",
+    "@tensorflow/tfjs": "^3.18.0",
     "ansi_up": "^5.1.0",
     "axios": "^0.26.1",
     "core-js": "^3.8.3",
