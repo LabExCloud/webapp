@@ -84,16 +84,5 @@ export default({
             return process.env.VUE_APP_ROOT_MEDIA + this.user.image
         }
     },
-    methods: {
-        getProfile(){
-            axios({
-                method: 'get',
-                url: '/api/v1/profile',
-            }).then(response => this.user = response.data)
-        },
-    },
-    mounted(){
-        this.getProfile()
-    },
 })
 </script>
