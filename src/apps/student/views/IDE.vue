@@ -1,6 +1,6 @@
 <template>
 
-    <IDEcomponent/>
+    <IDEcomponent :exam="false"/>
 
 
 </template>

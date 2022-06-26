@@ -116,7 +116,6 @@ export default({
             qn: {},
             ans_id: undefined,
             noti: false,
-            exam: false,
         }
     },
     methods: {
@@ -169,13 +168,13 @@ export default({
         async getQuestion(){
 
             var qnid = this.$route.params.expid;
-            var url = `/api/v1/labs/question/${qnid}`;
+            var url = `/api/v1/${this.loc}/question/${qnid}`;
 
             const response = await axios.get(url);
             this.qn = response.data;
 
             try{
-                const response = await axios.get(`/api/v1/labs/answer/question/${this.qn.id}`)
+                const response = await axios.get(`/api/v1/${this.loc}/answer/question/${this.qn.id}`)
                 if(response.status == 200){
                     this.ans_id = response.data.id
                     const aresponse = await fetch(axios.defaults.baseURL + response.data.answer)
@@ -252,14 +251,14 @@ export default({
             data.append('answer', answer)
 
             if(this.ans_id){
-                const response = await axios.put(`/api/v1/labs/answer/${this.ans_id}`,
+                const response = await axios.put(`/api/v1/${this.loc}/answer/${this.ans_id}`,
                     data,
                     {
                         headers: {"Content-Type": "multipart/form-data",},
                     }
                 )
             }else{
-                const response = await axios.post(`/api/v1/labs/answer/${this.qn.id}`,
+                const response = await axios.post(`/api/v1/${this.loc}/answer/${this.qn.id}`,
                     data,
                     {
                         headers: {"Content-Type": "multipart/form-data",},
@@ -274,6 +273,13 @@ export default({
     computed: {
         htmlOutput(){
             return this.ansi.ansi_to_html(this.output).replace(/\n/gm, '<br>')
+        },
+        loc(){
+            if(this.exam){
+                return 'labexams'
+            }else{
+                return 'labs'
+            }
         }
     },
     beforeMount () {
@@ -284,6 +290,12 @@ export default({
         const active = ref(0);
 
         return { active };
+    },
+    props:{
+        exam: {
+            type: Boolean,
+            default: false
+        }
     }
 })
 
