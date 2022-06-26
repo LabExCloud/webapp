@@ -203,8 +203,6 @@ export default({
             if(this.output){
                 this.isOutputExist = true
             }
-            //console.log(result)
-        
         },
 
         async getLanguages(){
@@ -282,7 +280,7 @@ export default({
                 this.ans_id = response.data.id
             }
             
-            
+            this.$emit('submit')
         }
     },
     computed: {
