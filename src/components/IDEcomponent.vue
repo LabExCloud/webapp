@@ -118,16 +118,23 @@ export default({
         async runTestcases(){
             var mark = 0
 
+            var testcases = []
+
             for (const key in this.qn.testcases) {
                 if (Object.hasOwnProperty.call(this.qn.testcases, key)) {
                     const t = this.qn.testcases[key];
-                    if(await this.runTestcase(t)){
+                    const tcr = await this.runTestcase(t)
+                    if(tcr.pass){
                         mark += t.mark
                     }
+                    testcases.push(tcr)
                 }
             }
 
-            return mark
+            return {
+                mark,
+                testcases
+            }
         },
         async runTestcase(t){
             const response1 = await fetch(axios.defaults.baseURL + t.input_file)
@@ -139,8 +146,16 @@ export default({
             const response = await client.execute(this.language.piston_lang, this.code, {stdin: input});
 
             this.output += response.run.stdout
+
+            const pass = response.run.stdout === output
             
-            return response.run.stdout === output
+            return {
+                pass,
+                input,
+                output,
+                stdout: response.run.stdout,
+                hidden: t.hidden
+            }
         },
 
         async getQuestion(){
@@ -152,7 +167,7 @@ export default({
             this.qn = response.data;
         },
         async getResult(){
-            await this.runTestcases()
+            const result = await this.runTestcases()
             if(this.output){
                 this.isOutputExist = true
             }
@@ -206,13 +221,13 @@ export default({
             
             await this.showNoti(); //change - on success.
 
-            const mark = await this.runTestcases()
+            const result = await this.runTestcases()
 
             let data = new FormData()
             let answer = new File([this.code], "answer.cpp")
             data.append('execution_tries', 2)
             data.append('execution_time', 3600)
-            data.append('total_marks', mark)
+            data.append('total_marks', result.mark)
             data.append('answer', answer)
 
             if(this.ans_id){
