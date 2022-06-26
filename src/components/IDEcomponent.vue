@@ -1,4 +1,5 @@
 <template>
+    <proctoring v-if="exam" @predictions="predictions"/>
 
     <!-- need total exp question numbers in API to iterate -->
     <!-- <div class="bg-gray-800 w-7 h-full text-sm text-white">
@@ -82,6 +83,8 @@ import Tab from '@/components/Tab.vue'
 import TabPanels from '@/components/TabPanels.vue'
 import TabPanel from '@/components/TabPanel.vue'
 
+import Proctoring from './Proctoring.vue'
+
 import { ref } from "vue";
 
 
@@ -99,22 +102,27 @@ export default({
         Tabs,
         Tab,
         TabPanels,
-        TabPanel
+        TabPanel,
+        Proctoring,
     },
     data() {
         return {
-        ansi: undefined,
-        output: '',
-        code: '',
-        language: '',
-        languages: [],
-        isOutputExist: false,
-        qn: {},
-        ans_id: undefined,
-        noti: false
+            ansi: undefined,
+            output: '',
+            code: '',
+            language: '',
+            languages: [],
+            isOutputExist: false,
+            qn: {},
+            ans_id: undefined,
+            noti: false,
+            exam: true,
         }
     },
     methods: {
+        predictions(event){
+            console.log(event);
+        },
         async runTestcases(){
             var mark = 0
 
