@@ -12,7 +12,7 @@
         
         <ul class="px-6 py-4">
             <li v-for="(question, index) in exam.questions" :key="question.id">
-                <span class="cursor-pointer" @click="showEditQuestionModal(index)">{{ index + 1 }} ) {{ question.question }} - {{ question.mark}} marks</span> 
+                <span class="cursor-pointer" @click="showEditQuestionModal(index)">{{ index + 1 }} ) {{ question.title }} - {{ question.mark}} marks</span> 
                 <button style="color: red; font-face:bold;" @click="showQuestionDeleteModal(index)">X</button>
             </li>
         </ul>

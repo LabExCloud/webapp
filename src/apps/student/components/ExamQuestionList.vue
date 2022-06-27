@@ -6,7 +6,7 @@
         <p class="mx-4 mt-5"> {{exam.exam_name}} - {{ exam.questions.length}} Questions. </p>
         <ul class="px-6 py-4">
             <li class="cursor-pointer" v-for="(question, index) in exam.questions" :key="question.id" @click="clickQuestion(question.id)">
-                {{ index + 1 }} ) {{ question.question }} - {{ question.mark}} marks
+                {{ index + 1 }} ) {{ question.title }} - {{ question.mark}} marks
             </li>
         </ul>
     </div>
