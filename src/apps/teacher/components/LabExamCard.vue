@@ -14,6 +14,7 @@
             <li v-for="(question, index) in exam.questions" :key="question.id">
                 <span class="cursor-pointer" @click="showEditQuestionModal(index)">{{ index + 1 }} ) {{ question.title }} - {{ question.mark}} marks</span> 
                 <button style="color: red; font-face:bold;" @click="showQuestionDeleteModal(index)">X</button>
+                <button class="ml-8 px-2 bg-gray-600 rounded" @click="$router.push(`/answers/labexams/${question.id}`)">answers</button>
             </li>
         </ul>
     </div>

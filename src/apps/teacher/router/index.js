@@ -61,7 +61,7 @@ const routes = [
     component: Analysis
   },
   {
-    path: '/answers/:ansid',
+    path: '/answers/:type/:ansid',
     name: 'answers',
     component: Answers
   },

@@ -79,7 +79,7 @@ export default({
     },
     methods: {
         async getAnswers(id){
-            const response = await axios.get(`/api/v1/labs/answers/${id}`)
+            const response = await axios.get(`/api/v1/${this.$route.params.type}/answers/${id}`)
             this.answers = response.data
             this.updateAnswer();
         },
