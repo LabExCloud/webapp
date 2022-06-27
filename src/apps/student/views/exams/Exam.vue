@@ -38,6 +38,11 @@ export default({
         },
         access(){
             document.documentElement.requestFullscreen()
+            addEventListener('fullscreenchange', event => {
+                if(!document.fullscreenElement){
+                    // message exit fullscreen
+                }
+            })
             this.showInfo = false
             this.showQuestions = true
         },
