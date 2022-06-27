@@ -13,7 +13,7 @@
             <li v-for="(question, index) in exp.questions" :key="question.id">
                 <span class="cursor-pointer" @click="showEditQuestionModal(index)"><span> {{ index + 1 }} ) {{ question.question }} </span> - {{ question.mark}} marks </span> 
                 <button class="ml-4 text-red-600" @click="showQuestionDeleteModal(index)">X</button>
-                <button class="ml-8 px-2 bg-gray-600 rounded" @click="$router.push(`/answers/${question.id}`)">answers</button>
+                <button class="ml-8 px-2 bg-gray-600 rounded" @click="$router.push(`/answers/labs/${question.id}`)">answers</button>
                 
             </li>
         </ul>

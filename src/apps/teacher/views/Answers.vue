@@ -34,7 +34,7 @@
             <span> Name </span>
             <span> Answers </span>
             <span> Submitted date </span>
-            <span> Modified </span>
+            <span v-if="$route.params.type == 'labs'"> Modified </span>
             <span> Total Marks </span>
     </div>
     <div v-else class="text-white text-xl text-center"> Nothing to show ! </div>
@@ -46,8 +46,7 @@
             <!-- <span> <date-view v-model="answer.submitted"></date-view> </span>
             <span> <date-view v-model="answer.modified"></date-view> </span> -->
             <span> {{ answer.submitted.getDate()}} - {{ answer.submitted.getMonth()+1 }} - {{ answer.submitted.getFullYear()}} </span>
-            <span v-if="answer.submitted.getDate()+answer.submitted.getHours()+answer.submitted.getMinutes()+answer.submitted.getSeconds() === answer.modified.getDate()+answer.modified.getHours()+answer.modified.getMinutes()+answer.modified.getSeconds() "> x </span>
-            <span v-else> {{ answer.modified.getHours()}}:{{ answer.modified.getMinutes()}} </span>
+            <span v-if="$route.params.type == 'labs'">{{(answer.submitted.getDate()+answer.submitted.getHours()+answer.submitted.getMinutes()+answer.submitted.getSeconds() === answer.modified.getDate()+answer.modified.getHours()+answer.modified.getMinutes()+answer.modified.getSeconds() )? 'x': answer.modified.getHours()}}:{{ answer.modified.getMinutes()}}</span>
             <span> {{ answer.total_marks }} </span>
         </div>
     </div>
@@ -79,7 +78,7 @@ export default({
     },
     methods: {
         async getAnswers(id){
-            const response = await axios.get(`/api/v1/labs/answers/${id}`)
+            const response = await axios.get(`/api/v1/${this.$route.params.type}/answers/${id}`)
             this.answers = response.data
             this.updateAnswer();
         },
@@ -107,6 +106,6 @@ export default({
     components:{
         DateView,
         AnswerModal,
-    }
+    },
 })
 </script>
