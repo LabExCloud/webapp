@@ -70,7 +70,7 @@
                         <div class="grid grid-cols-3 gap-y-2 gap-x-1 py-5 px-4 rounded shadow-md bg-gray-900 hover:border-gray-300 hover:shadow-2xl">
                             <span v-if="testc.pass" class="text-green-600"> {{ index}}) - Passed</span>
                             <span v-else class="text-red-600"> {{ index}}) - Failed</span>
-                            <span> Output: {{ testc.output }}</span>
+                            <span> Output: {{ testc.stdout }}</span>
                             <span v-if="testc.hidden" class="material-symbols-outlined">lock</span>
                             <span v-else class="material-symbols-outlined">lock_open</span>
                         </div>
