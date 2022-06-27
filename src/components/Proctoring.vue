@@ -46,6 +46,7 @@ export default({
 
             Promise.all([modelPromise, webCamPromise])
             .then(values => {
+                this.$emit('access')
                 this.timer = setInterval(this.detectFrame, 500, this.$refs.videoRef, values[0])
             })
             .catch(error => {

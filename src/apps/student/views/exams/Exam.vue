@@ -7,7 +7,7 @@
     </div>
     <IDEcomponent v-if="showIDE" :exam="true" @submit="submit" :qnid="qid"/>
 
-    <proctoring v-if="enableProctoring" @predictions="predictions"/>
+    <proctoring v-if="enableProctoring" @predictions="predictions" @access="access"/>
 </template>
 
 <script>
@@ -36,10 +36,13 @@ export default({
             const response = await axios.get(`/api/v1/labexams/exam/${id}`)
             this.exam = response.data
         },
-        start(){
-            this.enableProctoring = true
+        access(){
+            document.documentElement.requestFullscreen()
             this.showInfo = false
             this.showQuestions = true
+        },
+        start(){
+            this.enableProctoring = true
         },
         doQuestion(qid){
             this.qid = qid
@@ -54,6 +57,7 @@ export default({
             console.log(event);
         },
         exit(){
+            document.exitFullscreen()
             this.enableProctoring = false
             this.$router.go(-1)
         }
