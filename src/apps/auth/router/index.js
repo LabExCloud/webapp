@@ -2,6 +2,8 @@ import { createRouter, createWebHistory } from 'vue-router'
 import Login from '../views/Login.vue'
 import Logout from '../views/Logout.vue'
 import NotFound from '@/views/NotFound.vue'
+import About from '@/views/About.vue'
+import Contact from '@/views/Contact.vue'
 import Home from '../views/Home.vue'
 
 
@@ -20,6 +22,16 @@ const routes = [
     path: '/logout',
     name: 'logout',
     component: Logout
+  },
+  {
+    path: '/about',
+    name: 'about',
+    component: About
+  },
+  {
+    path: '/contact',
+    name: 'contact',
+    component: Contact
   },
   //not found pages
   {
