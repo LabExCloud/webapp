@@ -1,8 +1,8 @@
 <template>
     <div class="content">
         <!-- ====== Team Section Start -->
-        <section class="w-full pt-20 lg:pt-[120px] pb-10 lg:pb-20">
-        <div class="container w-full ml-8">
+        <section class="w-full pt-20 lg:pt-[120px] pb-10 lg:pb-20 flex justify-center">
+        <div class="container w-full">
             <div class="w-full flex flex-wrap">
                 <div class="w-full px-4">
                     <div class="text-center mx-auto mb-[60px] ">
